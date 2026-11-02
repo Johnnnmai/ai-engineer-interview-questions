@@ -159,6 +159,7 @@ def foot(rel, deep=True):
     return (f'<footer class=site><div class=wrap>&copy; 2026 Valenx Press &middot; <a href="{rel}">All 100 AI engineer interview questions</a> &middot; '
             f'{dd}Free tools: <a href="{rel}answer-check/">Answer self-check</a> &middot; <a href="{rel}study-plan/">Study plan</a> &middot; '
             f'<a href="{rel}llm-cost-calculator/">LLM cost calculator</a> &middot; <a href="{rel}mock-interview/">Mock round</a> &middot; '
+            f'Guides: <a href="{rel}companies/">Company interview guides</a> &middot; <a href="{rel}guides/">Prep guides</a> &middot; '
             f'Questions reflect common public interview patterns; no company affiliation.</div></footer>'
             f'{UTM_SCRIPT}{UI_SCRIPT}</body></html>\n')
 
@@ -237,6 +238,12 @@ def main():
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in ZH_URLS]
+    # line 19/21 company pages and prep guides (built by tools/build_content_pages.py)
+    for d in ("companies", "guides"):
+        if os.path.isfile(os.path.join(ROOT, d, "index.html")):
+            sm.append(f"  <url><loc>{SITE}/{d}/</loc><lastmod>{LASTMOD}</lastmod></url>")
+            sm += [f"  <url><loc>{SITE}/{d}/{x}/</loc><lastmod>{LASTMOD}</lastmod></url>"
+                   for x in sorted(os.listdir(os.path.join(ROOT, d))) if os.path.isfile(os.path.join(ROOT, d, x, "index.html"))]
     sm.append("</urlset>")
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(sm) + "\n")
     rb = os.path.join(ROOT, "robots.txt")

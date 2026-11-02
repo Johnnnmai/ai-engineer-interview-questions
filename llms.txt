@@ -1,0 +1,39 @@
+# AI Engineer Interview Questions (Valenx Press)
+
+> A free, answer-first AI engineer interview question bank covering LLM fundamentals, RAG, agents, evaluation, system design and production, with free browser tools (answer self-check, study plan, LLM API cost calculator, mock round timer) and preparation guides.
+
+Content is educational interview preparation, not a record of questions asked by specific employers. Company guides cite only official public careers pages and describe interview stages as a general industry pattern. Rubrics are practice aids, not hiring standards.
+
+## Question bank
+
+- [AI engineer interview questions with answers](https://johnnnmai.github.io/ai-engineer-interview-questions/): the full question bank on one page
+- [Question deep dives](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/): one page per question with framework, sample answer and follow-ups
+- [Chinese mirror (first 20 questions)](https://johnnnmai.github.io/ai-engineer-interview-questions/zh/)
+
+## Free tools
+
+- [Answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/): score a practiced answer against a rubric in the browser
+- [Study plan](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/): day-by-day plan from today to the interview date
+- [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/): cost per request, day and month from official list prices
+- [Mock interview round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/): timed practice round
+
+## Preparation guides
+
+- [How to Prepare for an AI Engineer Interview in 2026](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/how-to-prepare-for-an-ai-engineer-interview-2026/): Prepare for an AI engineer interview in 2026: Python coding, LLM and RAG fundamentals, evaluation and system design, with a practice checklist and FAQ.
+- [AI Engineer vs ML Engineer Interview: What Is Different?](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-engineer-vs-ml-engineer-interview/): AI engineer vs ML engineer interviews: which topics get deeper questions, how system design and coding differ, and how to split your prep.
+- [RAG System Design Interview: A Scoring Rubric](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-system-design-interview-scoring-rubric/): A transparent 100-point practice rubric for RAG system design interviews: requirements, ingestion, retrieval, grounding, evaluation and production.
+- [LLM Evaluation Interview Questions and How to Answer Them](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-evaluation-interview-questions/): LLM evaluation interview questions with answers: datasets, RAG and hallucination checks, metrics, LLM judges, safety and release decisions.
+- [A 2-Week AI Engineer Interview Study Plan](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/two-week-ai-engineer-interview-study-plan/): A 14-day AI engineer interview study plan: daily coding, LLM fundamentals, a small RAG build, evaluation and timed mock practice.
+
+## Company interview guides
+
+- [OpenAI AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/openai/)
+- [Anthropic AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/anthropic/)
+- [Google DeepMind AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/google-deepmind/)
+- [Meta AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/meta/)
+- [Microsoft AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/microsoft/)
+- [Amazon AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/amazon/)
+- [Nvidia AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/nvidia/)
+- [Databricks AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/databricks/)
+- [Scale AI AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/scale-ai/)
+- [Perplexity AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/perplexity/)
