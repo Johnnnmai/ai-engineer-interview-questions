@@ -38,7 +38,7 @@ ul.ck li:before{position:absolute;left:0;top:5px;width:22px;height:22px;border-r
 ul.ck li.ok:before{content:'\\2713';background:#d1fadf;color:#05603a}ul.ck li.no:before{content:'\\2717';background:#fee4e2;color:#912018}ul.ck li.mid:before{content:'?';background:#fef0c7;color:#93370d}
 .tag{font-size:.75rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:6px}.tag.ok{background:#d1fadf;color:#05603a}.tag.no{background:#fee4e2;color:#912018}.tag.mid{background:#fef0c7;color:#93370d}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}ol.tips li{margin:8px 0}
-.offer{font-size:.95rem;color:#344054}@media (max-width:600px){h1{font-size:1.6rem}.big{font-size:2.4rem}.seg label{flex:1 1 100%}}</style>"""
+.offer{font-size:.95rem;color:#344054}.human{font-size:.9rem;color:#475467;margin-top:10px}@media (max-width:600px){h1{font-size:1.6rem}.big{font-size:2.4rem}.seg label{flex:1 1 100%}}</style>"""
 
 
 def concepts(lst):
@@ -48,6 +48,8 @@ def concepts(lst):
 def data():
     aie = []
     for p in PAGES:
+        if p["slug"] not in D.AIE:  # rubric covers 10 AIE questions; the question bank has more pages
+            continue
         r = D.AIE[p["slug"]]
         aie.append({"slug": p["slug"], "q": p["q"], "level": p["level"], "model": f"../questions/{p['slug']}/",
                     "followup": p["followups"][0][0] if p["followups"] else "", "concepts": concepts(r["concepts"]), "logic": []})
@@ -194,6 +196,7 @@ function render(r,q){
   r.logic.forEach(function(c){var lab={ok:"correct",bad:"check the direction",missing:"not stated"}[c.status];lg.appendChild(li(c.status==="ok"?"ok":c.status==="bad"?"no":"mid",c.label+" \u2014 "+lab));});
   var tp=$("r-tips");tp.innerHTML="";r.tips.forEach(function(t){var l=document.createElement("li");l.textContent=t;tp.appendChild(l);});
   var m=$("r-model");m.href=q.model;m.textContent="See the model answer: "+q.q;
+  var hl=$("r-human-link");if(hl)hl.href="mailto:54d438ed87c2468592a35e13bbcb86f6@mail.grokbot.com?subject="+encodeURIComponent("Human review waitlist")+"&body="+encodeURIComponent("Track: "+track()+"\nQuestion: "+q.slug+"\n\n");
   res.hidden=false;
 }
 function run(ev){if(ev)ev.preventDefault();var t=track(),q=AC.find(DATA,t,sel.value);
@@ -207,6 +210,11 @@ var t0=params.get("track")==="ib"?"ib":"aie";document.getElementById("t-"+t0).ch
 fillQuestions(t0,params.get("q"));fillCta(t0);
 })();
 """
+
+
+HUMAN_TO = "54d438ed87c2468592a35e13bbcb86f6@mail.grokbot.com"
+HUMAN = (f'<p class=human id=r-human>\u60f3\u8981\u771f\u4eba\u6279\u6539\uff1f Want a human review of your answer? '
+         f'<a id=r-human-link href="mailto:{HUMAN_TO}?subject=Human%20review%20waitlist">Join the waitlist</a></p>')
 
 
 def cta_box(extra_cls=""):
@@ -251,7 +259,7 @@ def build():
          '<div class=grid style="margin-top:12px"><div class=card><h3>Structure</h3><ul class=ck id=r-struct></ul></div>'
          '<div class=card id=r-logic-wrap hidden><h3>Directional logic</h3><ul class=ck id=r-logic></ul></div></div>'
          '<h3>What to improve</h3><ol class=tips id=r-tips></ol><p><a id=r-model href="../questions/">See the model answer</a></p>',
-         cta_box(), '</section>',
+         cta_box(), HUMAN, '</section>',
          '<h2>How the score works</h2><p>The rubric is the same for every answer and is shown in full here.</p><table>'
          '<tr><th>Part</th><th>Points</th><th>What is checked</th></tr>'
          '<tr><td>Key concepts</td><td>60 (70 when a question has no logic checks)</td><td>Each question has 6 to 10 required concepts taken from its model answer, each with synonyms. Points are the share of concepts your answer mentions.</td></tr>'

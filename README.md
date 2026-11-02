@@ -6,6 +6,8 @@ Covers LLM fundamentals, prompting and structured output, RAG, agents and MCP, f
 
 **[Go deeper with The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101)**: 20 chapters, 5 frameworks, worked system-design walkthroughs and an 8-week plan. Prefer paperback/Kindle? [See it on Amazon](https://valenx.org/books/aie).
 
+**Practiced one out loud?** [Paste your answer into the free self-check and get a score in 30 seconds](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/).
+
 **Who this is for:** AI Engineer, LLM Engineer, Applied AI / Applied ML Engineer, GenAI Engineer, Agent Engineer, ML Engineer moving into LLM work, Forward Deployed / Solutions Engineer (AI), AI Product Engineer.
 
 **How to use:** answer each question out loud in under 2 minutes, then read the model answer and score yourself 1-5. Anything below 4 is your study list. Practice the follow-up too.

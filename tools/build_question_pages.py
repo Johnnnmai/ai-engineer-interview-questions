@@ -9,6 +9,10 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from question_pages_data import PAGES
+try:
+    from answer_check_data import AIE as _AC_AIE
+except ImportError:
+    _AC_AIE = {}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
@@ -64,6 +68,8 @@ def page(p):
     o.append(f'<div class=hero><div class=w><div class=crumb><a href="../../">{SITE_NAME}</a> &rsaquo; <a href="../">Questions</a></div>'
              f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
              f'<p>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p></div></div><div class=w>')
+    ac = "../../answer-check/" + (f"?track=aie&amp;q={p['slug']}" if p["slug"] in _AC_AIE else "")
+    o.append(f'<p class=selfcheck><b>Practiced one out loud?</b> <a href="{ac}">Paste your answer into the free self-check and get a score in 30 seconds</a></p>')
     o.append(cta(p["slug"]))
     o.append(f'<h2>What the interviewer is testing</h2><p>{e(p["testing"])}</p>')
     o.append('<h2>Answer framework</h2><ol class=steps>' + "".join(f"<li>{e(s)}</li>" for s in p["steps"]) + "</ol>")
@@ -87,6 +93,7 @@ def index():
     o = [head(title, desc, url)]
     o.append(f'<div class=hero><div class=w><div class=crumb><a href="../">{SITE_NAME}</a> &rsaquo; Questions</div><h1>{e(title)}</h1>'
              '<p>One page per question: what the interviewer is testing, an answer framework, a sample answer, follow-ups and common mistakes.</p></div></div><div class=w>')
+    o.append('<p class=selfcheck><b>Practiced one out loud?</b> <a href="../answer-check/">Paste your answer into the free self-check and get a score in 30 seconds</a></p>')
     for p in PAGES:
         o.append(f'<div class=q><span class="lvl {LVL[p["level"]]}">{p["level"]}</span><a href="{p["slug"]}/"><b>{e(p["q"])}</b></a><div class=ans>{e(p["desc"])}</div></div>')
     o.append('<p><b>Practice tool:</b> <a href="../answer-check/">Check your interview answer with the free Answer Self-Check</a> (score, missed concepts and tips).</p>')
