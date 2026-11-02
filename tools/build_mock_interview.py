@@ -8,7 +8,7 @@ tools/build_question_pages.py, so removing EARLYBF there removes it here after a
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_answer_check as A
-from build_question_pages import PROMO_ON, PROMO_TEXT, PRICE, head, foot
+from build_question_pages import PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PLAYBOOK_NAME, PLAYBOOK_PRICE, head, foot
 
 ROOT = A.ROOT
 URL = f"{A.SITE}/mock-interview/"
@@ -19,10 +19,13 @@ DESC = ("Free mock interview round generator: draw 3 to 8 random AI engineer or 
         "answer each out loud against a timer, then score every answer with the free self-check.")
 
 
-def buy(track, content):
-    base = A.AIE_BUY if track == "aie" else A.IB_BUY
-    q = "&".join(x for x in (A.OFFER_Q, f"utm_source=tool&utm_medium=mockround&utm_campaign={track}&utm_content={content}") if x)
-    return base + "?" + q
+MOCK_UTM = "utm_source=tool&utm_medium=mockround&utm_campaign={track}"
+
+
+def buy(track, content, which="primary"):
+    """Track CTAs from build_answer_check.track_ctas: primary (AIE: full package, IB: free Top 30) or alt (AIE: playbook, IB: full package)."""
+    c = A.track_ctas(track, MOCK_UTM)
+    return (c["url"] if which == "primary" else c["alt"]["url"]) + "&utm_content=" + content
 
 
 CSS = """<style>
@@ -60,10 +63,13 @@ function tick(){var s=st.sec-Math.floor((Date.now()-st.t0)/1000);var c=$('s-cloc
  $('s-bar').style.width=Math.max(0,100*s/st.sec)+'%';st.left=s;}
 function next(){clearInterval(st.h);st.used.push(Math.floor((Date.now()-st.t0)/1000));st.i++;if(st.i<st.qs.length){show();return}done();}
 function done(){$('stage').hidden=true;var o='';st.qs.forEach(function(q,i){o+='<li><b>'+esc(q.q)+'</b><br><span class=t>'+fmt(st.used[i]).replace('+','')+' used</span> \u00b7 <a href="'+check(st.t,q)+'">Score my answer</a> \u00b7 <a href="'+q.model+'">Model answer</a></li>'});
- $('d-list').innerHTML=o;var c=D[st.t].cta;$('d-head').textContent=c.head;$('d-text').textContent=c.text;$('d-buy').href=c.end;$('d-buytxt').textContent=c.btn;
+ $('d-list').innerHTML=o;var c=D[st.t].cta;$('d-head').textContent=c.head;$('d-text').textContent=c.text;$('d-buy').href=c.end;$('d-buytxt').textContent=c.btn;$('d-label').textContent=c.label;var dp=$('d-promo');if(dp)dp.hidden=!promoOn(c);
  $('done').hidden=false;$('d-h').focus();}
 function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function syncTrack(){var t=val('track');$('lv-row').hidden=t!=='aie';var b=$('hero-buy');if(b)b.href=D[t].cta.hero;var s=$('sticky-buy');if(s)s.href=D[t].cta.sticky;}
+function promoOn(c){var u=document.documentElement.getAttribute('data-offer-until');return !!c.promo&&!!u&&Date.now()<Date.parse(u);}
+function syncTrack(){var t=val('track'),c=D[t].cta;$('lv-row').hidden=t!=='aie';var b=$('hero-buy');if(b){b.href=c.hero;b.textContent=c.btn;}var hp=document.querySelector('#hero-price .promo');if(hp)hp.hidden=!promoOn(c);var ht=$('hero-pricetxt');if(ht)ht.innerHTML=t==='aie'?'<span class=num>'+D.aie.cta.price+'</span> on Gumroad, instant download':'<span class=num>Free</span> 13-page guide on Gumroad, instant download';
+ var s=$('sticky-buy');if(s){s.href=c.sticky;s.textContent=(c.promo?'Get it':'Get it free')+' \u2192';}$('sticky-full').textContent=c.full;$('sticky-short').textContent=c.short;
+ document.querySelectorAll('.sticky-cta .promo').forEach(function(x){x.hidden=!promoOn(c);});}
 document.addEventListener('DOMContentLoaded',function(){
  var p=new URLSearchParams(location.search);['track','n','min'].forEach(function(k){var v=p.get(k);if(v){var x=document.querySelector('input[name='+k+'][value="'+v+'"]');if(x)x.checked=true}});
  document.querySelectorAll('input[name=track]').forEach(function(x){x.addEventListener('change',syncTrack)});syncTrack();
@@ -79,8 +85,10 @@ def build():
     for t, tr in d.items():
         data[t] = {"name": tr["name"],
                    "qs": [{"slug": q["slug"], "q": q["q"], "level": q.get("level", ""), "model": q["model"]} for q in tr["questions"]],
-                   "cta": {"head": tr["cta"]["head"], "text": tr["cta"]["text"], "btn": tr["cta"]["btn"],
-                           "hero": buy(t, "hero"), "end": buy(t, "end_card"), "sticky": buy(t, "sticky_bar")}}
+                   "cta": {"label": tr["cta"]["label"], "head": tr["cta"]["head"], "text": tr["cta"]["text"], "btn": tr["cta"]["btn"],
+                           "promo": tr["cta"]["promo"], "hero": buy(t, "hero"), "end": buy(t, "end_card"), "sticky": buy(t, "sticky_bar"),
+                           "full": html.unescape(PRODUCT_NAME) if t == "aie" else A.IB_FREE_NAME + " \u00b7 free guide",
+                           "short": PRODUCT_SHORT if t == "aie" else "Top 30 \u00b7 free", "price": PRICE}}
     n_aie, n_ib = len(data["aie"]["qs"]), len(data["ib"]["qs"])
     ld = {"@context": "https://schema.org", "@type": "WebApplication", "name": "Mock Interview Round Generator", "url": URL,
           "description": DESC, "applicationCategory": "EducationalApplication", "operatingSystem": "Any",
@@ -90,7 +98,7 @@ def build():
         ("How long should each answer take?", "Most single interview answers run one to three minutes. Technical questions with follow-ups can take longer, so the 5 minute setting suits system design and LBO walkthroughs."),
         ("How do I know if my answer was good?", "Every question links to the free Interview Answer Self-Check. Type what you said and it scores coverage of the key concepts, structure and length against a published rubric, and links the model answer."),
         ("Is it free and private?", "Yes. It runs in your browser, nothing is recorded, and there is no sign-up."),
-        ("What is the Playbook and do I need it?", f"The free questions and model answers are enough to practice. The Playbook ({PRICE} on Gumroad) adds the answer frameworks, worked walkthroughs and a study plan in one download. Buy it only if the free material shows gaps you want to close faster."),
+        ("What are the paid options and do I need one?", f"The free questions and model answers are enough to practice. The {html.unescape(PRODUCT_NAME)} ({PRICE} on Gumroad) bundles a resume system, a PM, TPM and PGM interview handbook, a first 1:1 cheat sheet and the 0 to 1 PM Interview Playbook. For AI engineer prep only, the 0 to 1 AI Engineer Interview Playbook is {PLAYBOOK_PRICE}. For investment banking, start with the free IB Top 30 guide."),
         ("Is this a replacement for a real mock interview?", "No. A timer and random questions recreate the pressure of not knowing what comes next, but a person can push on follow-ups. Use this daily and a human mock before the real loop."),
     ]
     ldf = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
@@ -102,8 +110,8 @@ def build():
          '<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../">AI Engineer Interview Questions</a> / <a href="../answer-check/">Self-check</a> / Mock round</div>'
          '<span class=badge>Free tool</span><h1>Mock interview round generator, with a timer</h1>'
          f'<p class=lead>Random questions, a clock, no notes. Draw 3 to 8 questions from {n_aie} AI engineer or {n_ib} investment banking questions, answer each one out loud before time runs out, then score every answer with the free self-check.</p>'
-         f'<div class=acts><a class="btn btn-primary" href="#setup">Start a round {ARROW}</a><a class="btn btn-ghost" id=hero-buy href="{e(data["aie"]["cta"]["hero"])}">Get the playbook</a></div>'
-         f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo}</p></div></header>',
+         f'<div class=acts><a class="btn btn-primary" href="#setup">Start a round {ARROW}</a><a class="btn btn-ghost" id=hero-buy href="{e(data["aie"]["cta"]["hero"])}">{CTA_BUTTON}</a></div>'
+         f'<p class=price-line id=hero-price><span id=hero-pricetxt><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo}</p></div></header>',
          '<main id=main class=body><div class="read mk">',
          '<section id=setup aria-labelledby=setup-h><h2 id=setup-h>Set up your round</h2>'
          f'<fieldset><legend>Track</legend><div class=seg>{seg("track", [("aie", "AI Engineer"), ("ib", "Investment Banking")], "aie")}</div></fieldset>'
@@ -118,18 +126,19 @@ def build():
          '<p class=hint style="color:inherit;opacity:.75"><a id=s-model target=_blank rel=noopener href="../questions/" style="color:inherit">Peek at the model answer</a> after you answer, not before. <button type=button id=s-skip style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;padding:0">Skip</button></p></div></section>',
          '<section id=done hidden><h2 id=d-h tabindex=-1>Round complete</h2><p>Now score each answer while you still remember what you said. Scores show which concepts you missed.</p><ol class=recap id=d-list></ol>'
          '<div class=acts><button class="btn btn-ghost" type=button id=d-again>New round, same settings</button><button class="btn btn-ghost" type=button id=d-setup>Change settings</button></div>'
-         f'<div class=cta><span class=label>The Playbook</span><b id=d-head></b><p id=d-text></p><a class="btn btn-primary" id=d-buy href="{e(data["aie"]["cta"]["end"])}"><span id=d-buytxt>Get the playbook</span> {ARROW}</a>{promo}</div></section>',
+         f'<div class=cta><span class=label id=d-label>{CTA_LABEL}</span><b id=d-head></b><p id=d-text></p><a class="btn btn-primary" id=d-buy href="{e(data["aie"]["cta"]["end"])}"><span id=d-buytxt>{CTA_BUTTON}</span> {ARROW}</a>{promo.replace("<span ", "<span id=d-promo ", 1)}</div></section>',
          '<h2>Why practice with a timer</h2><p>In a real loop you do not choose the question and you cannot pause. Practicing the same questions in order trains recall of a script. Random order and a visible clock train the skill that is actually tested: structuring an answer on the spot and stopping on time.</p>'
          '<ol class=steps><li>Pick a track and a round length. 5 questions at 3 minutes is about one interview block.</li><li>Answer out loud. Lead with the direct answer, then how it works, then one example or trade-off.</li><li>When the round ends, paste what you said into the self-check for each question.</li><li>Read the model answer for anything under 70, then run a new round tomorrow.</li></ol>',
          '<h2>Price check</h2><p>Paid interview guides for these loops are listed at $99 to $197 (Wall Street Prep Red Book $99, Breaking Into Wall Street IB Interview Guide $197, prices on their own pages on Nov 1, 2026). This generator and the self-check are free. '
-         f'The Playbook is {PRICE} and adds the frameworks behind every model answer.</p>',
-         f'<div class=cta><span class=label>The Playbook</span><b>Want the frameworks behind the model answers?</b><p>{e(data["aie"]["cta"]["text"])}</p>'
-         f'<a class="btn btn-primary" href="{e(buy("aie", "cta_box"))}">Get the AI Engineer playbook {ARROW}</a> '
-         f'<a class="btn btn-ghost" href="{e(buy("ib", "cta_box"))}">Get the IB playbook</a>{promo}</div>',
+         f'The {PRODUCT_NAME} is {PRICE} on Gumroad, and the IB Top 30 guide is free.</p>',
+         f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
+         f'<a class="btn btn-primary" href="{e(buy("aie", "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo}'
+         f'<p class=alt-buy>Only need the AI engineer material? <a href="{e(buy("aie", "cta_box_playbook", "alt"))}">{PLAYBOOK_NAME}</a>, {PLAYBOOK_PRICE} on Gumroad.</p>'
+         f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad.</p></div>',
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in faq),
          f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; <a href="{A.IB_SITE}/">100 investment banking interview questions</a></p>',
          '</div></main>',
-         '<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true><span class=t><b><span class=full>The 0&rarr;1 Interview Playbooks</span><span class=short>The Playbook</span></b>'
+         f'<div class=sticky-cta role=complementary aria-label="{CTA_BUTTON}" aria-hidden=true><span class=t><b><span class=full id=sticky-full>{PRODUCT_NAME}</span><span class=short id=sticky-short>{PRODUCT_SHORT}</span></b>'
          + ('<span class="long promo"> &middot; 40% off until Nov 3</span><span class="short promo"> &middot; 40% off</span>' if PROMO_ON else '') +
          f'</span><a class=btn id=sticky-buy href="{e(data["aie"]["cta"]["sticky"])}">Get it &rarr;</a></div>',
          JS.replace("__DATA__", json.dumps(data)),

@@ -20,8 +20,8 @@ DESC = ("100 AI engineer interview questions with full model answers: LLMs, prom
         "fine-tuning, evals, system design, production and coding. Updated Nov 2026.")
 LEAD = ("LLM fundamentals, prompting, RAG, agents and MCP, fine-tuning, evaluation, system design, production and coding. "
         "Every question has a written answer, graded Entry, Mid or Senior, with the follow-ups interviewers tend to ask. Free, no sign-up.")
-AMAZON = ('<p class=muted><small>Instant PDF via Gumroad. Prefer paperback or Kindle? '
-          '<a href="https://valenx.org/books/aie">See it on Amazon</a>.</small></p>')
+AMAZON = ('<p class=muted><small>The AI engineer playbook also comes in paperback and Kindle: '
+          '<a href="https://valenx.org/books/aie">see it on Amazon</a>.</small></p>')
 
 # Root-only pieces (question accordion, topic cards, contents, code) on the shared design tokens.
 STYLE = """<style>
@@ -50,15 +50,15 @@ details.q .qa p{margin:10px 0}
 </style>"""
 
 
-def buy(content):
-    return html.escape(B.buy_url(SLUG, content, UTM), quote=True)
+def buy(content, base=None):
+    return html.escape(B.buy_url(SLUG, content, UTM, base), quote=True)
 
 
 def main():
     body = open(os.path.join(ROOT, "tools", "root_body.html")).read()
     body = body.replace("<!--CTA:cta_mid-->", B.cta(SLUG, "cta_mid", UTM, AMAZON))
     body = body.replace("<!--CTA:cta_box-->", B.cta(SLUG, "cta_box", UTM, AMAZON))
-    body = body.replace("{{BUY:faq}}", buy("faq"))
+    body = body.replace("{{BUY:faq}}", buy("faq_playbook", B.PLAYBOOK_URL))
     assert "<!--CTA" not in body and "{{BUY" not in body
     lv = {k: len(re.findall(rf"class='lvl {v}'", body)) for k, v in B.LVL.items()}
     o = [B.head(TITLE, DESC, URL, REL, STYLE)]
@@ -73,7 +73,9 @@ def main():
     o.append(B.foot(REL))
     out = "".join(o)
     links = re.findall(r'href="(https://[^"]*gumroad\.com[^"]*)"', out)
-    assert links and all("offer_code=EARLYBF" in l for l in links) == B.PROMO_ON, links
+    assert links and all(l.startswith("https://sirjohnnymai.gumroad.com/l/") for l in links), links
+    assert all("offer_code=EARLYBF" in l for l in links) == B.PROMO_ON, links
+    assert any(l.startswith(B.CTA_URL.split("?")[0]) for l in links), links
     open(os.path.join(ROOT, "index.html"), "w").write(out)
     print("wrote index.html,", len(links), "buy links:", ", ".join(re.search(r"utm_content=(\w+)", l).group(1) for l in links))
 

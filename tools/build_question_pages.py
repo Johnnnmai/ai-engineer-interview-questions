@@ -20,17 +20,26 @@ SITE_NAME = "AI Engineer Interview Questions"
 LASTMOD = "2026-11-01"
 
 # ---- CTA: the single place to change the offer ----
-# Every buy link in this repo (question pages, questions index, answer-check) is built from CTA_URL.
-# When EARLYBF ends, delete "?offer_code=EARLYBF" here and re-run both builders: the promo lines disappear too.
-CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF"  # EARLYBF: 40% off until Nov 3 2026 11:59 PM PT; remove the query after that
+# Every primary buy link in this repo (question pages, root, questions index, answer-check, mock-interview, alternatives) is built from CTA_URL.
+# Primary product: the North America Interview Full Package bundle (Gumroad slug xzptir). EARLYBF checked on Nov 1 2026:
+# the live checkout shows the code valid on this product, 40% off, expiring 2026-11-04T07:59:00Z.
+# When EARLYBF ends, delete "?offer_code=EARLYBF" here (and in PLAYBOOK_URL) and re-run the builders: the promo lines disappear too.
+CTA_URL = "https://sirjohnnymai.gumroad.com/l/xzptir?offer_code=EARLYBF"  # EARLYBF: 40% off until Nov 3 2026 11:59 PM PT; remove the query after that
 OFFER_EXPIRES = "2026-11-04T07:59:00Z"  # EARLYBF expiry read from the Gumroad product page; promo lines also hide client-side after it
 PROMO_TEXT = "40% off with code EARLYBF until Nov 3, 11:59 PM PT"
-PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
-PRODUCT_NAME = "The 0&rarr;1 AI Engineer Interview Playbook"
+PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
+PRODUCT_NAME = "North America Interview Full Package"
+PRODUCT_SHORT = "Full Package"
+CTA_LABEL = "The Full Package"
 CTA_UTM = "utm_source=seo&utm_medium=qpage&utm_campaign={slug}"
-CTA_HEADLINE = "Want the full method?"
-CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan."
-CTA_BUTTON = "Get the playbook"
+CTA_HEADLINE = "Want the whole job search in one download?"
+CTA_TEXT = ("Four files in one bundle: a resume system, a PM, TPM and PGM interview handbook, a first 1:1 cheat sheet and the 0 to 1 PM Interview Playbook. "
+            "Written for PM and TPM loops; the resume system and the 1:1 sheet fit any tech role. In English and Chinese.")
+CTA_BUTTON = "Get the full package"
+# Secondary text link only: the AI engineer playbook.
+PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF"
+PLAYBOOK_NAME = "The 0&rarr;1 AI Engineer Interview Playbook"
+PLAYBOOK_PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
 # ----------------------------------------------------
 PROMO_ON = "offer_code=EARLYBF" in CTA_URL
 
@@ -46,8 +55,15 @@ UI_SCRIPT = ('<script>(function(){var b=document.querySelector(".sticky-cta"),h=
              'var p=document.querySelectorAll(".promo");for(var i=0;i<p.length;i++)p[i].hidden=true;}})();</script>')
 
 
-def buy_url(slug, content, utm=None):
-    return CTA_URL + ("&" if "?" in CTA_URL else "?") + (utm or CTA_UTM.format(slug=slug)) + "&utm_content=" + content
+def buy_url(slug, content, utm=None, base=None):
+    base = base or CTA_URL
+    return base + ("&" if "?" in base else "?") + (utm or CTA_UTM.format(slug=slug)) + "&utm_content=" + content
+
+
+def alt_link(slug, content="playbook_link", utm=None):
+    """Secondary text link to the AI engineer playbook."""
+    return (f'<p class=alt-buy>Only need the AI engineer material? <a href="{e(buy_url(slug, content, utm, PLAYBOOK_URL))}">{PLAYBOOK_NAME}</a>, '
+            f'{PLAYBOOK_PRICE} on Gumroad.</p>')
 
 
 def promo(cls="badge promo"):
@@ -55,8 +71,9 @@ def promo(cls="badge promo"):
 
 
 def cta(slug, content="cta_box", utm=None, extra=""):
-    return (f'<div class=cta><span class=label>The Playbook</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
-            f'<a class="btn btn-primary" href="{e(buy_url(slug, content, utm))}">{CTA_BUTTON} {ARROW}</a>{promo()}{extra}</div>')
+    return (f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
+            f'<a class="btn btn-primary" href="{e(buy_url(slug, content, utm))}">{CTA_BUTTON} {ARROW}</a>{promo()}'
+            f'{alt_link(slug, content.replace("cta", "playbook", 1) if content.startswith("cta") else "playbook_" + content, utm)}{extra}</div>')
 
 
 def hero_buy(slug, ghost_href, ghost_text, utm=None):
@@ -68,19 +85,18 @@ def hero_buy(slug, ghost_href, ghost_text, utm=None):
 def sticky(slug, utm=None):
     deal = f'<span class="long promo"> &middot; 40% off until Nov 3</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
     short = '<span class="short promo"> &middot; 40% off</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
-    return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
-            f'<span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>The Playbook</span></b>{deal}{short}</span>'
+    return (f'<div class=sticky-cta role=complementary aria-label="Buy the full package" aria-hidden=true>'
+            f'<span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>{deal}{short}</span>'
             f'<a class=btn href="{e(buy_url(slug, "sticky_bar", utm))}">Get it &rarr;</a></div>')
 
 
 def preview_card(slug, rel):
-    return (f'<li><div class=pcard><img src="{rel}assets/playbook-cover.webp" width=333 height=465 loading=lazy '
-            f'alt="Cover of {PRODUCT_NAME.replace("&rarr;", " to ")}, 2026 edition, Valenx Press">'
-            f'<div><span class=label>The Playbook &middot; 2026 edition</span><h2>{PRODUCT_NAME}</h2><p>{e(CTA_TEXT)}</p>'
-            f'<ul class=spec><li><span>Publisher</span><span>Valenx Press</span></li>'
-            f'<li><span>Format</span><span>Digital download on Gumroad</span></li>'
+    return (f'<li><div class="pcard text"><div><span class=label>{CTA_LABEL}</span><h2>{PRODUCT_NAME}</h2><p>{e(CTA_TEXT)}</p>'
+            f'<ul class=spec><li><span>Inside</span><span>4 files: resume system, PM/TPM/PGM interview handbook, 1:1 cheat sheet, PM playbook</span></li>'
+            f'<li><span>Format</span><span>Digital download on Gumroad (HTML and PDF)</span></li>'
             f'<li><span>Price</span><span>{PRICE}</span></li></ul>'
-            f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "preview_card"))}">{CTA_BUTTON} {ARROW}</a>{promo()}</div></div></div></li>')
+            f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "preview_card"))}">{CTA_BUTTON} {ARROW}</a>{promo()}</div>'
+            f'{alt_link(slug, "preview_card_playbook")}</div></div></li>')
 
 
 def icons(rel):
@@ -136,6 +152,7 @@ def page(p):
     o.append(cta(p["slug"]))
     o.append('<h2>Related questions</h2><ul class=related>' +
              "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) +
+             f'<li><a href="../../mock-interview/">Run a timed mock interview round</a></li><li><a href="../../alternatives/">Compare AI engineer interview prep options</a></li>'
              f'<li><a href="../">All question deep dives</a></li><li><a href="../../">All 100 AI engineer interview questions with answers</a></li></ul>')
     o.append(f'<p class=muted>Based on question {src} in the full question bank.</p>')
     o.append('</div></main>' + sticky(p["slug"]))

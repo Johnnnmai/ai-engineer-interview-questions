@@ -11,21 +11,41 @@ from question_pages_data import PAGES
 import answer_check_data as D
 
 from urllib.parse import urlsplit
-from build_question_pages import CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, head, foot, icons
+from build_question_pages import (CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, CTA_LABEL, CTA_HEADLINE, CTA_TEXT,
+                                   CTA_BUTTON, PLAYBOOK_URL, PLAYBOOK_NAME, PLAYBOOK_PRICE, head, foot, icons)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
 IB_SITE = "https://johnnnmai.github.io/investment-banking-interview-questions"
 URL = f"{SITE}/answer-check/"
-# Both buy links reuse the offer query of CTA_URL (tools/build_question_pages.py), so removing EARLYBF there removes it here.
+# Paid links reuse the offer query of CTA_URL (tools/build_question_pages.py), so removing EARLYBF there removes it here.
 OFFER_Q = urlsplit(CTA_URL).query
-AIE_BUY = CTA_URL.split("?")[0]
-IB_BUY = "https://sirjohnnymai.gumroad.com/l/ib-interview-playbook"
+AIE_BUY = CTA_URL.split("?")[0]          # primary for the AI engineer track: the North America Interview Full Package bundle
+BUNDLE_BUY = AIE_BUY
+PLAYBOOK_BUY = PLAYBOOK_URL.split("?")[0]  # secondary text link on the AI engineer track
+# Primary for the IB track: the free IB Top 30 product (Gumroad, $0+). No offer code on a free product.
+IB_BUY = "https://sirjohnnymai.gumroad.com/l/ib-top-30-questions"
+IB_FREE_NAME = "IB Interview: Top 30 Questions"
 TOOL_UTM = "utm_source=tool&utm_medium=answercheck&utm_campaign={track}"
 
 
-def track_url(base, track):
-    return base + "?" + "&".join(x for x in (OFFER_Q, TOOL_UTM.format(track=track)) if x)
+def track_url(base, track, offer=True, utm=TOOL_UTM):
+    return base + "?" + "&".join(x for x in ((OFFER_Q if offer else ""), utm.format(track=track)) if x)
+
+
+def track_ctas(track, utm=TOOL_UTM):
+    """Primary CTA plus one secondary text link per track. Shared with the mock-interview page."""
+    if track == "aie":
+        return {"url": track_url(BUNDLE_BUY, "aie", utm=utm), "label": CTA_LABEL, "head": CTA_HEADLINE, "text": CTA_TEXT,
+                "btn": CTA_BUTTON, "promo": PROMO_ON,
+                "alt": {"url": track_url(PLAYBOOK_BUY, "aie", utm=utm), "pre": "Only need the AI engineer material? ",
+                        "name": html.unescape(PLAYBOOK_NAME), "post": f", {PLAYBOOK_PRICE} on Gumroad.", "promo": False}}
+    return {"url": track_url(IB_BUY, "ib", offer=False, utm=utm), "label": "Free guide", "head": "Start with the free IB Top 30",
+            "text": f"{IB_FREE_NAME} covers the 30 most-asked investment banking interview questions with model answers. 13 pages, free on Gumroad.",
+            "btn": "Get the free Top 30", "promo": False,
+            "alt": {"url": track_url(BUNDLE_BUY, "ib", utm=utm), "pre": "Paid option: ", "name": PRODUCT_NAME,
+                    "post": f", {PRICE} on Gumroad. A resume system, a PM and TPM interview handbook, a 1:1 cheat sheet and a PM playbook.",
+                    "promo": PROMO_ON}}
 
 
 TITLE = "Check My Interview Answer: Free Interview Answer Self-Check"
@@ -84,17 +104,11 @@ def data():
     assert len(aie) == len(PAGES) == 50 and len(ib) == 50, (len(aie), len(ib))
     tracks = {
         "aie": {"name": "AI Engineer", "questions": aie,
-                "cta": {"url": track_url(AIE_BUY, "aie"),
-                        "head": "Want model answers for all 100 AI engineer questions?",
-                        "text": "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan.",
-                        "btn": "Get the AI Engineer playbook"}},
+                "cta": track_ctas("aie")},
         "ib": {"name": "Investment Banking", "questions": ib,
-               "cta": {"url": track_url(IB_BUY, "ib"),
-                       "head": "Need the frameworks and full walkthroughs?",
-                       "text": "The 0 to 1 Investment Banking Interview Playbook covers fit and behavioral answers, modeling tests and a prep plan.",
-                       "btn": "Get the IB playbook"}},
+               "cta": track_ctas("ib")},
     }
-    return {"tracks": tracks, "offerExpires": OFFER_EXPIRES if PROMO_ON else ""}
+    return {"tracks": tracks, "offerExpires": OFFER_EXPIRES if PROMO_ON else "", "promoText": PROMO_TEXT}
 
 
 JS = r"""
@@ -215,14 +229,18 @@ var sel=$("ac-q"), ta=$("ac-answer"), res=$("result");
 var params=new URLSearchParams(location.search);
 var visitorSrc=(params.get("utm_source")||"").replace(/[^a-z0-9_-]/gi,"-").toLowerCase().slice(0,40);
 function track(){var r=document.querySelector("input[name=track]:checked");return r?r.value:"aie";}
-function ctaHref(t,content){var u=new URL(DATA.tracks[t].cta.url);u.searchParams.set("utm_content",content);if(visitorSrc)u.searchParams.set("utm_term",visitorSrc);return u.toString();}
+function ctaHref(t,content,alt){var c=DATA.tracks[t].cta;var u=new URL(alt?c.alt.url:c.url);u.searchParams.set("utm_content",content);if(visitorSrc)u.searchParams.set("utm_term",visitorSrc);return u.toString();}
 var offerOn=!!DATA.offerExpires&&Date.now()<Date.parse(DATA.offerExpires);
+function fillAlt(p,t,content){var c=DATA.tracks[t].cta.alt;if(!p)return;p.innerHTML="";p.appendChild(document.createTextNode(c.pre));
+  var a=document.createElement("a");a.href=ctaHref(t,content,true);a.textContent=c.name;p.appendChild(a);
+  p.appendChild(document.createTextNode(c.post+(c.promo&&offerOn?" "+DATA.promoText+".":"")));}
 function fillCta(t){var c=DATA.tracks[t].cta;document.querySelectorAll(".ac-cta").forEach(function(box){
+  box.querySelector(".label").textContent=c.label;
   box.querySelector(".cta-h").textContent=c.head;box.querySelector(".cta-t").textContent=c.text;
   var a=box.querySelector("a.btn");a.firstChild.textContent=c.btn+" ";a.href=ctaHref(t,"cta_box");
-  var o=box.querySelector(".promo");if(o)o.hidden=!offerOn;});
+  var o=box.querySelector(".promo");if(o)o.hidden=!(offerOn&&c.promo);fillAlt(box.querySelector(".alt-buy"),t,"cta_box_alt");});
   var g=$("r-gap-buy");if(g){g.firstChild.textContent=c.btn+" ";g.href=ctaHref(t,"answercheck_gap");}
-  var gp=$("r-gap-promo");if(gp)gp.hidden=!offerOn;}
+  var gp=$("r-gap-promo");if(gp)gp.hidden=!(offerOn&&c.promo);}
 function fillQuestions(t,slug){sel.innerHTML="";DATA.tracks[t].questions.forEach(function(q){var o=document.createElement("option");o.value=q.slug;o.textContent=q.q;sel.appendChild(o);});
   if(slug&&AC.find(DATA,t,slug))sel.value=slug;}
 function syncUrl(){var u=new URL(location.href);u.searchParams.set("track",track());u.searchParams.set("q",sel.value);history.replaceState(null,"",u.toString());}
@@ -233,7 +251,7 @@ function render(r,q){
   var nt=$("r-notes");if(nt){nt.innerHTML="";(r.notes||[]).forEach(function(x){nt.appendChild(li("no",x));});nt.hidden=!(r.notes&&r.notes.length);}
   var cov=$("r-cov"),mis=$("r-mis");cov.innerHTML="";mis.innerHTML="";
   var nMis=0;r.concepts.forEach(function(c){if(c.covered){cov.appendChild(li("ok",c.label,"covered"));}else{nMis++;var l=li("no",c.label,"missed");
-    var s=document.createElement("span");s.className="inpb";s.textContent="Covered in the full Playbook";l.appendChild(s);mis.appendChild(l);}});
+    var s=document.createElement("span");s.className="inpb";s.textContent="In the model answer";l.appendChild(s);mis.appendChild(l);}});
   if(cov.children.length===0)cov.appendChild(li("no","None of the key concepts were detected yet.","none"));
   if(nMis===0)mis.appendChild(li("ok","Nothing missed. Every key concept was detected.","none missed"));
   $("r-ncov").textContent=String(r.concepts.length-nMis);$("r-nmis").textContent=String(nMis);$("r-gap").hidden=(nMis===0);
@@ -272,8 +290,10 @@ def promo_span(extra=""):
 
 def cta_box():
     c = data()["tracks"]["aie"]["cta"]
-    return (f'<div class="cta ac-cta"><span class=label>The Playbook</span><b class=cta-h>{e(c["head"])}</b><p class=cta-t>{e(c["text"])}</p>'
-            f'<a class="btn btn-primary" href="{e(c["url"])}&amp;utm_content=cta_box">{e(c["btn"])} {ARROW}</a>{promo_span()}</div>')
+    a = c["alt"]
+    return (f'<div class="cta ac-cta"><span class=label>{e(c["label"])}</span><b class=cta-h>{e(c["head"])}</b><p class=cta-t>{e(c["text"])}</p>'
+            f'<a class="btn btn-primary" href="{e(c["url"])}&amp;utm_content=cta_box">{e(c["btn"])} {ARROW}</a>{promo_span()}'
+            f'<p class=alt-buy>{e(a["pre"])}<a href="{e(a["url"])}&amp;utm_content=cta_box_alt">{e(a["name"])}</a>{e(a["post"])}</p></div>')
 
 
 def build():
@@ -306,7 +326,7 @@ def build():
          '<div><div class=band id=r-band></div><p id=r-sum></p><ul class=ck id=r-notes hidden></ul></div><div class=meter aria-hidden=true><span id=r-meter style="width:0"></span></div></div>'
          '<div class=gap><div class=card><h3>Covered concepts (<span id=r-ncov>0</span>)</h3><ul class=ck id=r-cov></ul></div>'
          '<div class="card miss"><h3>Missed concepts (<span id=r-nmis>0</span>)</h3><ul class=ck id=r-mis></ul>'
-         '<div class=gapbuy id=r-gap hidden><p>Each missed concept is covered in the full Playbook, with the frameworks and worked answers.</p>'
+         '<div class=gapbuy id=r-gap hidden><p>Each missed concept is spelled out in the model answer for this question. Read it, then try again out loud.</p>'
          f'<div class=acts><a class="btn btn-primary" id=r-gap-buy href="{e(aie_cta["url"])}&amp;utm_content=answercheck_gap">{e(aie_cta["btn"])} {ARROW}</a>'
          f'{promo_span(" id=r-gap-promo")}</div></div></div></div>'
          '<div class=gap><div class=card><h3>Structure</h3><ul class=ck id=r-struct></ul></div>'
