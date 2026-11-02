@@ -128,22 +128,36 @@ function checkLogic(c,text){
 }
 function lengthPts(n){
  if(n<30)return [0,"short"]; if(n<60)return [4,"short"]; if(n<80)return [7,"short"];
- if(n<=300)return [10,"ok"]; if(n<=400)return [7,"long"]; return [4,"long"];
+ if(n<=300)return [10,"ok"]; if(n<=400)return [7,"long"]; if(n<=600)return [4,"long"]; return [0,"long"];
 }
+var MAX_CHARS=6000;
+function normSent(s){return s.toLowerCase().replace(/[^a-z0-9%$]+/g," ").trim();}
 function score(q,text){
- var t=text||"", low=t.toLowerCase(), hasLogic=q.logic&&q.logic.length>0;
+ var t=(text||"").slice(0,MAX_CHARS), low=t.toLowerCase(), hasLogic=q.logic&&q.logic.length>0;
  var wC=hasLogic?60:70;
  var cs=q.concepts.map(function(c){var hits=c.rx.filter(function(p){return rx(p).test(low);}).length;return {label:c.label,covered:hits>=c.min};});
  var nCov=cs.filter(function(c){return c.covered;}).length;
  var cPts=Math.round(wC*nCov/cs.length);
+ // anti keyword stuffing: short answers or few full sentences get half the concept points
+ var n=words(t), allS=sentences(t), full=allS.filter(function(s){return words(s)>=6&&/[a-z]/i.test(s);}).length;
+ var thin=n<60||full<3; if(thin)cPts=Math.round(cPts/2);
+ // anti padding: share of unique sentences
+ var norm=allS.map(normSent).filter(function(s){return s.length>0;}), uniq={}, nu=0;
+ norm.forEach(function(s){if(uniq[s]!==1){uniq[s]=1;nu++;}});
+ var uniqRatio=norm.length?nu/norm.length:1, repeated=norm.length>=4&&uniqRatio<0.7;
  var sents=sentences(t), head=sents.slice(0,2).join(" ");
  var hasDef=STRUCT.def.test(head), howHits=(t.match(STRUCT.how)||[]).length, hasHow=howHits>=2||/\b(because|so that|which means|in order to|the reason|therefore)\b/i.test(t), hasEx=STRUCT.ex.test(t);
  var st=[{part:"Definition or direct answer up front",ok:hasDef,pts:7},{part:"How it works or why (cause, steps)",ok:hasHow,pts:7},{part:"An example, number or trade-off",ok:hasEx,pts:6}];
  var sPts=st.reduce(function(a,s){return a+(s.ok?s.pts:0);},0);
- var n=words(t), L=lengthPts(n);
+ var L=lengthPts(n);
  var lg=(q.logic||[]).map(function(c){return {label:c.label,status:checkLogic(c,t),tip:c.tip};});
  var lPts=hasLogic?Math.round(10*lg.filter(function(c){return c.status==="ok";}).length/lg.length):0;
  var total=n===0?0:Math.min(100,cPts+sPts+L[0]+lPts);
+ var notes=[], wrongDir=lg.some(function(c){return c.status==="bad";});
+ if(wrongDir){total=Math.min(total,60);notes.push("Check the direction of the effect. Score capped at 60 because at least one direction looks reversed.");}
+ if(repeated){total=Math.min(total,Math.round(60*uniqRatio));notes.push("Much of the answer repeats itself. Score reduced; say each point once.");}
+ if(n>600)notes.push("Over 600 words gets no length points. A spoken answer is usually 80 to 300 words.");
+ if(thin&&n>0)notes.push("Concept points halved: the answer is short or mostly keywords. Use full sentences, at least about 60 words.");
  // tips: wrong logic first, then missed concepts, structure, length, missing logic, follow-up
  var tips=[];
  lg.forEach(function(c){if(c.status==="bad")tips.push("Check your direction: "+c.tip);});
@@ -158,7 +172,7 @@ function score(q,text){
  tips.push("Say it out loud with a timer and record it; the written version usually reads better than it sounds.");
  tips=tips.slice(0,3);
  var band=total>=80?"Strong":total>=60?"Solid, with gaps":total>=40?"Needs work":"Thin";
- return {total:total,band:band,words:n,concepts:cs,conceptPts:cPts,conceptMax:wC,structure:st,structurePts:sPts,lengthPts:L[0],lengthNote:L[1],logic:lg,logicPts:lPts,logicMax:hasLogic?10:0,tips:tips};
+ return {total:total,notes:notes,uniqueRatio:uniqRatio,band:band,words:n,concepts:cs,conceptPts:cPts,conceptMax:wC,structure:st,structurePts:sPts,lengthPts:L[0],lengthNote:L[1],logic:lg,logicPts:lPts,logicMax:hasLogic?10:0,tips:tips};
 }
 function find(data,track,slug){var tr=data.tracks[track];if(tr==null)return null;for(var i=0;i<tr.questions.length;i++)if(tr.questions[i].slug===slug)return tr.questions[i];return null;}
 var api={score:score,checkLogic:checkLogic,find:find,scoreBySlug:function(data,track,slug,text){return score(find(data,track,slug),text);}};
@@ -187,6 +201,7 @@ function li(cls,text,tagText){var l=document.createElement("li");l.className=cls
 function render(r,q){
   $("r-score").textContent=String(r.total);$("r-band").textContent=r.band;$("r-meter").style.width=r.total+"%";
   $("r-sum").textContent="Concepts "+r.conceptPts+"/"+r.conceptMax+" \u00b7 Structure "+r.structurePts+"/20 \u00b7 Length "+r.lengthPts+"/10 ("+r.words+" words)"+(r.logicMax?" \u00b7 Logic "+r.logicPts+"/10":"");
+  var nt=$("r-notes");if(nt){nt.innerHTML="";(r.notes||[]).forEach(function(x){nt.appendChild(li("no",x));});nt.hidden=!(r.notes&&r.notes.length);}
   var cov=$("r-cov"),mis=$("r-mis");cov.innerHTML="";mis.innerHTML="";
   r.concepts.forEach(function(c){(c.covered?cov:mis).appendChild(li(c.covered?"ok":"no",c.label,c.covered?"covered":"missed"));});
   if(cov.children.length===0)cov.appendChild(li("no","None of the key concepts were detected yet.","none"));
@@ -247,13 +262,13 @@ def build():
          '<label for=t-ib><input type=radio name=track id=t-ib value=ib> Investment Banking</label></div></fieldset>'
          f'<div class=row><label class=lb for=ac-q>2. Question</label><select id=ac-q name=q>{first_aie}</select></div>'
          '<div class=row><label class=lb for=ac-answer>3. Your answer</label>'
-         '<textarea id=ac-answer name=answer spellcheck=true aria-describedby="ac-hint ac-err" placeholder="Type or paste the answer you would give out loud."></textarea>'
-         '<p class=hint id=ac-hint>Aim for what you would say in one to two minutes, roughly 80 to 300 words.</p><p class=hint id=ac-err role=alert style="color:#912018"></p></div>'
+         '<textarea id=ac-answer name=answer maxlength=6000 spellcheck=true aria-describedby="ac-hint ac-err" placeholder="Type or paste the answer you would give out loud."></textarea>'
+         '<p class=hint id=ac-hint>Aim for what you would say in one to two minutes, roughly 80 to 300 words (6,000 characters max).</p><p class=hint id=ac-err role=alert style="color:#912018"></p></div>'
          '<div class=acts><button class=btn type=submit>Check my answer</button><button class=sec type=button id=ac-clear>Clear</button></div>'
          '<p class=hint id=ac-note>A keyword and structure check against the model answer, not a verdict from an interviewer. Use it to find gaps, then practice out loud.</p></form>',
          '<section id=result hidden aria-live=polite aria-labelledby=r-head>'
          '<h2 id=r-head tabindex=-1>Your result</h2><div class=scorebox><div class=big><span id=r-score>0</span><small> / 100</small></div>'
-         '<div><div class=band id=r-band></div><p id=r-sum></p></div><div class=meter aria-hidden=true><span id=r-meter style="width:0"></span></div></div>'
+         '<div><div class=band id=r-band></div><p id=r-sum></p><ul class=ck id=r-notes hidden></ul></div><div class=meter aria-hidden=true><span id=r-meter style="width:0"></span></div></div>'
          '<div class=grid style="margin-top:16px"><div class=card><h3>Covered concepts</h3><ul class=ck id=r-cov></ul></div>'
          '<div class=card><h3>Missed concepts</h3><ul class=ck id=r-mis></ul></div></div>'
          '<div class=grid style="margin-top:12px"><div class=card><h3>Structure</h3><ul class=ck id=r-struct></ul></div>'

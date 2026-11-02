@@ -158,7 +158,7 @@ IB = {
   ("Both sides of the balance sheet balance", [r"balances?", r"both sides"]),
  ], "logic": [
   {"label": "Net income goes down", "subj": r"net income", "want": "down", "tip": "Net income falls, by $10 x (1 - tax rate), for example $7.50 at 25%."},
-  {"label": "Cash goes up (the tax saving)", "subj": r"\bcash\b(?=\s+(is|was|goes|go|rises|rose|increases|increased|up|grows|by|balance)\b)", "want": "up", "tip": "Cash rises by the tax saving, because depreciation is non-cash but lowers taxes."},
+  {"label": "Cash goes up (the tax saving)", "subj": r"\bcash\b(?=\s+(is|was|goes|go|rises|rose|increases|increased|up|grows|by|balance|falls|fell|decreases|decreased|drops|dropped|declines|declined|down)\b)", "want": "up", "tip": "Cash rises by the tax saving, because depreciation is non-cash but lowers taxes."},
   {"label": "Net PP&E goes down", "subj": r"pp&e|\bppe\b|fixed assets", "want": "down", "tip": "Net PP&E falls by the full $10 of extra depreciation."},
   {"label": "Retained earnings go down", "subj": r"retained earnings", "want": "down", "tip": "Retained earnings fall by the same amount as net income."},
  ]},
