@@ -217,3 +217,4 @@ footer.site a{color:var(--ink-2)}
 .alt-buy.tier9{margin-top:10px}.cta .alt-buy.tier9{margin-top:0}.alt-buy.tier9[hidden]{display:none}.alt-buy.tier9 a{font-weight:500;white-space:nowrap}
 
 .badge.promo .ps{display:none}@media (max-width:560px){.badge.promo{white-space:nowrap}.badge.promo .pl{display:none}.badge.promo .ps{display:inline}}
+@media (max-width:360px){.alt-buy.tier9 a{white-space:normal}}
