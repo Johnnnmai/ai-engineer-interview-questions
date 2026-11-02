@@ -154,6 +154,8 @@ function lengthPts(n){
  if(n<30)return [0,"short"]; if(n<60)return [4,"short"]; if(n<80)return [7,"short"];
  if(n<=300)return [10,"ok"]; if(n<=400)return [7,"long"]; if(n<=600)return [4,"long"]; return [0,"long"];
 }
+// lower-case only an ordinary first word; keep acronyms (IRR, EV/EBITDA, QLoRA), numbers and names as written
+function lowerFirst(s){var w=s.split(/[\s:,]/)[0];if(/[A-Z0-9$]/.test(w.slice(1))||/^(Gordon)$/.test(w))return s;return s.charAt(0).toLowerCase()+s.slice(1);}
 var MAX_CHARS=6000;
 function normSent(s){return s.toLowerCase().replace(/[^a-z0-9%$]+/g," ").trim();}
 function score(q,text){
@@ -185,7 +187,7 @@ function score(q,text){
  // tips: wrong logic first, then missed concepts, structure, length, missing logic, follow-up
  var tips=[];
  lg.forEach(function(c){if(c.status==="bad")tips.push("Check your direction: "+c.tip);});
- cs.filter(function(c){return c.covered===false;}).slice(0,2).forEach(function(c){tips.push("Add this point from the model answer: "+c.label.charAt(0).toLowerCase()+c.label.slice(1)+".");});
+ cs.filter(function(c){return c.covered===false;}).slice(0,2).forEach(function(c){tips.push("Add this point from the model answer: "+lowerFirst(c.label)+".");});
  if(hasDef===false)tips.push("Open with a one-sentence definition or direct answer before the details.");
  if(hasHow===false)tips.push("Explain how it works or why, using \"because\" or clear steps (first, then, finally).");
  if(hasEx===false)tips.push("Add one concrete example, number or trade-off to show you have used it.");

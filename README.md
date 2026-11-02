@@ -4,7 +4,7 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 Covers LLM fundamentals, prompting and structured output, RAG, agents and MCP, fine-tuning, evaluation, AI system design, production/cost/safety and coding (with code). Also published as a web page: https://johnnnmai.github.io/ai-engineer-interview-questions/
 
-**[Go deeper with The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101)**: 20 chapters, 5 frameworks, worked system-design walkthroughs and an 8-week plan. Prefer paperback/Kindle? [See it on Amazon](https://valenx.org/books/aie).
+**[Go deeper with The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_top)**: 20 chapters, 5 frameworks, worked system-design walkthroughs and an 8-week plan. Prefer paperback/Kindle? [See it on Amazon](https://valenx.org/books/aie).
 
 **Practiced one out loud?** [Paste your answer into the free self-check and get a score in 30 seconds](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/).
 
@@ -280,7 +280,7 @@ If you can draw the flowchart, build a workflow (deterministic steps with model 
 
 ---
 
-**[Get the full playbook: frameworks, system-design walkthroughs, 8-week plan ($19.99)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101)**
+**[Get the full playbook: frameworks, system-design walkthroughs, 8-week plan ($19.99)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_mid)**
 
 ---
 
@@ -632,6 +632,6 @@ Graders return 0 or 1 (exact match, schema valid, judge pass). Report per-case d
 
 ---
 
-**[The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101)** · [Paperback/Kindle](https://valenx.org/books/aie)
+**[The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_bottom)** · [Paperback/Kindle](https://valenx.org/books/aie)
 
 © 2026 Valenx Press · Last updated November 1, 2026 · Questions reflect common public interview patterns; no company affiliation. Corrections welcome via issues.

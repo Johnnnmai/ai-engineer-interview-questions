@@ -35,7 +35,7 @@ CTA_BUTTON = "Get the playbook"
 PROMO_ON = "offer_code=EARLYBF" in CTA_URL
 
 e = html.escape
-UTM_SCRIPT = re.search(r"<script>/\* UTM passthrough.*?</script>", open(os.path.join(ROOT, "index.html")).read(), re.S).group(0)
+UTM_SCRIPT = open(os.path.join(ROOT, "tools", "utm_passthrough.html")).read().strip()  # copies a visitor's utm_source onto Gumroad links
 BY_SLUG = {p["slug"]: p for p in PAGES}
 LVL = {"Entry": "E", "Mid": "M", "Senior": "S"}
 ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
@@ -46,30 +46,31 @@ UI_SCRIPT = ('<script>(function(){var b=document.querySelector(".sticky-cta"),h=
              'var p=document.querySelectorAll(".promo");for(var i=0;i<p.length;i++)p[i].hidden=true;}})();</script>')
 
 
-def buy_url(slug, content):
-    return CTA_URL + ("&" if "?" in CTA_URL else "?") + CTA_UTM.format(slug=slug) + "&utm_content=" + content
+def buy_url(slug, content, utm=None):
+    return CTA_URL + ("&" if "?" in CTA_URL else "?") + (utm or CTA_UTM.format(slug=slug)) + "&utm_content=" + content
 
 
 def promo(cls="badge promo"):
     return f'<span class="{cls}">{PROMO_TEXT}</span>' if PROMO_ON else ""
 
 
-def cta(slug):
+def cta(slug, content="cta_box", utm=None, extra=""):
     return (f'<div class=cta><span class=label>The Playbook</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
-            f'<a class="btn btn-primary" href="{e(buy_url(slug, "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo()}</div>')
+            f'<a class="btn btn-primary" href="{e(buy_url(slug, content, utm))}">{CTA_BUTTON} {ARROW}</a>{promo()}{extra}</div>')
 
 
-def hero_buy(slug, ghost_href, ghost_text):
-    return (f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "hero"))}">{CTA_BUTTON} {ARROW}</a>'
+def hero_buy(slug, ghost_href, ghost_text, utm=None):
+    return (f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "hero", utm))}">{CTA_BUTTON} {ARROW}</a>'
             f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
             f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p>')
 
 
-def sticky(slug):
+def sticky(slug, utm=None):
     deal = f'<span class="long promo"> &middot; 40% off until Nov 3</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
+    short = '<span class="short promo"> &middot; 40% off</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
     return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
-            f'<span class=t><b>{PRODUCT_NAME}</b>{deal}</span>'
-            f'<a class=btn href="{e(buy_url(slug, "sticky_bar"))}">Get it &rarr;</a></div>')
+            f'<span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>The Playbook</span></b>{deal}{short}</span>'
+            f'<a class=btn href="{e(buy_url(slug, "sticky_bar", utm))}">Get it &rarr;</a></div>')
 
 
 def preview_card(slug, rel):

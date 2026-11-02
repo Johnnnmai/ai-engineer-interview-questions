@@ -205,3 +205,9 @@ footer.site a{color:var(--ink-2)}
 .nav .brand{white-space:nowrap}
 @media (max-width:560px){.nav-group a{padding:8px 10px}.qhero.idx h1{font-size:clamp(1.75rem,8vw,2.25rem)}.qhero h1{font-size:clamp(2rem,9vw,2.5rem)}.acts .btn{width:100%;justify-content:space-between}.acts .btn-ghost{justify-content:center}}
 .qhero .wrap{max-width:816px}
+
+/* sticky bar on small screens: short title, button on one line */
+.sticky-cta .short{display:none}
+.sticky-cta .btn{white-space:nowrap;flex:none}
+.sticky-cta .t{min-width:0}
+@media (max-width:560px){.sticky-cta .full{display:none}.sticky-cta .short:not([hidden]){display:inline}}
