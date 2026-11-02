@@ -48,6 +48,10 @@ PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM intervie
 PROMO_ON = bool(OFFER_CODE)
 
 e = html.escape
+try:  # line 20 Chinese mirror: hreflang back-links and /zh/ sitemap entries
+    from zh_mirror_data import ZH_URLS, zh_alternates
+except ImportError:
+    ZH_URLS, zh_alternates = [], (lambda slug=None: "")
 UTM_SCRIPT = open(os.path.join(ROOT, "tools", "utm_passthrough.html")).read().strip()  # copies a visitor's utm_source onto Gumroad links
 BY_SLUG = {p["slug"]: p for p in PAGES}
 LVL = {"Entry": "E", "Mid": "M", "Senior": "S"}
@@ -143,7 +147,7 @@ def page(p):
     ld_tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     src = ", ".join(f'<a href="../../#q{n}">#{n}</a>' for n in p["src"])
     ac = "../../answer-check/" + (f"?track=aie&amp;q={p['slug']}" if p["slug"] in _AC_AIE else "")
-    o = [head(p["q"], p["desc"], url, rel, ld_tag)]
+    o = [head(p["q"], p["desc"], url, rel, ld_tag + zh_alternates(p["slug"]))]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../../">{SITE_NAME}</a> / <a href="../">Questions</a></div>'
              f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
              f'<p class=lead>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p>'
@@ -174,7 +178,7 @@ def index():
     title = "AI Engineer Interview Questions: Answer Frameworks and Sample Answers"
     desc = "Deep dives on the most-asked AI engineer interview questions: RAG, transformers, KV cache, LoRA, evals, agents and prompt injection, with sample answers."
     cnt = {k: sum(1 for p in PAGES if p["level"] == k) for k in LVL}
-    o = [head(title, desc, url, rel)]
+    o = [head(title, desc, url, rel, zh_alternates(None))]
     o.append(f'<header class="qhero idx" data-hero><div class=wrap><div class="crumb label"><a href="../">{SITE_NAME}</a> / Questions</div>'
              f'<span class=bignum aria-hidden=true>{len(PAGES)}<em>deep dives</em></span><h1>{e(title)}</h1>'
              '<p class=lead>One page per question: what the interviewer is testing, an answer framework, a sample answer, follow-ups and common mistakes.</p>'
@@ -206,6 +210,7 @@ def main():
     urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/", f"{SITE}/mock-interview/", f"{SITE}/alternatives/", f"{SITE}/llm-cost-calculator/", f"{SITE}/study-plan/"]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
+    sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in ZH_URLS]
     sm.append("</urlset>")
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(sm) + "\n")
     rb = os.path.join(ROOT, "robots.txt")
