@@ -28,6 +28,16 @@ def buy(track, content, which="primary"):
     return (c["url"] if which == "primary" else c["alt"]["url"]) + "&utm_content=" + content
 
 
+def tier9(track, content):
+    """$9 scoring rubric for the track (secondary text link), from build_answer_check.tier9."""
+    return A.tier9(track)["url"] + "&utm_content=" + content
+
+
+def tier9_p(track, content, pid=""):
+    t = A.tier9(track)
+    return f'<p class="alt-buy tier9"{pid}>{e(t["pre"])}<a href="{e(tier9(track, content))}">{e(t["name"])}</a>{e(t["post"])}</p>'
+
+
 CSS = """<style>
 .mk fieldset{border:0;margin:0 0 var(--s3);padding:0}.mk legend{display:block;font-weight:600;margin-bottom:var(--s1)}
 .seg{display:flex;flex-wrap:wrap;gap:var(--s1)}.seg label{display:flex;align-items:center;gap:var(--s1);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);padding:10px 16px;cursor:pointer;font-weight:600}
@@ -64,6 +74,7 @@ function tick(){var s=st.sec-Math.floor((Date.now()-st.t0)/1000);var c=$('s-cloc
 function next(){clearInterval(st.h);st.used.push(Math.floor((Date.now()-st.t0)/1000));st.i++;if(st.i<st.qs.length){show();return}done();}
 function done(){$('stage').hidden=true;var o='';st.qs.forEach(function(q,i){o+='<li><b>'+esc(q.q)+'</b><br><span class=t>'+fmt(st.used[i]).replace('+','')+' used</span> \u00b7 <a href="'+check(st.t,q)+'">Score my answer</a> \u00b7 <a href="'+q.model+'">Model answer</a></li>'});
  $('d-list').innerHTML=o;var c=D[st.t].cta;$('d-head').textContent=c.head;$('d-text').textContent=c.text;$('d-buy').href=c.end;$('d-buytxt').textContent=c.btn;$('d-label').textContent=c.label;var dp=$('d-promo');if(dp)dp.hidden=!promoOn(c);
+ var t9=$('d-tier9');if(t9&&c.tier9){t9.innerHTML='';t9.appendChild(document.createTextNode(c.tier9.pre));var a9=document.createElement('a');a9.href=c.tier9.url;a9.textContent=c.tier9.name;t9.appendChild(a9);t9.appendChild(document.createTextNode(c.tier9.post));}
  $('done').hidden=false;$('d-h').focus();}
 function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function promoOn(c){var u=document.documentElement.getAttribute('data-offer-until');return !!c.promo&&!!u&&Date.now()<Date.parse(u);}
@@ -88,7 +99,8 @@ def build():
                    "cta": {"label": tr["cta"]["label"], "head": tr["cta"]["head"], "text": tr["cta"]["text"], "btn": tr["cta"]["btn"],
                            "promo": tr["cta"]["promo"], "hero": buy(t, "hero"), "end": buy(t, "end_card"), "sticky": buy(t, "sticky_bar"),
                            "full": html.unescape(PRODUCT_NAME) if t == "aie" else A.IB_FREE_NAME + " \u00b7 free guide",
-                           "short": PRODUCT_SHORT if t == "aie" else "Top 30 \u00b7 free", "price": PRICE}}
+                           "short": PRODUCT_SHORT if t == "aie" else "Top 30 \u00b7 free", "price": PRICE,
+                           "tier9": dict(tr["cta"]["tier9"], url=tier9(t, "mock_end_card"))}}
     n_aie, n_ib = len(data["aie"]["qs"]), len(data["ib"]["qs"])
     ld = {"@context": "https://schema.org", "@type": "WebApplication", "name": "Mock Interview Round Generator", "url": URL,
           "description": DESC, "applicationCategory": "EducationalApplication", "operatingSystem": "Any",
@@ -126,15 +138,18 @@ def build():
          '<p class=hint style="color:inherit;opacity:.75"><a id=s-model target=_blank rel=noopener href="../questions/" style="color:inherit">Peek at the model answer</a> after you answer, not before. <button type=button id=s-skip style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit;padding:0">Skip</button></p></div></section>',
          '<section id=done hidden><h2 id=d-h tabindex=-1>Round complete</h2><p>Now score each answer while you still remember what you said. Scores show which concepts you missed.</p><ol class=recap id=d-list></ol>'
          '<div class=acts><button class="btn btn-ghost" type=button id=d-again>New round, same settings</button><button class="btn btn-ghost" type=button id=d-setup>Change settings</button></div>'
-         f'<div class=cta><span class=label id=d-label>{CTA_LABEL}</span><b id=d-head></b><p id=d-text></p><a class="btn btn-primary" id=d-buy href="{e(data["aie"]["cta"]["end"])}"><span id=d-buytxt>{CTA_BUTTON}</span> {ARROW}</a>{promo.replace("<span ", "<span id=d-promo ", 1)}</div></section>',
+         f'<div class=cta><span class=label id=d-label>{CTA_LABEL}</span><b id=d-head></b><p id=d-text></p><a class="btn btn-primary" id=d-buy href="{e(data["aie"]["cta"]["end"])}"><span id=d-buytxt>{CTA_BUTTON}</span> {ARROW}</a>{promo.replace("<span ", "<span id=d-promo ", 1)}'
+         + tier9_p("aie", "mock_end_card", " id=d-tier9") + '</div></section>',
          '<h2>Why practice with a timer</h2><p>In a real loop you do not choose the question and you cannot pause. Practicing the same questions in order trains recall of a script. Random order and a visible clock train the skill that is actually tested: structuring an answer on the spot and stopping on time.</p>'
          '<ol class=steps><li>Pick a track and a round length. 5 questions at 3 minutes is about one interview block.</li><li>Answer out loud. Lead with the direct answer, then how it works, then one example or trade-off.</li><li>When the round ends, paste what you said into the self-check for each question.</li><li>Read the model answer for anything under 70, then run a new round tomorrow.</li></ol>',
          '<h2>Price check</h2><p>Paid interview guides for these loops are listed at $99 to $197 (Wall Street Prep Red Book $99, Breaking Into Wall Street IB Interview Guide $197, prices on their own pages on Nov 1, 2026). This generator and the self-check are free. '
          f'The {PRODUCT_NAME} is {PRICE} on Gumroad, and the IB Top 30 guide is free.</p>',
          f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
          f'<a class="btn btn-primary" href="{e(buy("aie", "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo}'
+         + tier9_p("aie", "mock_cta_box") +
          f'<p class=alt-buy>{PM_LEAD}<a href="{e(buy("aie", "cta_box_pm", "alt"))}">{PM_LINK_TEXT}</a>{e(PM_POST)}</p>'
-         f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad.</p></div>',
+         f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad. '
+         f'Then <a href="{e(tier9("ib", "mock_cta_box_ib"))}">{e(A.tier9("ib")["name"])}</a>.</p></div>',
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in faq),
          f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; <a href="{A.IB_SITE}/">100 investment banking interview questions</a></p>',
          '</div></main>',

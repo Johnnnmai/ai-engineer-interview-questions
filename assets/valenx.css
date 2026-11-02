@@ -214,3 +214,4 @@ footer.site a{color:var(--ink-2)}
 
 .alt-buy{font-size:var(--fs-small);color:var(--ink-2);margin:0}
 .alt-buy a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.alt-buy.tier9{margin-top:10px}.cta .alt-buy.tier9{margin-top:0}.alt-buy.tier9[hidden]{display:none}.alt-buy.tier9 a{font-weight:500;white-space:nowrap}

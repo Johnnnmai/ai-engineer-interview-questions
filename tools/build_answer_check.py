@@ -12,7 +12,8 @@ import answer_check_data as D
 
 from urllib.parse import urlsplit
 from build_question_pages import (CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, CTA_LABEL, CTA_HEADLINE, CTA_TEXT,
-                                   CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot, icons)
+                                   CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot, icons,
+                                   TIER9_URL, IB_TIER9_URL, TIER9_UTM, TIER9_LEAD, TIER9_LINK_TEXT, TIER9_POST, IB_TIER9_LINK_TEXT, IB_TIER9_POST)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
@@ -32,16 +33,22 @@ def track_url(base, track, offer=True, utm=TOOL_UTM):
     return base + "?" + "&".join(x for x in ((OFFER_Q if offer else ""), utm.format(track=track)) if x)
 
 
+def tier9(track):
+    """$9 scoring rubric for the track: a secondary text link next to the primary CTA. URL and UTM come from build_question_pages."""
+    base, name, post = (TIER9_URL, TIER9_LINK_TEXT, TIER9_POST) if track == "aie" else (IB_TIER9_URL, IB_TIER9_LINK_TEXT, IB_TIER9_POST)
+    return {"url": base + ("&" if "?" in base else "?") + TIER9_UTM, "pre": TIER9_LEAD, "name": name, "post": post}
+
+
 def track_ctas(track, utm=TOOL_UTM):
     """Primary CTA plus one secondary text link per track. Shared with the mock-interview page."""
     if track == "aie":
         return {"url": track_url(AIE_BUY, "aie", utm=utm), "label": CTA_LABEL, "head": CTA_HEADLINE, "text": CTA_TEXT,
                 "btn": CTA_BUTTON, "promo": PROMO_ON,
-                "alt": {"url": track_url(PM_BUY, "aie", utm=utm), "pre": PM_LEAD, "name": PM_LINK_TEXT, "post": PM_POST, "promo": False}}
+                "alt": {"url": track_url(PM_BUY, "aie", utm=utm), "pre": PM_LEAD, "name": PM_LINK_TEXT, "post": PM_POST, "promo": False}, "tier9": tier9("aie")}
     # IB track: free Top 30 only. No paid CTA here (the PM bundle is not IB prep).
     return {"url": track_url(IB_BUY, "ib", offer=False, utm=utm), "label": "Free guide", "head": "Start with the free IB Top 30",
             "text": f"{IB_FREE_NAME} covers the 30 most-asked investment banking interview questions with model answers. 13 pages, free on Gumroad.",
-            "btn": "Get the free Top 30", "promo": False, "alt": None}
+            "btn": "Get the free Top 30", "promo": False, "alt": None, "tier9": tier9("ib")}
 
 
 TITLE = "Check My Interview Answer: Free Interview Answer Self-Check"
@@ -225,16 +232,19 @@ var sel=$("ac-q"), ta=$("ac-answer"), res=$("result");
 var params=new URLSearchParams(location.search);
 var visitorSrc=(params.get("utm_source")||"").replace(/[^a-z0-9_-]/gi,"-").toLowerCase().slice(0,40);
 function track(){var r=document.querySelector("input[name=track]:checked");return r?r.value:"aie";}
-function ctaHref(t,content,alt){var c=DATA.tracks[t].cta;var u=new URL(alt?c.alt.url:c.url);u.searchParams.set("utm_content",content);if(visitorSrc)u.searchParams.set("utm_term",visitorSrc);return u.toString();}
+function ctaHref(t,content,alt){var c=DATA.tracks[t].cta;var u=new URL(alt==="tier9"?c.tier9.url:alt?c.alt.url:c.url);u.searchParams.set("utm_content",content);if(visitorSrc)u.searchParams.set("utm_term",visitorSrc);return u.toString();}
 var offerOn=!!DATA.offerExpires&&Date.now()<Date.parse(DATA.offerExpires);
 function fillAlt(p,t,content){var c=DATA.tracks[t].cta.alt;if(!p)return;p.innerHTML="";p.hidden=!c;if(!c)return;p.appendChild(document.createTextNode(c.pre));
   var a=document.createElement("a");a.href=ctaHref(t,content,true);a.textContent=c.name;p.appendChild(a);
   p.appendChild(document.createTextNode(c.post+(c.promo&&offerOn?" "+DATA.promoText+".":"")));}
+function fillTier9(p,t,content){var c=DATA.tracks[t].cta.tier9;if(!p)return;p.innerHTML="";p.hidden=!c;if(!c)return;p.appendChild(document.createTextNode(c.pre));
+  var a=document.createElement("a");a.href=ctaHref(t,content,"tier9");a.textContent=c.name;p.appendChild(a);p.appendChild(document.createTextNode(c.post));}
 function fillCta(t){var c=DATA.tracks[t].cta;document.querySelectorAll(".ac-cta").forEach(function(box){
   box.querySelector(".label").textContent=c.label;
   box.querySelector(".cta-h").textContent=c.head;box.querySelector(".cta-t").textContent=c.text;
   var a=box.querySelector("a.btn");a.firstChild.textContent=c.btn+" ";a.href=ctaHref(t,"cta_box");
-  var o=box.querySelector(".promo");if(o)o.hidden=!(offerOn&&c.promo);fillAlt(box.querySelector(".alt-buy"),t,"cta_box_alt");});
+  var o=box.querySelector(".promo");if(o)o.hidden=!(offerOn&&c.promo);fillTier9(box.querySelector(".tier9"),t,"answercheck_cta_box");fillAlt(box.querySelector(".alt-buy:not(.tier9)"),t,"cta_box_alt");});
+  fillTier9($("r-tier9"),t,"answercheck_result");
   var g=$("r-gap-buy");if(g){g.firstChild.textContent=c.btn+" ";g.href=ctaHref(t,"answercheck_gap");}
   var gp=$("r-gap-promo");if(gp)gp.hidden=!(offerOn&&c.promo);}
 function fillQuestions(t,slug){sel.innerHTML="";DATA.tracks[t].questions.forEach(function(q){var o=document.createElement("option");o.value=q.slug;o.textContent=q.q;sel.appendChild(o);});
@@ -284,11 +294,16 @@ def promo_span(extra=""):
     return f'<span class="badge promo"{extra}>{PROMO_TEXT}</span>' if PROMO_ON else ""
 
 
+def tier9_p(t, content, pid=""):
+    return (f'<p class="alt-buy tier9"{pid}>{e(t["pre"])}<a href="{e(t["url"])}&amp;utm_content={content}">{e(t["name"])}</a>{e(t["post"])}</p>')
+
+
 def cta_box():
     c = data()["tracks"]["aie"]["cta"]
     a = c["alt"]
     return (f'<div class="cta ac-cta"><span class=label>{e(c["label"])}</span><b class=cta-h>{e(c["head"])}</b><p class=cta-t>{e(c["text"])}</p>'
             f'<a class="btn btn-primary" href="{e(c["url"])}&amp;utm_content=cta_box">{e(c["btn"])} {ARROW}</a>{promo_span()}'
+            f'{tier9_p(c["tier9"], "answercheck_cta_box")}'
             f'<p class=alt-buy>{e(a["pre"])}<a href="{e(a["url"])}&amp;utm_content=cta_box_alt">{e(a["name"])}</a>{e(a["post"])}</p></div>')
 
 
@@ -320,6 +335,7 @@ def build():
          '<section id=result hidden aria-live=polite aria-labelledby=r-head>'
          '<h2 id=r-head tabindex=-1>Your result</h2><div class=scorebox><div class=big><span id=r-score>0</span><small> / 100</small></div>'
          '<div><div class=band id=r-band></div><p id=r-sum></p><ul class=ck id=r-notes hidden></ul></div><div class=meter aria-hidden=true><span id=r-meter style="width:0"></span></div></div>'
+         + tier9_p(aie_cta["tier9"], "answercheck_result", " id=r-tier9") +
          '<div class=gap><div class=card><h3>Covered concepts (<span id=r-ncov>0</span>)</h3><ul class=ck id=r-cov></ul></div>'
          '<div class="card miss"><h3>Missed concepts (<span id=r-nmis>0</span>)</h3><ul class=ck id=r-mis></ul>'
          '<div class=gapbuy id=r-gap hidden><p>Each missed concept is spelled out in the model answer for this question. Read it, then try again out loud.</p>'

@@ -44,6 +44,18 @@ PM_PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
 PM_LEAD = "Interviewing for PM or TPM? "
 PM_LINK_TEXT = "See the full PM package"
 PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep."
+# $9 tier, secondary only (the playbook above stays primary): the 50-question scoring rubric PDFs on Gumroad.
+# Both use OFFER_Q, so EARLYBF leaves these links when OFFER_CODE is cleared. EARLYBF checked Nov 1 2026: valid on both, 40% off.
+# Placements: question pages, questions index and root (hero_buy + cta), answer-check and mock round (aie track: AIE rubric, ib track: IB rubric).
+TIER9_URL = "https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric" + OFFER_Q
+IB_TIER9_URL = "https://sirjohnnymai.gumroad.com/l/ib-50-questions-scoring-rubric" + OFFER_Q
+TIER9_UTM = "utm_source=site&utm_medium=cta&utm_campaign=tripwire9_20261101"
+TIER9_PRICE = "$9"  # list price on both Gumroad product pages, Nov 1 2026
+TIER9_LEAD = "Smaller start: "
+TIER9_LINK_TEXT = f"Score your answers against 50 rubrics, {TIER9_PRICE}"
+TIER9_POST = ". 50 AI engineer questions, one rubric each, PDF on Gumroad."
+IB_TIER9_LINK_TEXT = f"Score your answers against 50 IB rubrics, {TIER9_PRICE}"
+IB_TIER9_POST = ". 50 investment banking questions, one rubric each, PDF on Gumroad."
 # ----------------------------------------------------
 PROMO_ON = bool(OFFER_CODE)
 
@@ -73,6 +85,18 @@ def alt_link(slug, content="pm_link", utm=None):
     return f'<p class=alt-buy>{PM_LEAD}<a href="{e(buy_url(slug, content, utm, PM_URL))}">{PM_LINK_TEXT}</a>{PM_POST}</p>'
 
 
+def tier9_url(content, base=None):
+    base = base or TIER9_URL
+    return base + ("&" if "?" in base else "?") + TIER9_UTM + "&utm_content=" + content
+
+
+def tier9_link(content, ib=False):
+    """Secondary text link to the $9 scoring rubric, shown next to the primary playbook CTA."""
+    href = tier9_url(content, IB_TIER9_URL if ib else TIER9_URL)
+    text, post = (IB_TIER9_LINK_TEXT, IB_TIER9_POST) if ib else (TIER9_LINK_TEXT, TIER9_POST)
+    return f'<p class="alt-buy tier9">{TIER9_LEAD}<a href="{e(href)}">{text}</a>{post}</p>'
+
+
 def promo(cls="badge promo"):
     return f'<span class="{cls}">{PROMO_TEXT}</span>' if PROMO_ON else ""
 
@@ -80,13 +104,15 @@ def promo(cls="badge promo"):
 def cta(slug, content="cta_box", utm=None, extra=""):
     return (f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
             f'<a class="btn btn-primary" href="{e(buy_url(slug, content, utm))}">{CTA_BUTTON} {ARROW}</a>{promo()}'
+            f'{tier9_link(slug + "_" + content)}'
             f'{alt_link(slug, content.replace("cta", "pm", 1) if content.startswith("cta") else "pm_" + content, utm)}{extra}</div>')
 
 
 def hero_buy(slug, ghost_href, ghost_text, utm=None):
     return (f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "hero", utm))}">{CTA_BUTTON} {ARROW}</a>'
             f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
-            f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p>')
+            f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p>'
+            f'{tier9_link(slug + "_hero")}')
 
 
 def sticky(slug, utm=None):
