@@ -8,7 +8,7 @@ Competitor facts come from each product's own page on Nov 1, 2026. Re-check befo
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_question_pages import (CTA_URL, PROMO_ON, PROMO_TEXT, PRICE, SITE, ROOT, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE,
-                                  CTA_TEXT, CTA_BUTTON, PLAYBOOK_URL, PLAYBOOK_NAME, PLAYBOOK_PRICE, head, foot)
+                                  CTA_TEXT, CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot)
 
 URL = f"{SITE}/alternatives/"
 e = html.escape
@@ -25,13 +25,12 @@ def buy(content, base=None):
 
 
 def alt(content):
-    return (f'<p class=alt-buy>Only need the AI engineer material? <a href="{e(buy(content, PLAYBOOK_URL))}">{PLAYBOOK_NAME}</a>, '
-            f'{PLAYBOOK_PRICE} on Gumroad.</p>')
+    return f'<p class=alt-buy>{PM_LEAD}<a href="{e(buy(content, PM_URL))}">{PM_LINK_TEXT}</a>{e(PM_POST)}</p>'
 
 
 def cta_box(content):
     return (f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
-            f'<a class="btn btn-primary" href="{e(buy(content))}">{CTA_BUTTON} {ARROW}</a>{PROMO}{alt(content + "_playbook")}</div>')
+            f'<a class="btn btn-primary" href="{e(buy(content))}">{CTA_BUTTON} {ARROW}</a>{PROMO}{alt(content + "_pm")}</div>')
 
 
 PROMO = f'<span class="badge promo">{PROMO_TEXT}</span>' if PROMO_ON else ""
@@ -46,7 +45,7 @@ ROWS = [
      "376 cards as PDF and Anki, free samples on GitHub.", "Spaced repetition on LLM internals"),
     ("Free: this site's 100 questions", "$0",
      "100 AI engineer questions with answer frameworks, 50 deep dives, a free self-check and a timed mock round.", "Checking your level and practicing out loud"),
-    ("The 0&rarr;1 AI Engineer Interview Playbook", PLAYBOOK_PRICE + " on Gumroad",
+    ("The 0&rarr;1 AI Engineer Interview Playbook", PRICE + " on Gumroad",
      "1 PDF, 370+ pages, 20 chapters, 5 frameworks (RAG, agents, LLM system design, evals, behavioral), 8-week plan.", "A full method for RAG, agents and evals loops"),
 ]
 FAQ = [
@@ -85,7 +84,7 @@ def build():
          '<li><b>A guided course:</b> Educative, if you already subscribe.</li>'
          '<li><b>Senior or staff LLM architecture:</b> ProdRescue at $59.</li>'
          '<li><b>Flashcards for LLM internals:</b> LLM Flashcards at $19.99.</li>'
-         f'<li><b>RAG, agents and evals on a budget:</b> the free bank here, then the 0 to 1 AI Engineer Interview Playbook at {PLAYBOOK_PRICE}.</li></ul>',
+         f'<li><b>RAG, agents and evals on a budget:</b> the free bank here, then the 0 to 1 AI Engineer Interview Playbook at {PRICE}.</li></ul>',
          '<h2>Side by side</h2>', table,
          '<p class=muted>From amazon.com, educative.io and gumroad.com product pages on Nov 1, 2026. Valenx Press is not affiliated with these sellers.</p>',
          '<h2>What the others do better</h2><p>The ByteByteGo book has 211 diagrams and goes deep on classic ranking and recommendation designs. Educative is interactive, with quizzes. '
@@ -93,7 +92,7 @@ def build():
          '<h2>Where the low-cost route wins</h2><ol class=steps>'
          '<li><b>Check your level for free first.</b> Read the <a href="../questions/">50 deep dives</a> and the <a href="../">full 100-question bank</a>.</li>'
          '<li><b>Practice out loud.</b> The free <a href="../mock-interview/">mock round timer</a> draws random questions and the <a href="../answer-check/">self-check</a> scores what you said.</li>'
-         f'<li><b>Add the method for {PLAYBOOK_PRICE}.</b> <a href="{e(buy("steps_playbook", PLAYBOOK_URL))}">{PLAYBOOK_NAME}</a>: frameworks for RAG, agents, LLM system design and evals, plus an 8-week plan.</li></ol>',
+         f'<li><b>Add the method for {PRICE}.</b> <a href="{e(buy("steps_playbook"))}">{PRODUCT_NAME}</a>: frameworks for RAG, agents, LLM system design and evals, plus an 8-week plan.</li></ol>',
          cta_box("cta_box"),
          '<h2>Which one should you pick?</h2><ul>'
          '<li><b>Loop in a week, LLM-heavy role:</b> free questions, the mock round, then the Playbook.</li>'
@@ -103,7 +102,7 @@ def build():
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in FAQ),
          cta_box("cta_end"),
          '</div></main>',
-         f'<div class=sticky-cta role=complementary aria-label="Buy the full package" aria-hidden=true><span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>'
+         f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true><span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>'
          + ('<span class="long promo"> &middot; 40% off until Nov 3</span><span class="short promo"> &middot; 40% off</span>' if PROMO_ON else '') +
          f'</span><a class=btn href="{e(buy("sticky_bar"))}">Get it &rarr;</a></div>',
          foot("../")]

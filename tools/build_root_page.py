@@ -58,7 +58,8 @@ def main():
     body = open(os.path.join(ROOT, "tools", "root_body.html")).read()
     body = body.replace("<!--CTA:cta_mid-->", B.cta(SLUG, "cta_mid", UTM, AMAZON))
     body = body.replace("<!--CTA:cta_box-->", B.cta(SLUG, "cta_box", UTM, AMAZON))
-    body = body.replace("{{BUY:faq}}", buy("faq_playbook", B.PLAYBOOK_URL))
+    body = body.replace("{{BUY:faq}}", buy("faq_playbook"))
+    body = body.replace("{{BUY:faq_pm}}", buy("faq_pm", B.PM_URL))
     assert "<!--CTA" not in body and "{{BUY" not in body
     lv = {k: len(re.findall(rf"class='lvl {v}'", body)) for k, v in B.LVL.items()}
     o = [B.head(TITLE, DESC, URL, REL, STYLE)]

@@ -12,7 +12,7 @@ import answer_check_data as D
 
 from urllib.parse import urlsplit
 from build_question_pages import (CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, CTA_LABEL, CTA_HEADLINE, CTA_TEXT,
-                                   CTA_BUTTON, PLAYBOOK_URL, PLAYBOOK_NAME, PLAYBOOK_PRICE, head, foot, icons)
+                                   CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot, icons)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
@@ -20,9 +20,8 @@ IB_SITE = "https://johnnnmai.github.io/investment-banking-interview-questions"
 URL = f"{SITE}/answer-check/"
 # Paid links reuse the offer query of CTA_URL (tools/build_question_pages.py), so removing EARLYBF there removes it here.
 OFFER_Q = urlsplit(CTA_URL).query
-AIE_BUY = CTA_URL.split("?")[0]          # primary for the AI engineer track: the North America Interview Full Package bundle
-BUNDLE_BUY = AIE_BUY
-PLAYBOOK_BUY = PLAYBOOK_URL.split("?")[0]  # secondary text link on the AI engineer track
+AIE_BUY = CTA_URL.split("?")[0]   # primary for the AI engineer track: the AI engineer playbook
+PM_BUY = PM_URL.split("?")[0]      # secondary text link on the AI engineer track only: the PM direction bundle
 # Primary for the IB track: the free IB Top 30 product (Gumroad, $0+). No offer code on a free product.
 IB_BUY = "https://sirjohnnymai.gumroad.com/l/ib-top-30-questions"
 IB_FREE_NAME = "IB Interview: Top 30 Questions"
@@ -36,16 +35,13 @@ def track_url(base, track, offer=True, utm=TOOL_UTM):
 def track_ctas(track, utm=TOOL_UTM):
     """Primary CTA plus one secondary text link per track. Shared with the mock-interview page."""
     if track == "aie":
-        return {"url": track_url(BUNDLE_BUY, "aie", utm=utm), "label": CTA_LABEL, "head": CTA_HEADLINE, "text": CTA_TEXT,
+        return {"url": track_url(AIE_BUY, "aie", utm=utm), "label": CTA_LABEL, "head": CTA_HEADLINE, "text": CTA_TEXT,
                 "btn": CTA_BUTTON, "promo": PROMO_ON,
-                "alt": {"url": track_url(PLAYBOOK_BUY, "aie", utm=utm), "pre": "Only need the AI engineer material? ",
-                        "name": html.unescape(PLAYBOOK_NAME), "post": f", {PLAYBOOK_PRICE} on Gumroad.", "promo": False}}
+                "alt": {"url": track_url(PM_BUY, "aie", utm=utm), "pre": PM_LEAD, "name": PM_LINK_TEXT, "post": PM_POST, "promo": False}}
+    # IB track: free Top 30 only. No paid CTA here (the PM bundle is not IB prep).
     return {"url": track_url(IB_BUY, "ib", offer=False, utm=utm), "label": "Free guide", "head": "Start with the free IB Top 30",
             "text": f"{IB_FREE_NAME} covers the 30 most-asked investment banking interview questions with model answers. 13 pages, free on Gumroad.",
-            "btn": "Get the free Top 30", "promo": False,
-            "alt": {"url": track_url(BUNDLE_BUY, "ib", utm=utm), "pre": "Paid option: ", "name": PRODUCT_NAME,
-                    "post": f", {PRICE} on Gumroad. A resume system, a PM and TPM interview handbook, a 1:1 cheat sheet and a PM playbook.",
-                    "promo": PROMO_ON}}
+            "btn": "Get the free Top 30", "promo": False, "alt": None}
 
 
 TITLE = "Check My Interview Answer: Free Interview Answer Self-Check"
@@ -231,7 +227,7 @@ var visitorSrc=(params.get("utm_source")||"").replace(/[^a-z0-9_-]/gi,"-").toLow
 function track(){var r=document.querySelector("input[name=track]:checked");return r?r.value:"aie";}
 function ctaHref(t,content,alt){var c=DATA.tracks[t].cta;var u=new URL(alt?c.alt.url:c.url);u.searchParams.set("utm_content",content);if(visitorSrc)u.searchParams.set("utm_term",visitorSrc);return u.toString();}
 var offerOn=!!DATA.offerExpires&&Date.now()<Date.parse(DATA.offerExpires);
-function fillAlt(p,t,content){var c=DATA.tracks[t].cta.alt;if(!p)return;p.innerHTML="";p.appendChild(document.createTextNode(c.pre));
+function fillAlt(p,t,content){var c=DATA.tracks[t].cta.alt;if(!p)return;p.innerHTML="";p.hidden=!c;if(!c)return;p.appendChild(document.createTextNode(c.pre));
   var a=document.createElement("a");a.href=ctaHref(t,content,true);a.textContent=c.name;p.appendChild(a);
   p.appendChild(document.createTextNode(c.post+(c.promo&&offerOn?" "+DATA.promoText+".":"")));}
 function fillCta(t){var c=DATA.tracks[t].cta;document.querySelectorAll(".ac-cta").forEach(function(box){

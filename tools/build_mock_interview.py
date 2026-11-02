@@ -8,7 +8,7 @@ tools/build_question_pages.py, so removing EARLYBF there removes it here after a
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_answer_check as A
-from build_question_pages import PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PLAYBOOK_NAME, PLAYBOOK_PRICE, head, foot
+from build_question_pages import PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PM_LEAD, PM_LINK_TEXT, PM_POST, PM_PRICE, head, foot
 
 ROOT = A.ROOT
 URL = f"{A.SITE}/mock-interview/"
@@ -23,7 +23,7 @@ MOCK_UTM = "utm_source=tool&utm_medium=mockround&utm_campaign={track}"
 
 
 def buy(track, content, which="primary"):
-    """Track CTAs from build_answer_check.track_ctas: primary (AIE: full package, IB: free Top 30) or alt (AIE: playbook, IB: full package)."""
+    """Track CTAs from build_answer_check.track_ctas: primary (AIE: AI engineer playbook, IB: free Top 30) or alt (AIE only: the PM direction bundle)."""
     c = A.track_ctas(track, MOCK_UTM)
     return (c["url"] if which == "primary" else c["alt"]["url"]) + "&utm_content=" + content
 
@@ -98,7 +98,7 @@ def build():
         ("How long should each answer take?", "Most single interview answers run one to three minutes. Technical questions with follow-ups can take longer, so the 5 minute setting suits system design and LBO walkthroughs."),
         ("How do I know if my answer was good?", "Every question links to the free Interview Answer Self-Check. Type what you said and it scores coverage of the key concepts, structure and length against a published rubric, and links the model answer."),
         ("Is it free and private?", "Yes. It runs in your browser, nothing is recorded, and there is no sign-up."),
-        ("What are the paid options and do I need one?", f"The free questions and model answers are enough to practice. The {html.unescape(PRODUCT_NAME)} ({PRICE} on Gumroad) bundles a resume system, a PM, TPM and PGM interview handbook, a first 1:1 cheat sheet and the 0 to 1 PM Interview Playbook. For AI engineer prep only, the 0 to 1 AI Engineer Interview Playbook is {PLAYBOOK_PRICE}. For investment banking, start with the free IB Top 30 guide."),
+        ("What are the paid options and do I need one?", f"The free questions and model answers are enough to practice. For AI engineer loops, {html.unescape(PRODUCT_NAME).replace('The 0\u21921', 'the 0 to 1')} ({PRICE} on Gumroad) adds the answer frameworks, system-design walkthroughs and an 8-week plan. For investment banking, start with the free IB Top 30 guide. If you are interviewing for PM or TPM instead, there is a separate full PM package ({PM_PRICE}), which is PM and TPM content."),
         ("Is this a replacement for a real mock interview?", "No. A timer and random questions recreate the pressure of not knowing what comes next, but a person can push on follow-ups. Use this daily and a human mock before the real loop."),
     ]
     ldf = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
@@ -133,7 +133,7 @@ def build():
          f'The {PRODUCT_NAME} is {PRICE} on Gumroad, and the IB Top 30 guide is free.</p>',
          f'<div class=cta><span class=label>{CTA_LABEL}</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
          f'<a class="btn btn-primary" href="{e(buy("aie", "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo}'
-         f'<p class=alt-buy>Only need the AI engineer material? <a href="{e(buy("aie", "cta_box_playbook", "alt"))}">{PLAYBOOK_NAME}</a>, {PLAYBOOK_PRICE} on Gumroad.</p>'
+         f'<p class=alt-buy>{PM_LEAD}<a href="{e(buy("aie", "cta_box_pm", "alt"))}">{PM_LINK_TEXT}</a>{e(PM_POST)}</p>'
          f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad.</p></div>',
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in faq),
          f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; <a href="{A.IB_SITE}/">100 investment banking interview questions</a></p>',
