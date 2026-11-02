@@ -21,8 +21,11 @@ LASTMOD = "2026-11-01"
 
 # ---- CTA: the single place to change the offer ----
 # Every primary buy link in this repo (question pages, root, questions index, answer-check aie track, mock-interview aie track, alternatives) is built from CTA_URL.
-# When EARLYBF ends, delete "?offer_code=EARLYBF" here (and in PM_URL) and re-run the builders: the promo lines disappear too.
-CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF"  # EARLYBF: 40% off until Nov 3 2026 11:59 PM PT; remove the query after that
+# EARLYBF lives in this one constant. When it ends (Nov 3 2026 11:59 PM PT), set OFFER_CODE = "" and re-run the builders:
+# every paid link (question pages, answer-check, mock round, alternatives, LLM cost calculator, study plan) and every promo line drops it.
+OFFER_CODE = "EARLYBF"  # 40% off until Nov 3 2026 11:59 PM PT
+OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
+CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
 OFFER_EXPIRES = "2026-11-04T07:59:00Z"  # EARLYBF expiry read from the Gumroad product page; promo lines also hide client-side after it
 PROMO_TEXT = "40% off with code EARLYBF until Nov 3, 11:59 PM PT"
 PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
@@ -35,14 +38,14 @@ CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer framewor
 CTA_BUTTON = "Get the playbook"
 # Secondary text link only: the PM direction bundle (North America Interview Full Package, slug xzptir). PM and TPM content, not AI engineer prep.
 # EARLYBF checked on Nov 1 2026: valid on this product, 40% off.
-PM_URL = "https://sirjohnnymai.gumroad.com/l/xzptir?offer_code=EARLYBF"
+PM_URL = "https://sirjohnnymai.gumroad.com/l/xzptir" + OFFER_Q
 PM_NAME = "North America Interview Full Package"
 PM_PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
 PM_LEAD = "Interviewing for PM or TPM? "
 PM_LINK_TEXT = "See the full PM package"
 PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep."
 # ----------------------------------------------------
-PROMO_ON = "offer_code=EARLYBF" in CTA_URL
+PROMO_ON = bool(OFFER_CODE)
 
 e = html.escape
 UTM_SCRIPT = open(os.path.join(ROOT, "tools", "utm_passthrough.html")).read().strip()  # copies a visitor's utm_source onto Gumroad links
@@ -124,7 +127,9 @@ def head(title, desc, url, rel, extra=""):
 def foot(rel, deep=True):
     dd = f'<a href="{rel}questions/">Question deep dives</a> &middot; ' if deep else ""
     return (f'<footer class=site><div class=wrap>&copy; 2026 Valenx Press &middot; <a href="{rel}">All 100 AI engineer interview questions</a> &middot; '
-            f'{dd}Questions reflect common public interview patterns; no company affiliation.</div></footer>'
+            f'{dd}Free tools: <a href="{rel}answer-check/">Answer self-check</a> &middot; <a href="{rel}study-plan/">Study plan</a> &middot; '
+            f'<a href="{rel}llm-cost-calculator/">LLM cost calculator</a> &middot; <a href="{rel}mock-interview/">Mock round</a> &middot; '
+            f'Questions reflect common public interview patterns; no company affiliation.</div></footer>'
             f'{UTM_SCRIPT}{UI_SCRIPT}</body></html>\n')
 
 
@@ -154,6 +159,7 @@ def page(p):
     o.append(cta(p["slug"]))
     o.append('<h2>Related questions</h2><ul class=related>' +
              "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) +
+             f'<li><a href="../../study-plan/">Build a day-by-day study plan to your interview date</a></li><li><a href="../../llm-cost-calculator/">Estimate LLM API cost per day and month</a></li>'
              f'<li><a href="../../mock-interview/">Run a timed mock interview round</a></li><li><a href="../../alternatives/">Compare AI engineer interview prep options</a></li>'
              f'<li><a href="../">All question deep dives</a></li><li><a href="../../">All 100 AI engineer interview questions with answers</a></li></ul>')
     o.append(f'<p class=muted>Based on question {src} in the full question bank.</p>')
@@ -197,7 +203,7 @@ def main():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w").write(page(p))
     open(os.path.join(ROOT, "questions", "index.html"), "w").write(index())
-    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/", f"{SITE}/mock-interview/", f"{SITE}/alternatives/"]
+    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/", f"{SITE}/mock-interview/", f"{SITE}/alternatives/", f"{SITE}/llm-cost-calculator/", f"{SITE}/study-plan/"]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
     sm.append("</urlset>")
