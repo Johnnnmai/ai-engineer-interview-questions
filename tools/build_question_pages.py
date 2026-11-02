@@ -28,6 +28,8 @@ OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
 CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
 OFFER_EXPIRES = "2026-11-04T07:59:00Z"  # EARLYBF expiry read from the Gumroad product page; promo lines also hide client-side after it
 PROMO_TEXT = "40% off with code EARLYBF until Nov 3, 11:59 PM PT"
+PROMO_SHORT = "EARLYBF: 40% off until Nov 3"  # badge text under 560px so the pill stays on one line at 320 to 375
+PROMO_HTML = f'<span class=pl>{PROMO_TEXT}</span><span class=ps>{PROMO_SHORT}</span>'
 PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
 PRODUCT_NAME = "The 0&rarr;1 AI Engineer Interview Playbook"
 PRODUCT_SHORT = "The Playbook"
@@ -98,7 +100,7 @@ def tier9_link(content, ib=False):
 
 
 def promo(cls="badge promo"):
-    return f'<span class="{cls}">{PROMO_TEXT}</span>' if PROMO_ON else ""
+    return f'<span class="{cls}">{PROMO_HTML if "badge" in cls else PROMO_TEXT}</span>' if PROMO_ON else ""
 
 
 def cta(slug, content="cta_box", utm=None, extra=""):

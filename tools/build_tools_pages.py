@@ -9,7 +9,7 @@ Static only: no API calls, no tracking beyond utm parameters on Gumroad links.
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_question_pages import (SITE, ROOT, OFFER_Q, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, PM_PRICE,
+from build_question_pages import (PROMO_HTML, PROMO_SHORT, SITE, ROOT, OFFER_Q, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, PM_PRICE,
                                   PAGES, BY_SLUG, head, foot)
 import build_answer_check as A
 import llm_prices as LP
@@ -40,7 +40,7 @@ def faq_block(items):
 
 
 def promo():
-    return f'<span class="badge promo">{PROMO_TEXT}</span>' if PROMO_ON else ""
+    return f'<span class="badge promo">{PROMO_HTML}</span>' if PROMO_ON else ""
 
 
 def sticky(href, label="Buy the playbook"):
@@ -308,7 +308,7 @@ def plan_data():
                "btn": "Get the free Top 30", "url": IB_FREE + f"?utm_source=site&utm_medium=tool&utm_campaign={P_CAMP}&utm_content=ib_last3", "promo": False, "alt": None},
     }
     return {
-        "promoText": PROMO_TEXT,
+        "promoText": PROMO_TEXT, "promoShort": PROMO_SHORT,
         "tracks": {
             "aie": {"name": "AI engineer", "items": [item(p) for p in aie], "tasks": [], "mock": "../mock-interview/?track=aie&n=5&min=3",
                     "note": "All 50 AI engineer question pages, Entry level first, each with a self-check rubric."},
@@ -397,7 +397,7 @@ function el(t,c,txt){var x=document.createElement(t);if(c)x.className=c;if(txt!=
 function link(h,txt){var a=el("a",null,txt);a.href=h;return a}
 function ctaNode(tk){var c=D.cta[tk],w=el("div","pc");w.appendChild(el("b",null,c.head));w.appendChild(el("p",null,c.text));
  var b=link(c.url,c.btn+" \u2192");b.className="btn btn-primary";w.appendChild(b);
- if(c.promo){var s=el("span","badge promo",D.promoText);w.appendChild(s)}
+ if(c.promo){var s=el("span","badge promo");s.appendChild(el("span","pl",D.promoText));s.appendChild(el("span","ps",D.promoShort));w.appendChild(s)}
  if(c.alt){var p=el("p","alt-buy",c.alt.lead);p.appendChild(link(c.alt.url,c.alt.text));p.appendChild(document.createTextNode(c.alt.post));w.appendChild(p)}
  return w}
 function key(){return "vp-plan-"+$("t").value+"-"+$("d").value}

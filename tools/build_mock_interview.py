@@ -8,7 +8,7 @@ tools/build_question_pages.py, so removing EARLYBF there removes it here after a
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_answer_check as A
-from build_question_pages import PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PM_LEAD, PM_LINK_TEXT, PM_POST, PM_PRICE, head, foot
+from build_question_pages import PROMO_HTML, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PM_LEAD, PM_LINK_TEXT, PM_POST, PM_PRICE, head, foot
 
 ROOT = A.ROOT
 URL = f"{A.SITE}/mock-interview/"
@@ -116,7 +116,7 @@ def build():
     ldf = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     tags = '<script type="application/ld+json">' + json.dumps(ld) + '</script><script type="application/ld+json">' + json.dumps(ldf) + "</script>"
     h = head(TITLE, DESC, URL, "../", tags + CSS).replace('<meta property="og:type" content="article">', '<meta property="og:type" content="website">')
-    promo = f'<span class="badge promo">{PROMO_TEXT}</span>' if PROMO_ON else ""
+    promo = f'<span class="badge promo">{PROMO_HTML}</span>' if PROMO_ON else ""
     seg = lambda name, opts, chk: "".join(f'<label for={name}-{v}><input type=radio name={name} id={name}-{v} value={v}{" checked" if v == chk else ""}> {lab}</label>' for v, lab in opts)
     o = [h,
          '<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../">AI Engineer Interview Questions</a> / <a href="../answer-check/">Self-check</a> / Mock round</div>'

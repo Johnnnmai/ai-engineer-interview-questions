@@ -7,7 +7,7 @@ Competitor facts come from each product's own page on Nov 1, 2026. Re-check befo
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_question_pages import (CTA_URL, PROMO_ON, PROMO_TEXT, PRICE, SITE, ROOT, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE,
+from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, PROMO_ON, PROMO_TEXT, PRICE, SITE, ROOT, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE,
                                   CTA_TEXT, CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot)
 
 URL = f"{SITE}/alternatives/"
@@ -33,7 +33,7 @@ def cta_box(content):
             f'<a class="btn btn-primary" href="{e(buy(content))}">{CTA_BUTTON} {ARROW}</a>{PROMO}{alt(content + "_pm")}</div>')
 
 
-PROMO = f'<span class="badge promo">{PROMO_TEXT}</span>' if PROMO_ON else ""
+PROMO = f'<span class="badge promo">{PROMO_HTML}</span>' if PROMO_ON else ""
 ROWS = [
     ("ByteByteGo, Machine Learning System Design Interview (book)", "About $31 on Amazon on Nov 1, 2026 (list $40)",
      "Book with a 7-step framework, 10 worked ML system design questions and 211 diagrams.", "Classic ML system design (ranking, recommendation, detection)"),

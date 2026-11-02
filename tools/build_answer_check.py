@@ -11,7 +11,7 @@ from question_pages_data import PAGES
 import answer_check_data as D
 
 from urllib.parse import urlsplit
-from build_question_pages import (CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, CTA_LABEL, CTA_HEADLINE, CTA_TEXT,
+from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, OFFER_EXPIRES, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, CTA_LABEL, CTA_HEADLINE, CTA_TEXT,
                                    CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot, icons,
                                    TIER9_URL, IB_TIER9_URL, TIER9_UTM, TIER9_LEAD, TIER9_LINK_TEXT, TIER9_POST, IB_TIER9_LINK_TEXT, IB_TIER9_POST)
 
@@ -291,7 +291,7 @@ ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
 
 
 def promo_span(extra=""):
-    return f'<span class="badge promo"{extra}>{PROMO_TEXT}</span>' if PROMO_ON else ""
+    return f'<span class="badge promo"{extra}>{PROMO_HTML}</span>' if PROMO_ON else ""
 
 
 def tier9_p(t, content, pid=""):
