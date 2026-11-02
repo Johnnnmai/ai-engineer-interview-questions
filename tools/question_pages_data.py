@@ -292,3 +292,10 @@ PAGES = [
  "related": ["what-is-prompt-injection", "how-do-you-evaluate-an-llm", "what-is-rag"],
 },
 ]
+
+# Batch 2 (40 more pages) lives in question_pages_batch2.py.
+try:
+    from question_pages_batch2 import PAGES as _B2
+    PAGES = PAGES + _B2
+except ImportError:
+    pass

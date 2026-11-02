@@ -16,7 +16,7 @@ SITE_NAME = "AI Engineer Interview Questions"
 LASTMOD = "2026-11-01"
 
 # ---- CTA: the single place to change the offer ----
-CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook"
+CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF"  # EARLYBF: 40% off until Nov 3 2026 11:59 PM PT; remove the query after that
 CTA_UTM = "utm_source=seo&utm_medium=qpage&utm_campaign={slug}"
 CTA_HEADLINE = "Want the full method?"
 CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan."

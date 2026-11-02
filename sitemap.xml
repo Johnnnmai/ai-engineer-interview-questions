@@ -12,5 +12,45 @@
   <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-do-you-evaluate-an-llm/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-do-you-evaluate-a-rag-system/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-an-ai-agent/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pre-training-vs-instruction-tuning-vs-rlhf/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-are-scaling-laws/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-tokenization-in-llms/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-context-window/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/temperature-vs-top-p/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-quantization-in-llms/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-mixture-of-experts/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/reasoning-models-vs-chat-models/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/embedding-model-vs-generative-model/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-chain-of-thought-prompting/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-get-reliable-json-output-from-an-llm/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-function-calling/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-choose-a-chunking-strategy-for-rag/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-hybrid-search/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-re-ranking-in-rag/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-lost-in-the-middle/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-choose-an-embedding-model/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/hnsw-vs-ivf/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/access-control-in-rag/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-debug-poor-rag-answers/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-the-react-pattern/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-model-context-protocol-mcp/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-make-ai-agents-reliable-in-production/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-memory-in-ai-agents/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/single-agent-vs-multi-agent/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/workflows-vs-agents/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-build-a-fine-tuning-dataset/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-catastrophic-forgetting/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-model-distillation/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-dpo/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-make-llm-as-a-judge-reliable/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-ab-test-an-ai-feature/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-benchmark-contamination/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/design-a-customer-support-chatbot/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/design-an-llm-gateway/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-cache-llm-responses/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-reduce-llm-inference-cost/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-reduce-llm-latency/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-red-teaming-in-ai/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-are-llm-guardrails/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/</loc><lastmod>2026-11-01</lastmod></url>
 </urlset>
