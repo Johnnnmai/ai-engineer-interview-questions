@@ -275,10 +275,26 @@ IB = {
    "bad": [r"\b(money|salary|salaries|pay is|bonus\w*|prestig\w*|compensation)\b"],
    "tip": "Drop money or prestige as a reason. Tie the answer to what you have done and the work you want to do."},
  ]},
+ "walk-me-through-your-resume": {"q": "Walk me through your resume (investment banking interview)", "concepts": [
+  ("A brief anchor: school, major or where your interest began", [r"\b(studying|major\w*|senior|junior|degree|university|college|school)\b", r"first got interested", r"interest\w* (in|began)"]),
+  ("Two or three experiences, each with what you did", [r"internships?", r"\b(club|team|role|job|project)\b", r"\b(worked on|helped|built|led)\b"], 2),
+  ("What each experience taught you", [r"\blearn\w*", r"taught", r"most valuable", r"realiz\w*", r"saw how"]),
+  ("Connect the story to why banking", [r"investment banking", r"\bbanking\b", r"transactions?", r"\bdeals?\b"]),
+  ("Why you are interviewing now, and this group", [r"recruiting", r"\bnow\b", r"analyst roles?", r"this (group|bank|team|firm)"]),
+ ]},
+ "what-is-your-greatest-weakness": {"q": "What is your greatest weakness? (investment banking interview)", "concepts": [
+  ("A real weakness, not a disguised strength", [r"(my )?weakness", r"i (tend|used) to", r"struggl\w*", r"holding back", r"hesitat\w*"]),
+  ("A specific situation where it showed up", [r"\bin my (first|last|previous|summer)\b", r"internship", r"\bonce\b", r"for example", r"\bwhen i\b"]),
+  ("The cost or impact it had", [r"\bcost\b", r"had to redo", r"delay\w*", r"\bmissed\b", r"impact\w*", r"\btime\b"]),
+  ("Concrete steps you took to fix it", [r"since then", r"i (now|have worked|started|began|joined)", r"worked on", r"habit", r"practic\w*"]),
+  ("Evidence of improvement, ideally recent", [r"most recent", r"recently", r"turned out", r"no longer", r"improv\w*", r"now i"]),
+ ]},
 }
 
 # IB question titles live in IB["..."]["q"]; the first follow-up of each, copied from the IB question data:
 IB_FOLLOWUPS = {
+ "walk-me-through-your-resume": "Why did you choose that internship over others?",
+ "what-is-your-greatest-weakness": "How would that weakness affect you as an analyst?",
  "walk-me-through-a-dcf": "If you raise the discount rate by 1%, what happens?",
  "walk-me-through-the-three-financial-statements": "Which statement would you pick if you could only have one?",
  "if-depreciation-goes-up-by-10-walk-me-through-the-three-statements": "How does a $100 goodwill impairment that is not tax-deductible flow through?",
@@ -290,3 +306,15 @@ IB_FOLLOWUPS = {
  "walk-me-through-a-merger-model": "In an all-stock deal, what determines accretion or dilution?",
  "why-investment-banking": "Why our bank (or group)?",
 }
+
+# Rubrics for the remaining question pages, drafted from each page's model-answer steps (tools/gen_rubrics_batch2.py).
+try:
+    from answer_check_data_batch2 import AIE2, IB2, IB2_FOLLOWUPS
+except ImportError:
+    AIE2, IB2, IB2_FOLLOWUPS = {}, {}, {}
+for _k, _v in AIE2.items():
+    AIE.setdefault(_k, _v)
+for _k, _v in IB2.items():
+    IB.setdefault(_k, _v)
+for _k, _v in IB2_FOLLOWUPS.items():
+    IB_FOLLOWUPS.setdefault(_k, _v)

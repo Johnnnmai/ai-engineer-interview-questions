@@ -20,86 +20,154 @@ SITE_NAME = "AI Engineer Interview Questions"
 LASTMOD = "2026-11-01"
 
 # ---- CTA: the single place to change the offer ----
+# Every buy link in this repo (question pages, questions index, answer-check) is built from CTA_URL.
+# When EARLYBF ends, delete "?offer_code=EARLYBF" here and re-run both builders: the promo lines disappear too.
 CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF"  # EARLYBF: 40% off until Nov 3 2026 11:59 PM PT; remove the query after that
+OFFER_EXPIRES = "2026-11-04T07:59:00Z"  # EARLYBF expiry read from the Gumroad product page; promo lines also hide client-side after it
+PROMO_TEXT = "40% off with code EARLYBF until Nov 3, 11:59 PM PT"
+PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
+PRODUCT_NAME = "The 0&rarr;1 AI Engineer Interview Playbook"
 CTA_UTM = "utm_source=seo&utm_medium=qpage&utm_campaign={slug}"
 CTA_HEADLINE = "Want the full method?"
 CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan."
-CTA_BUTTON = "Get the playbook &rarr;"
+CTA_BUTTON = "Get the playbook"
 # ----------------------------------------------------
+PROMO_ON = "offer_code=EARLYBF" in CTA_URL
 
 e = html.escape
 UTM_SCRIPT = re.search(r"<script>/\* UTM passthrough.*?</script>", open(os.path.join(ROOT, "index.html")).read(), re.S).group(0)
-STYLE = re.search(r"<style>.*?</style>", open(os.path.join(ROOT, "index.html")).read(), re.S).group(0)
-EXTRA_CSS = "<style>.crumb{font-size:.9rem}.crumb a{color:#cfd6e4}.q h3{margin:.2em 0}.related a,.w p a{color:#175cd3}ol.steps li,ul.mist li{margin:6px 0}</style>"
 BY_SLUG = {p["slug"]: p for p in PAGES}
 LVL = {"Entry": "E", "Mid": "M", "Senior": "S"}
+ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
+UI_SCRIPT = ('<script>(function(){var b=document.querySelector(".sticky-cta"),h=document.querySelector("[data-hero]");'
+             'if(b&&h){document.body.classList.add("has-sticky");var f=function(){var on=h.getBoundingClientRect().bottom<0;'
+             'b.classList.toggle("show",on);b.setAttribute("aria-hidden",on?"false":"true");};addEventListener("scroll",f,{passive:true});f();}'
+             'var u=document.documentElement.getAttribute("data-offer-until");if(u&&Date.now()>=Date.parse(u)){'
+             'var p=document.querySelectorAll(".promo");for(var i=0;i<p.length;i++)p[i].hidden=true;}})();</script>')
+
+
+def buy_url(slug, content):
+    return CTA_URL + ("&" if "?" in CTA_URL else "?") + CTA_UTM.format(slug=slug) + "&utm_content=" + content
+
+
+def promo(cls="badge promo"):
+    return f'<span class="{cls}">{PROMO_TEXT}</span>' if PROMO_ON else ""
 
 
 def cta(slug):
-    href = CTA_URL + ("&" if "?" in CTA_URL else "?") + CTA_UTM.format(slug=slug)
-    return (f'<div class=cta><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
-            f'<a class=btn href="{e(href)}">{CTA_BUTTON}</a></div>')
+    return (f'<div class=cta><span class=label>The Playbook</span><b>{CTA_HEADLINE}</b><p>{e(CTA_TEXT)}</p>'
+            f'<a class="btn btn-primary" href="{e(buy_url(slug, "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo()}</div>')
 
 
-def head(title, desc, url, extra=""):
-    return (f'<!doctype html><html lang=en><head><meta charset=utf-8>'
+def hero_buy(slug, ghost_href, ghost_text):
+    return (f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "hero"))}">{CTA_BUTTON} {ARROW}</a>'
+            f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
+            f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p>')
+
+
+def sticky(slug):
+    deal = f'<span class="long promo"> &middot; 40% off until Nov 3</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
+    return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
+            f'<span class=t><b>{PRODUCT_NAME}</b>{deal}</span>'
+            f'<a class=btn href="{e(buy_url(slug, "sticky_bar"))}">Get it &rarr;</a></div>')
+
+
+def preview_card(slug, rel):
+    return (f'<li><div class=pcard><img src="{rel}assets/playbook-cover.webp" width=333 height=465 loading=lazy '
+            f'alt="Cover of {PRODUCT_NAME.replace("&rarr;", " to ")}, 2026 edition, Valenx Press">'
+            f'<div><span class=label>The Playbook &middot; 2026 edition</span><h2>{PRODUCT_NAME}</h2><p>{e(CTA_TEXT)}</p>'
+            f'<ul class=spec><li><span>Publisher</span><span>Valenx Press</span></li>'
+            f'<li><span>Format</span><span>Digital download on Gumroad</span></li>'
+            f'<li><span>Price</span><span>{PRICE}</span></li></ul>'
+            f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "preview_card"))}">{CTA_BUTTON} {ARROW}</a>{promo()}</div></div></div></li>')
+
+
+def icons(rel):
+    return (f'<link rel=icon href="{rel}favicon.ico" sizes=any><link rel=icon type="image/svg+xml" href="{rel}assets/favicon.svg">'
+            f'<link rel=apple-touch-icon href="{rel}assets/apple-touch-icon.png">')
+
+
+def head(title, desc, url, rel, extra=""):
+    until = f' data-offer-until="{OFFER_EXPIRES}"' if PROMO_ON else ""
+    return (f'<!doctype html><html lang=en{until}><head><meta charset=utf-8>'
             f'<meta name=viewport content="width=device-width,initial-scale=1">'
             f'<title>{e(title)}</title><meta name=description content="{e(desc)}">'
             f'<meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">'
             f'<meta property="og:type" content="article"><meta property="og:url" content="{url}">'
-            f'<link rel=canonical href="{url}">{extra}{STYLE}{EXTRA_CSS}</head><body>')
+            f'<meta property="og:image" content="{SITE}/assets/playbook-og.jpg"><meta name="twitter:card" content="summary_large_image">'
+            f'<link rel=canonical href="{url}">{icons(rel)}<link rel=preconnect href="https://fonts.googleapis.com">'
+            f'<link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="{rel}assets/valenx.css">{extra}</head>'
+            f'<body><a class=skip href="#main">Skip to content</a>'
+            f'<nav class=nav aria-label="Site"><a class=brand href="{rel}"><span class=mark>VP</span>Valenx Press<span class=long>&nbsp;&middot; {SITE_NAME}</span></a>'
+            f'<div class=nav-group><a href="{rel}questions/">Questions</a><a href="{rel}answer-check/">Self-check</a><a class=hide-sm href="{rel}">All 100</a></div></nav>')
 
 
-def foot():
-    return (f'<div class=w><footer>&copy; 2026 Valenx Press &middot; <a href="../../">All 100 AI engineer interview questions</a> &middot; '
-            f'<a href="../">Question deep dives</a> &middot; Questions reflect common public interview patterns; no company affiliation.</footer></div>'
-            f'{UTM_SCRIPT}</body></html>\n')
+def foot(rel, deep=True):
+    dd = f'<a href="{rel}questions/">Question deep dives</a> &middot; ' if deep else ""
+    return (f'<footer class=site><div class=wrap>&copy; 2026 Valenx Press &middot; <a href="{rel}">All 100 AI engineer interview questions</a> &middot; '
+            f'{dd}Questions reflect common public interview patterns; no company affiliation.</div></footer>'
+            f'{UTM_SCRIPT}{UI_SCRIPT}</body></html>\n')
 
 
 def page(p):
     url = f"{SITE}/questions/{p['slug']}/"
+    rel = "../../"
     faq = [{"@type": "Question", "name": p["q"],
             "acceptedAnswer": {"@type": "Answer", "text": " ".join(p["sample"])}}]
     faq += [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["followups"]]
     ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq}
     ld_tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     src = ", ".join(f'<a href="../../#q{n}">#{n}</a>' for n in p["src"])
-    o = [head(p["q"], p["desc"], url, ld_tag)]
-    o.append(f'<div class=hero><div class=w><div class=crumb><a href="../../">{SITE_NAME}</a> &rsaquo; <a href="../">Questions</a></div>'
-             f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
-             f'<p>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p></div></div><div class=w>')
     ac = "../../answer-check/" + (f"?track=aie&amp;q={p['slug']}" if p["slug"] in _AC_AIE else "")
+    o = [head(p["q"], p["desc"], url, rel, ld_tag)]
+    o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../../">{SITE_NAME}</a> / <a href="../">Questions</a></div>'
+             f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
+             f'<p class=lead>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p>'
+             + hero_buy(p["slug"], ac, "Score my answer free") + '</div></header>')
+    o.append('<main id=main class=body><div class=read>')
     o.append(f'<p class=selfcheck><b>Practiced one out loud?</b> <a href="{ac}">Paste your answer into the free self-check and get a score in 30 seconds</a></p>')
-    o.append(cta(p["slug"]))
     o.append(f'<h2>What the interviewer is testing</h2><p>{e(p["testing"])}</p>')
     o.append('<h2>Answer framework</h2><ol class=steps>' + "".join(f"<li>{e(s)}</li>" for s in p["steps"]) + "</ol>")
-    o.append('<h2>Sample answer</h2><div class=q>' + "".join(f"<p class=ans>{e(s)}</p>" for s in p["sample"]) + "</div>")
+    o.append('<h2>Sample answer</h2><div class=sample>' + "".join(f"<p class=ans>{e(s)}</p>" for s in p["sample"]) + "</div>")
     if p["followups"]:
         o.append('<h2>Likely follow-ups</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in p["followups"]))
     o.append('<h2>Common mistakes</h2><ul class=mist>' + "".join(f"<li>{e(m)}</li>" for m in p["mistakes"]) + "</ul>")
+    o.append(cta(p["slug"]))
     o.append('<h2>Related questions</h2><ul class=related>' +
              "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) +
              f'<li><a href="../">All question deep dives</a></li><li><a href="../../">All 100 AI engineer interview questions with answers</a></li></ul>')
     o.append(f'<p class=muted>Based on question {src} in the full question bank.</p>')
-    o.append(cta(p["slug"]) + "</div>")
-    o.append(foot())
+    o.append('</div></main>' + sticky(p["slug"]))
+    o.append(foot(rel))
     return "".join(o)
 
 
 def index():
     url = f"{SITE}/questions/"
+    rel = "../"
     title = "AI Engineer Interview Questions: Answer Frameworks and Sample Answers"
     desc = "Deep dives on the most-asked AI engineer interview questions: RAG, transformers, KV cache, LoRA, evals, agents and prompt injection, with sample answers."
-    o = [head(title, desc, url)]
-    o.append(f'<div class=hero><div class=w><div class=crumb><a href="../">{SITE_NAME}</a> &rsaquo; Questions</div><h1>{e(title)}</h1>'
-             '<p>One page per question: what the interviewer is testing, an answer framework, a sample answer, follow-ups and common mistakes.</p></div></div><div class=w>')
+    cnt = {k: sum(1 for p in PAGES if p["level"] == k) for k in LVL}
+    o = [head(title, desc, url, rel)]
+    o.append(f'<header class="qhero idx" data-hero><div class=wrap><div class="crumb label"><a href="../">{SITE_NAME}</a> / Questions</div>'
+             f'<span class=bignum aria-hidden=true>{len(PAGES)}<em>deep dives</em></span><h1>{e(title)}</h1>'
+             '<p class=lead>One page per question: what the interviewer is testing, an answer framework, a sample answer, follow-ups and common mistakes.</p>'
+             + hero_buy("questions-index", "../answer-check/", "Score my answer free") +
+             '<div class=chips>' + "".join(f'<span class="lvl {LVL[k]}">{cnt[k]} {k}</span>' for k in LVL) +
+             '<span class=chip>Sample answer on every page</span></div></div></header>')
+    o.append('<main id=main class=body><div class=read>')
     o.append('<p class=selfcheck><b>Practiced one out loud?</b> <a href="../answer-check/">Paste your answer into the free self-check and get a score in 30 seconds</a></p>')
-    for p in PAGES:
-        o.append(f'<div class=q><span class="lvl {LVL[p["level"]]}">{p["level"]}</span><a href="{p["slug"]}/"><b>{e(p["q"])}</b></a><div class=ans>{e(p["desc"])}</div></div>')
+    o.append('<ol class=qlist>')
+    for i, p in enumerate(PAGES, 1):
+        o.append(f'<li><a class=qcard href="{p["slug"]}/"><span class=n>{i:02d}</span><span class="lvl {LVL[p["level"]]}">{p["level"]}</span>'
+                 f'<b>{e(p["q"])}</b><span class=d>{e(p["desc"])}</span></a></li>')
+        if i == 3:
+            o.append(preview_card("questions-index", rel))
+    o.append('</ol>')
     o.append('<p><b>Practice tool:</b> <a href="../answer-check/">Check your interview answer with the free Answer Self-Check</a> (score, missed concepts and tips).</p>')
     o.append('<p><a href="../">See all 100 AI engineer interview questions with answers</a></p>')
-    o.append(cta("questions-index") + "</div>")
-    o.append(foot().replace('href="../../"', 'href="../"').replace('<a href="../">Question deep dives</a> &middot; ', ''))
+    o.append(cta("questions-index") + '</div></main>' + sticky("questions-index"))
+    o.append(foot(rel, deep=False))
     return "".join(o)
 
 
