@@ -178,7 +178,7 @@ def main():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w").write(page(p))
     open(os.path.join(ROOT, "questions", "index.html"), "w").write(index())
-    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/"]
+    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/", f"{SITE}/mock-interview/", f"{SITE}/alternatives/"]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
     sm.append("</urlset>")
