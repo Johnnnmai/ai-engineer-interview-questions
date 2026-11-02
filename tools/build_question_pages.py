@@ -89,6 +89,7 @@ def index():
              '<p>One page per question: what the interviewer is testing, an answer framework, a sample answer, follow-ups and common mistakes.</p></div></div><div class=w>')
     for p in PAGES:
         o.append(f'<div class=q><span class="lvl {LVL[p["level"]]}">{p["level"]}</span><a href="{p["slug"]}/"><b>{e(p["q"])}</b></a><div class=ans>{e(p["desc"])}</div></div>')
+    o.append('<p><b>Practice tool:</b> <a href="../answer-check/">Check your interview answer with the free Answer Self-Check</a> (score, missed concepts and tips).</p>')
     o.append('<p><a href="../">See all 100 AI engineer interview questions with answers</a></p>')
     o.append(cta("questions-index") + "</div>")
     o.append(foot().replace('href="../../"', 'href="../"').replace('<a href="../">Question deep dives</a> &middot; ', ''))
@@ -101,7 +102,7 @@ def main():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w").write(page(p))
     open(os.path.join(ROOT, "questions", "index.html"), "w").write(index())
-    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES]
+    urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/"]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
     sm.append("</urlset>")
