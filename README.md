@@ -2,11 +2,17 @@
 
 _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / Mid / Senior** · Free, no sign-up
 
-Covers LLM fundamentals, prompting and structured output, RAG, agents and MCP, fine-tuning, evaluation, AI system design, production/cost/safety and coding (with code). Also published as a web page: https://johnnnmai.github.io/ai-engineer-interview-questions/
+100 graded questions covering LLMs, RAG, agents, fine-tuning, AI system design, MLOps and coding — with full model answers you can study for free right here.
 
-**[Go deeper with The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_top)**: 20 chapters, 5 frameworks, worked system-design walkthroughs and an 8-week plan. Prefer paperback/Kindle? [See it on Amazon](https://valenx.org/books/aie).
+### Quick start
 
-**Practiced one out loud?** [Paste your answer into the free self-check and get a score in 30 seconds](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/).
+🆓 **Self-check** — [Paste your answer and get a score in 30 seconds](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
+
+🆓 **Top 30 questions** — [Free 13-page guide with model answers (PDF)](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
+
+📘 **Full interview kit** — [The complete AI Engineer Interview bundle ($59 → early-bird discount)](https://sirjohnnymai.gumroad.com/l/xzptir?offer_code=EARLYBF&utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
+
+---
 
 **Who this is for:** AI Engineer, LLM Engineer, Applied AI / Applied ML Engineer, GenAI Engineer, Agent Engineer, ML Engineer moving into LLM work, Forward Deployed / Solutions Engineer (AI), AI Product Engineer.
 
