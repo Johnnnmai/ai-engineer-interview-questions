@@ -362,7 +362,7 @@ def build():
          '</div></main>',
          '<script type="application/json" id=ac-data>' + json.dumps(d, ensure_ascii=False).replace("</", "<\\/") + '</script>',
          '<script id=ac-engine>' + JS + '</script><script>' + UI + '</script>',
-         foot("../")]
+         foot("../").replace("</body>", '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "39575a8acd6a48f2836dbd5df6db3c40"}\'></script></body>')]
     out = "".join(o)
     os.makedirs(os.path.join(ROOT, "answer-check"), exist_ok=True)
     open(os.path.join(ROOT, "answer-check", "index.html"), "w").write(out)
