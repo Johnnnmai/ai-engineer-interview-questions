@@ -1,6 +1,6 @@
 # 100 AI Engineer Interview Questions (2026) with Full Model Answers
 
-**Free:** [Check your interview answer](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)  |  **Weekly drills:** [Interview Pass, $19/mo](https://valenx.org/pass?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+**Free:** [Check your interview answer](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)  |  **Weekly drill packs:** [Valenx Pass](https://valenx.org/go/pass-y?utm_source=github&utm_campaign=ai-engineer-interview-questions&utm_content=readme), $79/yr, a new drill pack every Monday, cancel anytime.
 
 _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / Mid / Senior** · Free, no sign-up
 
