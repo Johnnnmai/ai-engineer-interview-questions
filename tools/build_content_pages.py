@@ -27,6 +27,8 @@ COMPANY_RELATED = {
     "nvidia": ["what-is-kv-cache", "what-is-quantization-in-llms", "how-to-reduce-llm-latency", "what-is-mixture-of-experts"],
     "perplexity": ["what-is-hybrid-search", "what-is-re-ranking-in-rag", "why-do-llms-hallucinate"],
     "scale-ai": ["how-to-build-a-fine-tuning-dataset", "how-to-make-llm-as-a-judge-reliable", "how-do-you-evaluate-an-llm"],
+    "google": ["explain-the-transformer-architecture", "what-is-kv-cache", "how-to-ab-test-an-ai-feature", "how-do-you-evaluate-a-rag-system"],
+    "apple": ["what-is-quantization-in-llms", "how-to-reduce-llm-latency", "how-do-you-evaluate-an-llm", "what-is-prompt-injection"],
 }
 GUIDE_META = {
     "how-to-prepare-for-an-ai-engineer-interview-2026": ("Prepare for an AI engineer interview in 2026: Python coding, LLM and RAG fundamentals, evaluation and system design, with a practice checklist and FAQ.",
@@ -46,15 +48,72 @@ GUIDE_META = {
         ["what-is-an-ai-agent", "workflows-vs-agents", "what-is-function-calling", "how-to-make-ai-agents-reliable-in-production"]),
     "ai-system-design-interview-questions": ("15 AI and LLM system design interview prompts with answer outlines, a 45-minute structure and a self-scoring checklist.",
         ["design-an-llm-gateway", "design-a-customer-support-chatbot", "how-to-reduce-llm-inference-cost", "how-to-reduce-llm-latency"]),
+    # seo5 batch (seo5_20261103): descriptions come from the md files, see SEO5
+    "llm-interview-questions": (None, ["explain-the-transformer-architecture", "temperature-vs-top-p", "explain-lora-and-qlora", "what-is-kv-cache"]),
+    "prompt-engineering-interview-questions": (None, ["what-is-chain-of-thought-prompting", "how-to-get-reliable-json-output-from-an-llm", "what-is-prompt-injection", "how-to-make-llm-as-a-judge-reliable"]),
 }
 # competitor alternative pages: content/alternatives/<slug>.md -> /alternatives/<slug>/ (index stays in build_alternatives.py)
 ALT_META = {
     "exponent-alternatives": ["design-an-llm-gateway", "what-is-rag", "how-to-make-ai-agents-reliable-in-production"],
     "hello-interview-alternatives": ["design-a-customer-support-chatbot", "how-do-you-evaluate-a-rag-system", "what-is-model-context-protocol-mcp"],
+    "interview-query-alternatives": ["rag-vs-fine-tuning", "explain-the-transformer-architecture", "how-to-make-llm-as-a-judge-reliable"],
 }
 ALT_ORDER = list(ALT_META)
 NEW_PAGES = {"rag-interview-questions", "ai-agent-interview-questions", "ai-system-design-interview-questions"} | set(ALT_META)
 NEW_DATE = "2026-11-03"
+
+# ---- seo5 pages (campaign seo5_20261103) ----
+# Every product link on these pages carries utm_source=qbank&utm_medium=seo&utm_campaign=seo5_20261103&utm_content=<page-slug>,
+# with the placement in utm_term. Paid bases are B.CTA_URL and B.TIER9_URL, so OFFER_CODE in build_question_pages still controls
+# EARLYBF: clear it and re-run, and the offer code and every promo line leave these pages too. No PM link (not PM or TPM pages).
+SEO5 = {"interview-query-alternatives", "google", "apple", "llm-interview-questions", "prompt-engineering-interview-questions"}
+NEW_PAGES |= SEO5
+GUMROAD = "https://sirjohnnymai.gumroad.com/l/"
+SEO5_BASES = {"ai-engineer-interview-playbook": lambda: B.CTA_URL, "aie-50-questions-scoring-rubric": lambda: B.TIER9_URL,
+              "aie-top-30-questions": lambda: FREE_TOP30}
+
+
+def s5(base, slug, term):
+    return (base + ("&" if "?" in base else "?") + "utm_source=qbank&utm_medium=seo&utm_campaign=seo5_20261103"
+            f"&utm_content={slug}&utm_term={term}")
+
+
+def s5_tier9(slug, term):
+    return f'<p class="alt-buy tier9">{B.TIER9_LEAD}<a href="{e(s5(B.TIER9_URL, slug, term))}">{B.TIER9_LINK_TEXT}</a>{B.TIER9_POST}</p>'
+
+
+def s5_free(slug, term):
+    return f'<p class=free-alt>Not ready to buy? <a href="{e(s5(FREE_TOP30, slug, term))}">Get the free Top 30 AI engineer questions PDF</a>.</p>'
+
+
+def s5_hero(slug, ghost_href, ghost_text):
+    return (f'<div class=acts><a class="btn btn-primary" href="{e(s5(B.CTA_URL, slug, "hero"))}">{B.CTA_BUTTON} {ARROW}</a>'
+            f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
+            f'<p class=price-line><span><span class=num>{B.PRICE}</span> on Gumroad, instant download</span>{B.promo()}</p>'
+            + s5_tier9(slug, "hero_tier9"))
+
+
+def s5_cta(slug, term):
+    return (f'<div class=cta><span class=label>{B.CTA_LABEL}</span><b>{B.CTA_HEADLINE}</b><p>{e(B.CTA_TEXT)}</p>'
+            f'<a class="btn btn-primary" href="{e(s5(B.CTA_URL, slug, term))}">{B.CTA_BUTTON} {ARROW}</a>{B.promo()}'
+            + s5_tier9(slug, term + "_tier9") + s5_free(slug, term + "_free") + '</div>')
+
+
+def s5_sticky(slug):
+    deal = '<span class="long promo"> &middot; 40% off until Nov 3</span>' if B.PROMO_ON else f'<span class=long> &middot; {B.PRICE}</span>'
+    short = '<span class="short promo"> &middot; 40% off</span>' if B.PROMO_ON else f'<span class=short> &middot; {B.PRICE}</span>'
+    return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
+            f'<span class=t><b><span class=full>{B.PRODUCT_NAME}</span><span class=short>{B.PRODUCT_SHORT}</span></b>{deal}{short}</span>'
+            f'<a class=btn href="{e(s5(B.CTA_URL, slug, "sticky_bar"))}">Get it &rarr;</a></div>')
+
+
+def s5_body_links(h, slug):
+    """Product links written in the markdown get the seo5 utm and, for paid products, the OFFER_CODE base."""
+    def sub(m):
+        base = SEO5_BASES.get(m.group(1))
+        return f'href="{e(s5(base(), slug, "body"))}"' if base else m.group(0)
+    return re.sub(r'href="' + re.escape(GUMROAD) + r'([a-z0-9-]+)"', sub, h)
+
 
 
 def utm_for(kind, slug):
@@ -64,7 +123,7 @@ def utm_for(kind, slug):
     return f"utm_source=site&utm_medium=seo&utm_campaign={camp}"
 
 GUIDE_ORDER = list(GUIDE_META)
-COMPANY_ORDER = ["openai", "anthropic", "google-deepmind", "meta", "microsoft", "amazon", "nvidia", "databricks", "scale-ai", "perplexity"]
+COMPANY_ORDER = ["openai", "anthropic", "google-deepmind", "google", "apple", "meta", "microsoft", "amazon", "nvidia", "databricks", "scale-ai", "perplexity"]
 
 EXTRA_CSS = """<style>
 .body table{width:100%;border-collapse:collapse;font-size:var(--fs-small);margin:var(--s2) 0 var(--s3);display:block;overflow-x:auto}
@@ -156,12 +215,15 @@ def build_page(kind, slug, path):
         tags += ld({"@context": "https://schema.org", "@type": "FAQPage",
                     "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
     body = md_html(s)
+    seo5 = slug in SEO5
+    if seo5:
+        body = s5_body_links(body, slug)
     # split before FAQ to place a mid-page CTA and the practice box
     parts = body.split("<h2>FAQ</h2>")
     crumb = {"company": "Company interview guides", "guide": "Prep guides", "alternative": "Alternatives"}[kind]
     o = [head(title, desc, url, rel, tags + EXTRA_CSS)]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="{rel}">{B.SITE_NAME}</a> / <a href="../">{crumb}</a></div>'
-             f'<h1>{e(title)}</h1><p class=lead>{e(lead)}</p>' + hero_buy(slug, f"{rel}answer-check/", "Score my answer free", utm) + '</div></header>')
+             f'<h1>{e(title)}</h1><p class=lead>{e(lead)}</p>' + (s5_hero(slug, f"{rel}answer-check/", "Score my answer free") if seo5 else hero_buy(slug, f"{rel}answer-check/", "Score my answer free", utm)) + '</div></header>')
     o.append('<main id=main class=body><div class=read>')
     if kind == "company":
         o.append('<p class=note>Independent preparation guide by Valenx Press. Not affiliated with or endorsed by the company named. '
@@ -172,16 +234,16 @@ def build_page(kind, slug, path):
                  'on Nov 2, 2026 unless marked otherwise; sellers change prices, so check before you buy.</p>')
     o.append(parts[0])
     o.append(practice_box(related, camp))
-    o.append(cta(slug, "cta_mid", utm, free_alt(f"{slug}_mid_free", utm)))
+    o.append(s5_cta(slug, "cta_mid") if seo5 else cta(slug, "cta_mid", utm, free_alt(f"{slug}_mid_free", utm)))
     if len(parts) > 1:
         o.append("<h2>FAQ</h2>" + parts[1])
-    o.append(cta(slug, "cta_end", utm, free_alt(f"{slug}_end_free", utm)))
+    o.append(s5_cta(slug, "cta_end") if seo5 else cta(slug, "cta_end", utm, free_alt(f"{slug}_end_free", utm)))
     if kind == "alternative":
         o.append(f'<p><a href="../">All alternatives</a> &middot; <a href="{rel}guides/">Prep guides</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
     else:
         o.append(f'<p><a href="../">All {crumb.lower()}</a> &middot; <a href="{rel}{"guides" if kind == "company" else "companies"}/">'
                f'{"Prep guides" if kind == "company" else "Company interview guides"}</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
-    o.append('</div></main>' + sticky(slug, utm) + foot(rel))
+    o.append('</div></main>' + (s5_sticky(slug) if seo5 else sticky(slug, utm)) + foot(rel))
     return "".join(o), title, desc
 
 
@@ -193,11 +255,11 @@ def build_index(kind, items):
     rel = "../"
     if kind == "company":
         title = "AI Engineer Interview Guides by Company (2026): OpenAI, Anthropic, DeepMind and more"
-        desc = "Independent AI engineer interview prep for 10 companies: public careers themes, a general loop, 5 practice questions with scoring points, and FAQs."
-        lead = "Ten independent prep guides. Each one links only the company's own public careers pages and labels interview stages as a general industry pattern."
+        desc = f"Independent AI engineer interview prep for {len(items)} companies: public careers themes, a general loop, practice questions with scoring points, and FAQs."
+        lead = f"{len(items)} independent prep guides. Each one links only the company's own public careers pages and labels interview stages as a general industry pattern."
     else:
         title = "AI Engineer Interview Prep Guides (2026)"
-        desc = "Free AI engineer interview prep guides: RAG, AI agent and AI system design questions, a RAG scoring rubric, LLM evaluation, how to prepare and a 2-week plan."
+        desc = "Free AI engineer interview prep guides: LLM, prompt engineering, RAG, AI agent and system design questions, LLM evaluation, a RAG rubric and a 2-week plan."
         lead = f"{len(items)} practical guides with public sources, practice rubrics and FAQs."
     cards = "".join(f'<li><a href="{s}/"><b>{e(t)}</b><span>{e(d)}</span></a></li>' for s, t, d in items)
     o = [head(title, desc, url, rel, EXTRA_CSS)]

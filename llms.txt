@@ -22,6 +22,7 @@ Content is educational interview preparation, not a record of questions asked by
 - [AI engineer interview prep alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/): ByteByteGo, Educative, Gumroad guides and free options by price and format
 - [Exponent (Now Aced) Alternatives for AI Engineer Interviews (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/exponent-alternatives/): Exponent (now Aced) vs Hello Interview, ByteByteGo, Educative and free options for AI engineer interview prep: prices checked Nov 2, 2026.
 - [Hello Interview Alternatives for AI Engineer Interviews (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/hello-interview-alternatives/): Hello Interview alternatives for AI engineer interviews: Aced (Exponent), ByteByteGo, Educative and free options by price and format, Nov 2, 2026.
+- [Interview Query Alternatives for ML and AI Engineer Interviews (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/interview-query-alternatives/): Interview Query vs StrataScratch, DataLemur, LeetML, Hello Interview and free AI engineer prep: prices checked Nov 2, 2026, and which fits an ML or AI loop.
 
 ## Preparation guides
 
@@ -33,12 +34,16 @@ Content is educational interview preparation, not a record of questions asked by
 - [RAG Interview Questions and Answers (2026): 24 Questions from Basics to Production](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/): 24 RAG interview questions with model answers: chunking, embeddings, hybrid search, reranking, evaluation, permissions and debugging, plus a 5-step framework.
 - [AI Agent Interview Questions and Answers (2026): 22 Agentic AI Questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-agent-interview-questions/): 22 AI agent interview questions with model answers: agent loops, tool calling, MCP, memory, multi-agent design, evaluation and guardrails.
 - [AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/): 15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026.
+- [LLM Interview Questions and Answers (2026): 25 Questions from Basics to Production](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-interview-questions/): 25 LLM interview questions with model answers: transformers, tokens, decoding, LoRA, RLHF, quantization, hallucination and serving, plus a level table and FAQ.
+- [Prompt Engineering Interview Questions and Answers (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/prompt-engineering-interview-questions/): 22 prompt engineering interview questions with model answers: few-shot, chain of thought, JSON output, prompt injection, evaluation and versioning, plus FAQ.
 
 ## Company interview guides
 
 - [OpenAI AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/openai/)
 - [Anthropic AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/anthropic/)
 - [Google DeepMind AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/google-deepmind/)
+- [Google AI Engineer Interview Questions and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/google/)
+- [Apple Machine Learning and AI Engineer Interview Questions and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/apple/)
 - [Meta AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/meta/)
 - [Microsoft AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/microsoft/)
 - [Amazon AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/amazon/)

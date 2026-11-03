@@ -89,7 +89,8 @@ def build():
          '<p class=muted>From amazon.com, educative.io and gumroad.com product pages on Nov 1, 2026. Valenx Press is not affiliated with these sellers.</p>',
          '<h2>More comparisons</h2><ul>'
          '<li><a href="exponent-alternatives/">Exponent (now Aced) alternatives for AI engineer interviews</a>: plans, AI Engineering track and cost over a prep window</li>'
-         '<li><a href="hello-interview-alternatives/">Hello Interview alternatives for AI engineer interviews</a>: plans, Guided Practice and classic ML vs LLM system design</li></ul>',
+         '<li><a href="hello-interview-alternatives/">Hello Interview alternatives for AI engineer interviews</a>: plans, Guided Practice and classic ML vs LLM system design</li>'
+         '<li><a href="interview-query-alternatives/">Interview Query alternatives for ML and AI engineer interviews</a>: StrataScratch, DataLemur, LeetML and free options by price and round</li></ul>',
          '<h2>What the others do better</h2><p>The ByteByteGo book has 211 diagrams and goes deep on classic ranking and recommendation designs. Educative is interactive, with quizzes. '
          'ProdRescue is written for senior and staff loops. If one of those is your exact gap, buy that one.</p>',
          '<h2>Where the low-cost route wins</h2><ol class=steps>'

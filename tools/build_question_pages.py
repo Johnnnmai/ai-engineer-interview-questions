@@ -217,6 +217,8 @@ TOPIC_GUIDES.update({s: [_SD] for s in ("design-an-llm-gateway", "design-a-custo
                                          "how-to-cache-llm-responses")})
 NEW_URL_DATES = {f"{SITE}/guides/{g}/": "2026-11-03" for g in (_RAG[0], _AGENT[0], _SD[0])}
 NEW_URL_DATES.update({f"{SITE}/alternatives/{a}/": "2026-11-03" for a in ("exponent-alternatives", "hello-interview-alternatives")})
+NEW_URL_DATES.update({f"{SITE}/{p}/": "2026-11-03" for p in ("alternatives/interview-query-alternatives", "companies/google", "companies/apple",
+                                                           "guides/llm-interview-questions", "guides/prompt-engineering-interview-questions")})
 
 
 def topic_links(slug):
