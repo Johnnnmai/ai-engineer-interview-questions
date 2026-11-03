@@ -87,6 +87,9 @@ def build():
          f'<li><b>RAG, agents and evals on a budget:</b> the free bank here, then the 0 to 1 AI Engineer Interview Playbook at {PRICE}.</li></ul>',
          '<h2>Side by side</h2>', table,
          '<p class=muted>From amazon.com, educative.io and gumroad.com product pages on Nov 1, 2026. Valenx Press is not affiliated with these sellers.</p>',
+         '<h2>More comparisons</h2><ul>'
+         '<li><a href="exponent-alternatives/">Exponent (now Aced) alternatives for AI engineer interviews</a>: plans, AI Engineering track and cost over a prep window</li>'
+         '<li><a href="hello-interview-alternatives/">Hello Interview alternatives for AI engineer interviews</a>: plans, Guided Practice and classic ML vs LLM system design</li></ul>',
          '<h2>What the others do better</h2><p>The ByteByteGo book has 211 diagrams and goes deep on classic ranking and recommendation designs. Educative is interactive, with quizzes. '
          'ProdRescue is written for senior and staff loops. If one of those is your exact gap, buy that one.</p>',
          '<h2>Where the low-cost route wins</h2><ol class=steps>'

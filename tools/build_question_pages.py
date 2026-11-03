@@ -79,7 +79,9 @@ UI_SCRIPT = ('<script>(function(){var b=document.querySelector(".sticky-cta"),h=
 
 def buy_url(slug, content, utm=None, base=None):
     base = base or CTA_URL
-    return base + ("&" if "?" in base else "?") + (utm or CTA_UTM.format(slug=slug)) + "&utm_content=" + content
+    utm = utm or CTA_UTM.format(slug=slug)
+    # page-level utm that already names the page (seo_20261103 batch) carries the link position in utm_term instead
+    return base + ("&" if "?" in base else "?") + utm + ("&utm_term=" if "utm_content=" in utm else "&utm_content=") + content
 
 
 def alt_link(slug, content="pm_link", utm=None):
@@ -191,7 +193,7 @@ def page(p):
     o.append('<h2>Common mistakes</h2><ul class=mist>' + "".join(f"<li>{e(m)}</li>" for m in p["mistakes"]) + "</ul>")
     o.append(cta(p["slug"]))
     o.append('<h2>Related questions</h2><ul class=related>' +
-             "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) +
+             "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) + topic_links(p["slug"]) +
              f'<li><a href="../../study-plan/">Build a day-by-day study plan to your interview date</a></li><li><a href="../../llm-cost-calculator/">Estimate LLM API cost per day and month</a></li>'
              f'<li><a href="../../mock-interview/">Run a timed mock interview round</a></li><li><a href="../../alternatives/">Compare AI engineer interview prep options</a></li>'
              f'<li><a href="../">All question deep dives</a></li><li><a href="../../">All 100 AI engineer interview questions with answers</a></li></ul>')
@@ -199,6 +201,26 @@ def page(p):
     o.append('</div></main>' + sticky(p["slug"]))
     o.append(foot(rel))
     return "".join(o)
+
+
+# topic hub links from question pages to the Nov 3, 2026 guides (built by tools/build_content_pages.py)
+_RAG = ("rag-interview-questions", "RAG interview questions: 24 questions from basics to production")
+_AGENT = ("ai-agent-interview-questions", "AI agent interview questions: 22 agentic AI questions with answers")
+_SD = ("ai-system-design-interview-questions", "AI system design interview questions: 15 LLM design prompts")
+TOPIC_GUIDES = {s: [_RAG] for s in ("what-is-rag", "how-do-you-evaluate-a-rag-system", "how-to-debug-poor-rag-answers", "how-to-choose-a-chunking-strategy-for-rag",
+                                     "what-is-re-ranking-in-rag", "what-is-hybrid-search", "access-control-in-rag", "rag-vs-fine-tuning", "how-to-choose-an-embedding-model",
+                                     "hnsw-vs-ivf", "what-is-lost-in-the-middle")}
+TOPIC_GUIDES.update({s: [_AGENT] for s in ("what-is-an-ai-agent", "what-is-the-react-pattern", "single-agent-vs-multi-agent", "workflows-vs-agents",
+                                            "how-to-make-ai-agents-reliable-in-production", "how-to-handle-memory-in-ai-agents", "what-is-function-calling",
+                                            "what-is-model-context-protocol-mcp")})
+TOPIC_GUIDES.update({s: [_SD] for s in ("design-an-llm-gateway", "design-a-customer-support-chatbot", "how-to-reduce-llm-latency", "how-to-reduce-llm-inference-cost",
+                                         "how-to-cache-llm-responses")})
+NEW_URL_DATES = {f"{SITE}/guides/{g}/": "2026-11-03" for g in (_RAG[0], _AGENT[0], _SD[0])}
+NEW_URL_DATES.update({f"{SITE}/alternatives/{a}/": "2026-11-03" for a in ("exponent-alternatives", "hello-interview-alternatives")})
+
+
+def topic_links(slug):
+    return "".join(f'<li><a href="../../guides/{g}/">{e(t)}</a></li>' for g, t in TOPIC_GUIDES.get(slug, []))
 
 
 def index():
@@ -241,10 +263,11 @@ def main():
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in ZH_URLS]
     # line 19/21 company pages and prep guides (built by tools/build_content_pages.py)
-    for d in ("companies", "guides"):
+    for d in ("companies", "guides", "alternatives"):
         if os.path.isfile(os.path.join(ROOT, d, "index.html")):
-            sm.append(f"  <url><loc>{SITE}/{d}/</loc><lastmod>{LASTMOD}</lastmod></url>")
-            sm += [f"  <url><loc>{SITE}/{d}/{x}/</loc><lastmod>{LASTMOD}</lastmod></url>"
+            if d != "alternatives":  # /alternatives/ is already in urls above
+                sm.append(f"  <url><loc>{SITE}/{d}/</loc><lastmod>{LASTMOD}</lastmod></url>")
+            sm += [f"  <url><loc>{SITE}/{d}/{x}/</loc><lastmod>{NEW_URL_DATES.get(f'{SITE}/{d}/{x}/', LASTMOD)}</lastmod></url>"
                    for x in sorted(os.listdir(os.path.join(ROOT, d))) if os.path.isfile(os.path.join(ROOT, d, x, "index.html"))]
     sm.append("</urlset>")
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(sm) + "\n")

@@ -1,0 +1,178 @@
+<!doctype html><html lang=en data-offer-until="2026-11-04T07:59:00Z"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines</title><meta name=description content="15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026."><meta property="og:title" content="AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines"><meta property="og:description" content="15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026."><meta property="og:type" content="article"><meta property="og:url" content="https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/"><meta property="og:image" content="https://johnnnmai.github.io/ai-engineer-interview-questions/assets/playbook-og.jpg"><meta name="twitter:card" content="summary_large_image"><link rel=canonical href="https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/"><link rel=icon href="../../favicon.ico" sizes=any><link rel=icon type="image/svg+xml" href="../../assets/favicon.svg"><link rel=apple-touch-icon href="../../assets/apple-touch-icon.png"><link rel=preconnect href="https://fonts.googleapis.com"><link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="../../assets/valenx.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines", "description": "15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026.", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "mainEntityOfPage": "https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/", "inLanguage": "en", "author": {"@type": "Organization", "name": "Valenx Press"}, "publisher": {"@type": "Organization", "name": "Valenx Press"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an AI system design interview?", "acceptedAnswer": {"@type": "Answer", "text": "A round where you design a product or platform built around language models, covering architecture, data, evaluation, safety, cost and scale, usually in 45 to 60 minutes."}}, {"@type": "Question", "name": "How is it different from an ML system design interview?", "acceptedAnswer": {"@type": "Answer", "text": "ML system design often centers on training a model (features, labels, offline metrics, serving). AI system design in 2026 more often centers on using foundation models through retrieval, tools, prompts and evaluation, with less training work."}}, {"@type": "Question", "name": "How should I practice?", "acceptedAnswer": {"@type": "Answer", "text": "Do one prompt per day out loud with a 45-minute timer, score yourself with the checklist above and review weak areas. The free mock round and study plan help pace this."}}, {"@type": "Question", "name": "Do I need to draw diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a simple boxes-and-arrows diagram of the request path and the data pipeline. Clear flow matters more than tool names."}}, {"@type": "Question", "name": "Which prompts are most common?", "acceptedAnswer": {"@type": "Answer", "text": "RAG assistants, support chatbots, LLM gateways and agents with tools come up most often in public interview reports and prep material, so practice those four first. Start with RAG interview questions."}}]}</script><style>
+.body table{width:100%;border-collapse:collapse;font-size:var(--fs-small);margin:var(--s2) 0 var(--s3);display:block;overflow-x:auto}
+.body th,.body td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.body h3{margin:var(--s4) 0 var(--s1)}
+.practice{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s3) var(--s4);margin:var(--s6) 0}
+.practice ul{margin:var(--s1) 0 0;padding-left:1.2em}.practice li{margin:6px 0}
+.free-alt{font-size:var(--fs-small);margin:4px 0 0}
+.note{font-size:var(--fs-small);color:var(--ink-2)}
+.cards{list-style:none;padding:0;display:grid;gap:var(--s2)}.cards a{display:block;border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s3);text-decoration:none;color:var(--ink);background:var(--surface)}
+.cards a b{display:block;font-size:1.1rem;margin:0 0 4px}.cards a span{color:var(--ink-2);font-size:var(--fs-small)}
+</style></head><body><a class=skip href="#main">Skip to content</a><nav class=nav aria-label="Site"><a class=brand href="../../"><span class=mark>VP</span>Valenx Press<span class=long>&nbsp;&middot; AI Engineer Interview Questions</span></a><div class=nav-group><a href="../../questions/">Questions</a><a href="../../answer-check/">Self-check</a><a class=hide-sm href="../../">All 100</a></div></nav><header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../../">AI Engineer Interview Questions</a> / <a href="../">Prep guides</a></div><h1>AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines</h1><p class=lead>AI system design interviews in 2026 ask you to design a product around a language model: a RAG assistant, an agent, an LLM gateway, an evaluation pipeline or a cost-constrained chatbot. Strong answers follow a clear structure (requirements, architecture, data, model choice, evaluation, safety, cost and scale) and put numbers on latency and cost. Below is a 45-minute structure, 15 common prompts with answer outlines and a checklist to score yourself.</p><div class=acts><a class="btn btn-primary" href="https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=hero">Get the playbook <span class=dot aria-hidden=true>&rarr;</span></a><a class="btn btn-ghost" href="../../answer-check/">Score my answer free</a></div><p class=price-line><span><span class=num>$19.99</span> on Gumroad, instant download</span><span class="badge promo"><span class=pl>40% off with code EARLYBF until Nov 3, 11:59 PM PT</span><span class=ps>EARLYBF: 40% off until Nov 3</span></span></p><p class="alt-buy tier9">Smaller start: <a href="https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric?offer_code=EARLYBF&amp;utm_source=site&amp;utm_medium=cta&amp;utm_campaign=tripwire9_20261101&amp;utm_content=ai-system-design-interview-questions_hero">Score your answers against 50 rubrics, $9</a>. 50 AI engineer questions, one rubric each, PDF on Gumroad.</p></div></header><main id=main class=body><div class=read><p>AI system design interviews in 2026 ask you to design a product around a language model: a RAG assistant, an agent, an LLM gateway, an evaluation pipeline or a cost-constrained chatbot. Strong answers follow a clear structure (requirements, architecture, data, model choice, evaluation, safety, cost and scale) and put numbers on latency and cost. Below is a 45-minute structure, 15 common prompts with answer outlines and a checklist to score yourself.</p>
+<h2>How to structure a 45-minute AI system design round</h2>
+<table>
+<thead>
+<tr>
+<th>Minutes</th>
+<th>Step</th>
+<th>What to cover</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 to 5</td>
+<td>Requirements</td>
+<td>Users, tasks, data sources, quality bar, latency and cost targets, safety constraints</td>
+</tr>
+<tr>
+<td>5 to 10</td>
+<td>Estimates</td>
+<td>Requests per day, tokens per request, rough monthly model cost, storage</td>
+</tr>
+<tr>
+<td>10 to 25</td>
+<td>Architecture</td>
+<td>Request path, retrieval or tools, model choice, caching, data pipeline</td>
+</tr>
+<tr>
+<td>25 to 35</td>
+<td>Evaluation</td>
+<td>Offline test set, metrics, online signals, regression gates</td>
+</tr>
+<tr>
+<td>35 to 42</td>
+<td>Risks and scale</td>
+<td>Failure modes, safety, privacy, rate limits, fallbacks</td>
+</tr>
+<tr>
+<td>42 to 45</td>
+<td>Wrap up</td>
+<td>Trade-offs you made and what you would build next</td>
+</tr>
+</tbody>
+</table>
+<p>Label estimates as assumptions. A quick token cost estimate with the free <a href="../../llm-cost-calculator/">LLM API cost calculator</a> is a strong signal in the estimates step.</p>
+<h2>Retrieval and knowledge systems (prompts 1 to 4)</h2>
+<ul>
+<li><strong>1. Design a question-answering assistant over internal documents.</strong> Ingestion with structure-aware chunking and metadata, hybrid retrieval with permission filters, reranking, grounded generation with citations, and a labeled evaluation set for retrieval recall and answer faithfulness. Score yourself with the <a href="../../guides/rag-system-design-interview-scoring-rubric/">RAG design rubric</a>.</li>
+<li><strong>2. Design a customer support chatbot.</strong> Intent routing, retrieval over help content, read-only account tools, escalation to a human, and metrics such as resolution rate, escalation rate and policy compliance. Deep dive: <a href="../../questions/design-a-customer-support-chatbot/">Design a customer support chatbot</a></li>
+<li><strong>3. Design semantic search for an e-commerce catalog.</strong> Hybrid search so exact attributes and SKUs still match, embeddings refreshed as products change, a reranker tuned on click data and A/B tests on conversion. Deep dive: <a href="../../questions/what-is-hybrid-search/">What is hybrid search?</a></li>
+<li><strong>4. Design a multi-tenant RAG platform.</strong> Tenant isolation in the index and caches, per-tenant quotas, document-level access control at retrieval time and audit logs. Deep dive: <a href="../../questions/access-control-in-rag/">Access control in RAG</a></li>
+</ul>
+<h2>Agents and tools (prompts 5 to 7)</h2>
+<ul>
+<li><strong>5. Design an agent that books travel or files expense reports.</strong> Tools with typed arguments, approval before payments, step and spend limits, idempotent actions and task-level evaluation. See <a href="../../guides/ai-agent-interview-questions/">AI agent interview questions</a>.</li>
+<li><strong>6. Design a coding assistant for a large repository.</strong> Code-aware retrieval (symbols, files, recent changes), a sandbox to run tests, diff review by the user and evaluation on real tasks with tests as the pass criterion.</li>
+<li><strong>7. Design an internal tool platform for LLM apps using MCP.</strong> Shared MCP servers for common systems, authentication per user, permission scopes per tool and central logging. Deep dive: <a href="../../questions/what-is-model-context-protocol-mcp/">What is MCP?</a></li>
+</ul>
+<h2>Platform and infrastructure (prompts 8 to 11)</h2>
+<ul>
+<li><strong>8. Design an LLM gateway.</strong> A single entry point for all model calls with routing, fallbacks between providers, rate limits, budgets per team, caching, redaction and logging. Deep dive: <a href="../../questions/design-an-llm-gateway/">Design an LLM gateway</a></li>
+<li><strong>9. Cut the cost of an LLM feature by half.</strong> Measure cost per request first, then shorter prompts, caching, smaller models for easy traffic, batching and fewer output tokens. Deep dive: <a href="../../questions/how-to-reduce-llm-inference-cost/">Reducing LLM inference cost</a></li>
+<li><strong>10. Reduce p95 latency of a chat product.</strong> Streaming, prompt caching, a smaller or faster model on the critical path, parallel retrieval and tool calls and a latency budget per stage. Deep dive: <a href="../../questions/how-to-reduce-llm-latency/">Reducing LLM latency</a></li>
+<li><strong>11. Design a self-hosted LLM serving stack.</strong> Continuous batching, KV cache management, quantization trade-offs, autoscaling on queue depth and GPU memory, and a fallback to a hosted API. Deep dive: <a href="../../questions/what-is-kv-cache/">What is the KV cache?</a></li>
+</ul>
+<h2>Evaluation, safety and product (prompts 12 to 15)</h2>
+<ul>
+<li><strong>12. Design an evaluation pipeline for LLM releases.</strong> Versioned test sets by use case, automatic checks plus calibrated LLM judges, human review samples, regression gates in CI and online monitoring after launch. See <a href="../../guides/llm-evaluation-interview-questions/">LLM evaluation interview questions</a>.</li>
+<li><strong>13. Design guardrails for a public chatbot.</strong> Input and output moderation, prompt injection defenses, topic limits, rate limits, abuse monitoring and a red-team test set. Deep dive: <a href="../../questions/what-are-llm-guardrails/">LLM guardrails</a></li>
+<li><strong>14. Decide between fine-tuning and RAG for a new feature.</strong> RAG for changing or citable knowledge, fine-tuning for format, style or a narrow task, and a small experiment comparing both on the same test set. Deep dive: <a href="../../questions/rag-vs-fine-tuning/">RAG vs fine-tuning</a></li>
+<li><strong>15. Launch an AI feature and prove it works.</strong> Offline evaluation first, then an A/B test with a primary product metric and guardrail metrics for cost, latency and complaints. Deep dive: <a href="../../questions/how-to-ab-test-an-ai-feature/">A/B testing an AI feature</a></li>
+</ul>
+<h2>Self-scoring checklist</h2>
+<p>Use this after each practice round. One point per item, 10 total.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Done?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clarified users, tasks and success criteria before drawing</td>
+<td></td>
+</tr>
+<tr>
+<td>Stated latency and cost targets with numbers</td>
+<td></td>
+</tr>
+<tr>
+<td>Drew the full request path end to end</td>
+<td></td>
+</tr>
+<tr>
+<td>Justified the model choice and a fallback</td>
+<td></td>
+</tr>
+<tr>
+<td>Explained the data or retrieval pipeline, including freshness</td>
+<td></td>
+</tr>
+<tr>
+<td>Defined an offline evaluation set and metrics</td>
+<td></td>
+</tr>
+<tr>
+<td>Named online metrics and a rollout plan</td>
+<td></td>
+</tr>
+<tr>
+<td>Covered security: permissions, prompt injection, data privacy</td>
+<td></td>
+</tr>
+<tr>
+<td>Named two failure modes and their mitigations</td>
+<td></td>
+</tr>
+<tr>
+<td>Summarized trade-offs and next steps at the end</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>How AI system design differs from classic system design</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Classic system design</th>
+<th>AI system design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core question</td>
+<td>Can it scale and stay available?</td>
+<td>Is the output good enough, safe and affordable?</td>
+</tr>
+<tr>
+<td>Main cost</td>
+<td>Servers and storage</td>
+<td>Tokens and GPUs</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Deterministic tests</td>
+<td>Evaluation sets, judges and online metrics</td>
+</tr>
+<tr>
+<td>New failure modes</td>
+<td>Outages, data loss</td>
+<td>Hallucination, injection, quality regressions</td>
+</tr>
+<tr>
+<td>Shared ground</td>
+<td>Caching, queues, rate limits, observability</td>
+<td>The same, applied to model calls</td>
+</tr>
+</tbody>
+</table>
+<aside class=practice><span class=label>Practice on this site, free</span><ul><li><a href="../../answer-check/">Answer self-check</a>: paste a spoken answer and see which concepts you missed</li><li><a href="../../study-plan/">Day-by-day study plan</a> from today to your interview date</li><li><a href="../../llm-cost-calculator/">LLM API cost calculator</a> for the cost questions in system design rounds</li></ul><p class=label style="margin-top:var(--s2)">Related question deep dives</p><ul><li><a href="../../questions/design-an-llm-gateway/">How would you design an LLM gateway for a company?</a></li><li><a href="../../questions/design-a-customer-support-chatbot/">Design an LLM customer-support assistant for a SaaS company</a></li><li><a href="../../questions/how-to-reduce-llm-inference-cost/">How do you reduce LLM inference cost?</a></li><li><a href="../../questions/how-to-reduce-llm-latency/">How do you reduce LLM latency?</a></li></ul></aside><div class=cta><span class=label>The Playbook</span><b>Want the full method?</b><p>The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan.</p><a class="btn btn-primary" href="https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=cta_mid">Get the playbook <span class=dot aria-hidden=true>&rarr;</span></a><span class="badge promo"><span class=pl>40% off with code EARLYBF until Nov 3, 11:59 PM PT</span><span class=ps>EARLYBF: 40% off until Nov 3</span></span><p class="alt-buy tier9">Smaller start: <a href="https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric?offer_code=EARLYBF&amp;utm_source=site&amp;utm_medium=cta&amp;utm_campaign=tripwire9_20261101&amp;utm_content=ai-system-design-interview-questions_cta_mid">Score your answers against 50 rubrics, $9</a>. 50 AI engineer questions, one rubric each, PDF on Gumroad.</p><p class=alt-buy>Interviewing for PM or TPM? <a href="https://sirjohnnymai.gumroad.com/l/xzptir?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=pm_mid">See the full PM package</a>, $59 on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep.</p><p class=free-alt>Not ready to buy? <a href="https://sirjohnnymai.gumroad.com/l/aie-top-30-questions?utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=ai-system-design-interview-questions_mid_free">Get the free Top 30 AI engineer questions PDF</a>.</p></div><h2>FAQ</h2>
+<ul>
+<li><strong>What is an AI system design interview?</strong> A round where you design a product or platform built around language models, covering architecture, data, evaluation, safety, cost and scale, usually in 45 to 60 minutes.</li>
+<li><strong>How is it different from an ML system design interview?</strong> ML system design often centers on training a model (features, labels, offline metrics, serving). AI system design in 2026 more often centers on using foundation models through retrieval, tools, prompts and evaluation, with less training work.</li>
+<li><strong>How should I practice?</strong> Do one prompt per day out loud with a 45-minute timer, score yourself with the checklist above and review weak areas. The free <a href="../../mock-interview/">mock round</a> and <a href="../../study-plan/">study plan</a> help pace this.</li>
+<li><strong>Do I need to draw diagrams?</strong> Yes, a simple boxes-and-arrows diagram of the request path and the data pipeline. Clear flow matters more than tool names.</li>
+<li><strong>Which prompts are most common?</strong> RAG assistants, support chatbots, LLM gateways and agents with tools come up most often in public interview reports and prep material, so practice those four first. Start with <a href="../../guides/rag-interview-questions/">RAG interview questions</a>.</li>
+</ul><div class=cta><span class=label>The Playbook</span><b>Want the full method?</b><p>The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan.</p><a class="btn btn-primary" href="https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=cta_end">Get the playbook <span class=dot aria-hidden=true>&rarr;</span></a><span class="badge promo"><span class=pl>40% off with code EARLYBF until Nov 3, 11:59 PM PT</span><span class=ps>EARLYBF: 40% off until Nov 3</span></span><p class="alt-buy tier9">Smaller start: <a href="https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric?offer_code=EARLYBF&amp;utm_source=site&amp;utm_medium=cta&amp;utm_campaign=tripwire9_20261101&amp;utm_content=ai-system-design-interview-questions_cta_end">Score your answers against 50 rubrics, $9</a>. 50 AI engineer questions, one rubric each, PDF on Gumroad.</p><p class=alt-buy>Interviewing for PM or TPM? <a href="https://sirjohnnymai.gumroad.com/l/xzptir?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=pm_end">See the full PM package</a>, $59 on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep.</p><p class=free-alt>Not ready to buy? <a href="https://sirjohnnymai.gumroad.com/l/aie-top-30-questions?utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=ai-system-design-interview-questions_end_free">Get the free Top 30 AI engineer questions PDF</a>.</p></div><p><a href="../">All prep guides</a> &middot; <a href="../../companies/">Company interview guides</a> &middot; <a href="../../questions/">Question deep dives</a></p></div></main><div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true><span class=t><b><span class=full>The 0&rarr;1 AI Engineer Interview Playbook</span><span class=short>The Playbook</span></b><span class="long promo"> &middot; 40% off until Nov 3</span><span class="short promo"> &middot; 40% off</span></span><a class=btn href="https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?offer_code=EARLYBF&amp;utm_source=qbank&amp;utm_medium=seo&amp;utm_campaign=seo_20261103&amp;utm_content=ai-system-design-interview-questions&amp;utm_term=sticky_bar">Get it &rarr;</a></div><footer class=site><div class=wrap>&copy; 2026 Valenx Press &middot; <a href="../../">All 100 AI engineer interview questions</a> &middot; <a href="../../questions/">Question deep dives</a> &middot; Free tools: <a href="../../answer-check/">Answer self-check</a> &middot; <a href="../../study-plan/">Study plan</a> &middot; <a href="../../llm-cost-calculator/">LLM cost calculator</a> &middot; <a href="../../mock-interview/">Mock round</a> &middot; Guides: <a href="../../companies/">Company interview guides</a> &middot; <a href="../../guides/">Prep guides</a> &middot; Questions reflect common public interview patterns; no company affiliation.</div></footer><script>/* UTM passthrough: copy visitor utm_source onto Gumroad links */(function(){function r(){var s=new URLSearchParams(location.search).get("utm_source");if(!s)return;var links=document.getElementsByTagName("a");for(var i=0;i<links.length;i++){var a=links[i];try{var u=new URL(a.href,location.href);var h=u.hostname.toLowerCase();if(h==="gumroad.com"||h.slice(-12)===".gumroad.com"){u.searchParams.set("utm_source",s);a.href=u.toString();}}catch(e){}}}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",r);}else{r();}})();</script><script>(function(){var b=document.querySelector(".sticky-cta"),h=document.querySelector("[data-hero]");if(b&&h){document.body.classList.add("has-sticky");var f=function(){var on=h.getBoundingClientRect().bottom<0;b.classList.toggle("show",on);b.setAttribute("aria-hidden",on?"false":"true");};addEventListener("scroll",f,{passive:true});f();}var u=document.documentElement.getAttribute("data-offer-until");if(u&&Date.now()>=Date.parse(u)){var p=document.querySelectorAll(".promo");for(var i=0;i<p.length;i++)p[i].hidden=true;}})();</script></body></html>

@@ -39,7 +39,30 @@ GUIDE_META = {
         ["how-do-you-evaluate-an-llm", "how-to-make-llm-as-a-judge-reliable", "what-is-benchmark-contamination"]),
     "two-week-ai-engineer-interview-study-plan": ("A 14-day AI engineer interview study plan: daily coding, LLM fundamentals, a small RAG build, evaluation and timed mock practice.",
         ["what-is-rag", "how-do-you-evaluate-a-rag-system", "explain-the-transformer-architecture"]),
+    # Nov 3, 2026 SEO batch (seo_20261103): dated and tracked separately, see NEW_PAGES
+    "rag-interview-questions": ("24 RAG interview questions with short model answers: chunking, embeddings, hybrid search, reranking, evaluation, permissions and debugging.",
+        ["what-is-rag", "how-do-you-evaluate-a-rag-system", "how-to-debug-poor-rag-answers", "access-control-in-rag"]),
+    "ai-agent-interview-questions": ("22 AI agent interview questions with answers: agent loops, tool calling, MCP, memory, multi-agent design, evaluation and guardrails.",
+        ["what-is-an-ai-agent", "workflows-vs-agents", "what-is-function-calling", "how-to-make-ai-agents-reliable-in-production"]),
+    "ai-system-design-interview-questions": ("15 AI and LLM system design interview prompts with answer outlines, a 45-minute structure and a self-scoring checklist.",
+        ["design-an-llm-gateway", "design-a-customer-support-chatbot", "how-to-reduce-llm-inference-cost", "how-to-reduce-llm-latency"]),
 }
+# competitor alternative pages: content/alternatives/<slug>.md -> /alternatives/<slug>/ (index stays in build_alternatives.py)
+ALT_META = {
+    "exponent-alternatives": ["design-an-llm-gateway", "what-is-rag", "how-to-make-ai-agents-reliable-in-production"],
+    "hello-interview-alternatives": ["design-a-customer-support-chatbot", "how-do-you-evaluate-a-rag-system", "what-is-model-context-protocol-mcp"],
+}
+ALT_ORDER = list(ALT_META)
+NEW_PAGES = {"rag-interview-questions", "ai-agent-interview-questions", "ai-system-design-interview-questions"} | set(ALT_META)
+NEW_DATE = "2026-11-03"
+
+
+def utm_for(kind, slug):
+    if slug in NEW_PAGES:
+        return f"utm_source=qbank&utm_medium=seo&utm_campaign=seo_20261103&utm_content={slug}"
+    camp = "line19_20261101" if kind == "company" else "line21_20261101"
+    return f"utm_source=site&utm_medium=seo&utm_campaign={camp}"
+
 GUIDE_ORDER = list(GUIDE_META)
 COMPANY_ORDER = ["openai", "anthropic", "google-deepmind", "meta", "microsoft", "amazon", "nvidia", "databricks", "scale-ai", "perplexity"]
 
@@ -108,23 +131,24 @@ def practice_box(related, campaign, rel="../../"):
 
 
 def free_alt(content, utm):
-    u = FREE_TOP30 + "?" + utm + "&utm_content=" + content
+    u = FREE_TOP30 + "?" + utm + ("&utm_term=" if "utm_content=" in utm else "&utm_content=") + content
     return f'<p class=free-alt>Not ready to buy? <a href="{e(u)}">Get the free Top 30 AI engineer questions PDF</a>.</p>'
 
 
 def build_page(kind, slug, path):
     title, desc, s, faq, lead = parse(path, kind)
     camp = "line19_20261101" if kind == "company" else "line21_20261101"
-    utm = f"utm_source=site&utm_medium=seo&utm_campaign={camp}"
-    folder = "companies" if kind == "company" else "guides"
-    related = COMPANY_RELATED[slug] if kind == "company" else GUIDE_META[slug][1]
+    utm = utm_for(kind, slug)
+    folder = {"company": "companies", "guide": "guides", "alternative": "alternatives"}[kind]
+    related = COMPANY_RELATED[slug] if kind == "company" else ALT_META[slug] if kind == "alternative" else GUIDE_META[slug][1]
     for r in related:
         assert r in BY_SLUG, r
     desc = desc or GUIDE_META[slug][0]
+    date = NEW_DATE if slug in NEW_PAGES else DATE
     url = f"{SITE}/{folder}/{slug}/"
     rel = "../../"
     article = {"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc,
-               "datePublished": DATE, "dateModified": DATE, "mainEntityOfPage": url, "inLanguage": "en",
+               "datePublished": date, "dateModified": date, "mainEntityOfPage": url, "inLanguage": "en",
                "author": {"@type": "Organization", "name": "Valenx Press"},
                "publisher": {"@type": "Organization", "name": "Valenx Press"}}
     tags = ld(article)
@@ -134,7 +158,7 @@ def build_page(kind, slug, path):
     body = md_html(s)
     # split before FAQ to place a mid-page CTA and the practice box
     parts = body.split("<h2>FAQ</h2>")
-    crumb = "Company interview guides" if kind == "company" else "Prep guides"
+    crumb = {"company": "Company interview guides", "guide": "Prep guides", "alternative": "Alternatives"}[kind]
     o = [head(title, desc, url, rel, tags + EXTRA_CSS)]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="{rel}">{B.SITE_NAME}</a> / <a href="../">{crumb}</a></div>'
              f'<h1>{e(title)}</h1><p class=lead>{e(lead)}</p>' + hero_buy(slug, f"{rel}answer-check/", "Score my answer free", utm) + '</div></header>')
@@ -142,15 +166,21 @@ def build_page(kind, slug, path):
     if kind == "company":
         o.append('<p class=note>Independent preparation guide by Valenx Press. Not affiliated with or endorsed by the company named. '
                  'Interview stages below are a general industry pattern; the linked public careers pages are the only company sources used.</p>')
+    if kind == "alternative":
+        o.append('<p class=note>Independent comparison by Valenx Press, publisher of the free question bank and the Playbook listed here. '
+                 'Not affiliated with or endorsed by the other products named. Prices and features were read from each seller&rsquo;s public page '
+                 'on Nov 2, 2026 unless marked otherwise; sellers change prices, so check before you buy.</p>')
     o.append(parts[0])
     o.append(practice_box(related, camp))
     o.append(cta(slug, "cta_mid", utm, free_alt(f"{slug}_mid_free", utm)))
     if len(parts) > 1:
         o.append("<h2>FAQ</h2>" + parts[1])
     o.append(cta(slug, "cta_end", utm, free_alt(f"{slug}_end_free", utm)))
-    other = COMPANY_ORDER if kind == "company" else GUIDE_ORDER
-    o.append(f'<p><a href="../">All {crumb.lower()}</a> &middot; <a href="{rel}{"guides" if kind == "company" else "companies"}/">'
-             f'{"Prep guides" if kind == "company" else "Company interview guides"}</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
+    if kind == "alternative":
+        o.append(f'<p><a href="../">All alternatives</a> &middot; <a href="{rel}guides/">Prep guides</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
+    else:
+        o.append(f'<p><a href="../">All {crumb.lower()}</a> &middot; <a href="{rel}{"guides" if kind == "company" else "companies"}/">'
+               f'{"Prep guides" if kind == "company" else "Company interview guides"}</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
     o.append('</div></main>' + sticky(slug, utm) + foot(rel))
     return "".join(o), title, desc
 
@@ -167,8 +197,8 @@ def build_index(kind, items):
         lead = "Ten independent prep guides. Each one links only the company's own public careers pages and labels interview stages as a general industry pattern."
     else:
         title = "AI Engineer Interview Prep Guides (2026)"
-        desc = "Free AI engineer interview prep guides: how to prepare, AI vs ML engineer interviews, a RAG design scoring rubric, LLM evaluation questions and a 2-week plan."
-        lead = "Five practical guides with public sources, practice rubrics and FAQs."
+        desc = "Free AI engineer interview prep guides: RAG, AI agent and AI system design questions, a RAG scoring rubric, LLM evaluation, how to prepare and a 2-week plan."
+        lead = f"{len(items)} practical guides with public sources, practice rubrics and FAQs."
     cards = "".join(f'<li><a href="{s}/"><b>{e(t)}</b><span>{e(d)}</span></a></li>' for s, t, d in items)
     o = [head(title, desc, url, rel, EXTRA_CSS)]
     o.append(f'<header class="qhero idx" data-hero><div class=wrap><div class="crumb label"><a href="{rel}">{B.SITE_NAME}</a> / {"Companies" if kind == "company" else "Guides"}</div>'
@@ -181,7 +211,7 @@ def build_index(kind, items):
     return "".join(o)
 
 
-def llms_txt(comp, guides):
+def llms_txt(comp, guides, alts=None):
     L = ["# AI Engineer Interview Questions (Valenx Press)", "",
          "> A free, answer-first AI engineer interview question bank covering LLM fundamentals, RAG, agents, evaluation, system design and production, "
          "with free browser tools (answer self-check, study plan, LLM API cost calculator, mock round timer) and preparation guides.", "",
@@ -196,6 +226,9 @@ def llms_txt(comp, guides):
          f"- [Study plan]({SITE}/study-plan/): day-by-day plan from today to the interview date",
          f"- [LLM API cost calculator]({SITE}/llm-cost-calculator/): cost per request, day and month from official list prices",
          f"- [Mock interview round]({SITE}/mock-interview/): timed practice round", "",
+         "## Comparisons", "",
+         f"- [AI engineer interview prep alternatives]({SITE}/alternatives/): ByteByteGo, Educative, Gumroad guides and free options by price and format",
+         *[f"- [{t}]({SITE}/alternatives/{s}/): {d}" for s, t, d in (alts or [])], "",
          "## Preparation guides", ""]
     L += [f"- [{t}]({SITE}/guides/{s}/): {d}" for s, t, d in guides]
     L += ["", "## Company interview guides", ""]
@@ -213,8 +246,14 @@ def main():
             open(os.path.join(ROOT, folder, slug, "index.html"), "w").write(page)
             store.append((slug, t, d))
         open(os.path.join(ROOT, folder, "index.html"), "w").write(build_index(kind, store))
-    open(os.path.join(ROOT, "llms.txt"), "w").write(llms_txt(comp, guides))
-    print(f"built {len(comp)} company pages, {len(guides)} guides, 2 indexes, llms.txt")
+    alts = []
+    for slug in ALT_ORDER:
+        page, t, d = build_page("alternative", slug, os.path.join(ROOT, "content", "alternatives", slug + ".md"))
+        os.makedirs(os.path.join(ROOT, "alternatives", slug), exist_ok=True)
+        open(os.path.join(ROOT, "alternatives", slug, "index.html"), "w").write(page)
+        alts.append((slug, t, d))
+    open(os.path.join(ROOT, "llms.txt"), "w").write(llms_txt(comp, guides, alts))
+    print(f"built {len(comp)} company pages, {len(guides)} guides, {len(alts)} alternatives, 2 indexes, llms.txt")
 
 
 if __name__ == "__main__":

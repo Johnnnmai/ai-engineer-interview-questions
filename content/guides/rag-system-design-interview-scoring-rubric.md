@@ -61,6 +61,8 @@ Award 15 points for measurable reliability, cost controls, security boundaries, 
 - Define dashboards for empty retrievals, unsupported answers, timeouts, cost spikes, stale indexes, and evaluator regressions. Pair each alert with a fallback, owner, and rollback decision.
 - Interpret the overall practice score as **85-100: strong**, **70-84: workable with gaps**, **50-69: incomplete**, and **below 50: redesign needed**. These ranges are suggested coaching thresholds, not validated hiring predictions.
 
+For shorter concept questions before the design round, practice the [24 RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/), and for other design prompts see [AI system design interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/).
+
 ## FAQ
 
 Use these answers when a mock interviewer challenges the scoring method or its practical limits.

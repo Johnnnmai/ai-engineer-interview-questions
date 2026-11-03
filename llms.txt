@@ -17,6 +17,12 @@ Content is educational interview preparation, not a record of questions asked by
 - [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/): cost per request, day and month from official list prices
 - [Mock interview round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/): timed practice round
 
+## Comparisons
+
+- [AI engineer interview prep alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/): ByteByteGo, Educative, Gumroad guides and free options by price and format
+- [Exponent (Now Aced) Alternatives for AI Engineer Interviews (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/exponent-alternatives/): Exponent (now Aced) vs Hello Interview, ByteByteGo, Educative and free options for AI engineer interview prep: prices checked Nov 2, 2026.
+- [Hello Interview Alternatives for AI Engineer Interviews (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/hello-interview-alternatives/): Hello Interview alternatives for AI engineer interviews: Aced (Exponent), ByteByteGo, Educative and free options by price and format, Nov 2, 2026.
+
 ## Preparation guides
 
 - [How to Prepare for an AI Engineer Interview in 2026](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/how-to-prepare-for-an-ai-engineer-interview-2026/): Prepare for an AI engineer interview in 2026: Python coding, LLM and RAG fundamentals, evaluation and system design, with a practice checklist and FAQ.
@@ -24,6 +30,9 @@ Content is educational interview preparation, not a record of questions asked by
 - [RAG System Design Interview: A Scoring Rubric](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-system-design-interview-scoring-rubric/): A transparent 100-point practice rubric for RAG system design interviews: requirements, ingestion, retrieval, grounding, evaluation and production.
 - [LLM Evaluation Interview Questions and How to Answer Them](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-evaluation-interview-questions/): LLM evaluation interview questions with answers: datasets, RAG and hallucination checks, metrics, LLM judges, safety and release decisions.
 - [A 2-Week AI Engineer Interview Study Plan](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/two-week-ai-engineer-interview-study-plan/): A 14-day AI engineer interview study plan: daily coding, LLM fundamentals, a small RAG build, evaluation and timed mock practice.
+- [RAG Interview Questions and Answers (2026): 24 Questions from Basics to Production](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/): 24 RAG interview questions with model answers: chunking, embeddings, hybrid search, reranking, evaluation, permissions and debugging, plus a 5-step framework.
+- [AI Agent Interview Questions and Answers (2026): 22 Agentic AI Questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-agent-interview-questions/): 22 AI agent interview questions with model answers: agent loops, tool calling, MCP, memory, multi-agent design, evaluation and guardrails.
+- [AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/): 15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026.
 
 ## Company interview guides
 
