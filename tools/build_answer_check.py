@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
 IB_SITE = "https://johnnnmai.github.io/investment-banking-interview-questions"
 URL = f"{SITE}/answer-check/"
-# Paid links reuse the offer query of CTA_URL (tools/build_question_pages.py), so removing EARLYBF there removes it here.
+# Paid links reuse the offer query of CTA_URL (tools/build_question_pages.py), so clearing OFFER_CODE there clears it here.
 OFFER_Q = urlsplit(CTA_URL).query
 AIE_BUY = CTA_URL.split("?")[0]   # primary for the AI engineer track: the AI engineer playbook
 PM_BUY = PM_URL.split("?")[0]      # secondary text link on the AI engineer track only: the PM direction bundle

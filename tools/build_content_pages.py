@@ -3,7 +3,7 @@
 
 Sources: content/companies/*.md and content/guides/*.md (reviewed copies; see README of the line 19/21 review).
 Run from the repo root:  python3 tools/build_content_pages.py   then  python3 tools/build_question_pages.py  (sitemap picks up the new dirs)
-Paid links go through buy_url() from build_question_pages, so EARLYBF stays controlled by the single OFFER_CODE constant there.
+Paid links go through buy_url() from build_question_pages, so any offer code stays controlled by the single OFFER_CODE constant there.
 """
 import glob, html, json, os, re, sys
 import markdown
@@ -65,7 +65,7 @@ NEW_DATE = "2026-11-03"
 # ---- seo5 pages (campaign seo5_20261103) ----
 # Every product link on these pages carries utm_source=qbank&utm_medium=seo&utm_campaign=seo5_20261103&utm_content=<page-slug>,
 # with the placement in utm_term. Paid bases are B.CTA_URL and B.TIER9_URL, so OFFER_CODE in build_question_pages still controls
-# EARLYBF: clear it and re-run, and the offer code and every promo line leave these pages too. No PM link (not PM or TPM pages).
+# any offer code: clear it and re-run, and the offer code and every promo line leave these pages too. No PM link (not PM or TPM pages).
 SEO5 = {"interview-query-alternatives", "google", "apple", "llm-interview-questions", "prompt-engineering-interview-questions"}
 NEW_PAGES |= SEO5
 GUMROAD = "https://sirjohnnymai.gumroad.com/l/"
@@ -100,8 +100,8 @@ def s5_cta(slug, term):
 
 
 def s5_sticky(slug):
-    deal = '<span class="long promo"> &middot; 40% off until Nov 3</span>' if B.PROMO_ON else f'<span class=long> &middot; {B.PRICE}</span>'
-    short = '<span class="short promo"> &middot; 40% off</span>' if B.PROMO_ON else f'<span class=short> &middot; {B.PRICE}</span>'
+    deal = f'<span class="long promo"> &middot; {B.PROMO_STICKY_LONG}</span>' if B.PROMO_ON else f'<span class=long> &middot; {B.PRICE}</span>'
+    short = f'<span class="short promo"> &middot; {B.PROMO_STICKY_SHORT}</span>' if B.PROMO_ON else f'<span class=short> &middot; {B.PRICE}</span>'
     return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
             f'<span class=t><b><span class=full>{B.PRODUCT_NAME}</span><span class=short>{B.PRODUCT_SHORT}</span></b>{deal}{short}</span>'
             f'<a class=btn href="{e(s5(B.CTA_URL, slug, "sticky_bar"))}">Get it &rarr;</a></div>')

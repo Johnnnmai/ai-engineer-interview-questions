@@ -75,7 +75,7 @@ def main():
     out = "".join(o)
     links = re.findall(r'href="(https://[^"]*gumroad\.com[^"]*)"', out)
     assert links and all(l.startswith("https://sirjohnnymai.gumroad.com/l/") for l in links), links
-    assert all("offer_code=EARLYBF" in l for l in links) == B.PROMO_ON, links
+    assert all(("offer_code=" in l) == bool(B.OFFER_CODE) for l in links), links
     assert any(l.startswith(B.CTA_URL.split("?")[0]) for l in links), links
     open(os.path.join(ROOT, "index.html"), "w").write(out)
     print("wrote index.html,", len(links), "buy links:", ", ".join(re.search(r"utm_content=(\w+)", l).group(1) for l in links))

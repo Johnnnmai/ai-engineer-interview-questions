@@ -21,14 +21,16 @@ LASTMOD = "2026-11-01"
 
 # ---- CTA: the single place to change the offer ----
 # Every primary buy link in this repo (question pages, root, questions index, answer-check aie track, mock-interview aie track, alternatives) is built from CTA_URL.
-# EARLYBF lives in this one constant. When it ends (Nov 3 2026 11:59 PM PT), set OFFER_CODE = "" and re-run the builders:
-# every paid link (question pages, answer-check, mock round, alternatives, LLM cost calculator, study plan) and every promo line drops it.
-OFFER_CODE = "EARLYBF"  # 40% off until Nov 3 2026 11:59 PM PT
+# Single offer switch: OFFER_CODE. Empty string = list price, no offer query on any link and no promo copy anywhere.
+# To run a future offer, set OFFER_CODE plus the PROMO_* copy below together, then re-run every builder in tools/.
+OFFER_CODE = ""  # no active offer (the Nov 2026 launch code ended Nov 3 2026 11:59 PM PT)
 OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
 CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
-OFFER_EXPIRES = "2026-11-04T07:59:00Z"  # EARLYBF expiry read from the Gumroad product page; promo lines also hide client-side after it
-PROMO_TEXT = "40% off with code EARLYBF until Nov 3, 11:59 PM PT"
-PROMO_SHORT = "EARLYBF: 40% off until Nov 3"  # badge text under 560px so the pill stays on one line at 320 to 375
+OFFER_EXPIRES = ""  # ISO UTC expiry of OFFER_CODE; promo lines also hide client-side after it
+PROMO_TEXT = ""  # e.g. "N% off with code X until <date>"; must stay empty while OFFER_CODE is empty
+PROMO_SHORT = ""  # badge text under 560px so the pill stays on one line at 320 to 375
+PROMO_STICKY_LONG = ""  # sticky bar long promo, shown only when OFFER_CODE is set
+PROMO_STICKY_SHORT = ""  # sticky bar short promo, shown only when OFFER_CODE is set
 PROMO_HTML = f'<span class=pl>{PROMO_TEXT}</span><span class=ps>{PROMO_SHORT}</span>'
 PRICE = "$19.99"  # list price on the Gumroad product page, Nov 1 2026
 PRODUCT_NAME = "The 0&rarr;1 AI Engineer Interview Playbook"
@@ -39,7 +41,6 @@ CTA_HEADLINE = "Want the full method?"
 CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan."
 CTA_BUTTON = "Get the playbook"
 # Secondary text link only: the PM direction bundle (North America Interview Full Package, slug xzptir). PM and TPM content, not AI engineer prep.
-# EARLYBF checked on Nov 1 2026: valid on this product, 40% off.
 PM_URL = "https://sirjohnnymai.gumroad.com/l/xzptir" + OFFER_Q
 PM_NAME = "North America Interview Full Package"
 PM_PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
@@ -47,7 +48,7 @@ PM_LEAD = "Interviewing for PM or TPM? "
 PM_LINK_TEXT = "See the full PM package"
 PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep."
 # $9 tier, secondary only (the playbook above stays primary): the 50-question scoring rubric PDFs on Gumroad.
-# Both use OFFER_Q, so EARLYBF leaves these links when OFFER_CODE is cleared. EARLYBF checked Nov 1 2026: valid on both, 40% off.
+# Both use OFFER_Q, so an offer code appears on these links only while OFFER_CODE is set.
 # Placements: question pages, questions index and root (hero_buy + cta), answer-check and mock round (aie track: AIE rubric, ib track: IB rubric).
 TIER9_URL = "https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric" + OFFER_Q
 IB_TIER9_URL = "https://sirjohnnymai.gumroad.com/l/ib-50-questions-scoring-rubric" + OFFER_Q
@@ -59,7 +60,7 @@ TIER9_POST = ". 50 AI engineer questions, one rubric each, PDF on Gumroad."
 IB_TIER9_LINK_TEXT = f"Score your answers against 50 IB rubrics, {TIER9_PRICE}"
 IB_TIER9_POST = ". 50 investment banking questions, one rubric each, PDF on Gumroad."
 # ----------------------------------------------------
-PROMO_ON = bool(OFFER_CODE)
+PROMO_ON = bool(OFFER_CODE and PROMO_TEXT)
 
 e = html.escape
 try:  # line 20 Chinese mirror: hreflang back-links and /zh/ sitemap entries
@@ -120,8 +121,8 @@ def hero_buy(slug, ghost_href, ghost_text, utm=None):
 
 
 def sticky(slug, utm=None):
-    deal = f'<span class="long promo"> &middot; 40% off until Nov 3</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
-    short = '<span class="short promo"> &middot; 40% off</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
+    deal = f'<span class="long promo"> &middot; {PROMO_STICKY_LONG}</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
+    short = f'<span class="short promo"> &middot; {PROMO_STICKY_SHORT}</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
     return (f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true>'
             f'<span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>{deal}{short}</span>'
             f'<a class=btn href="{e(buy_url(slug, "sticky_bar", utm))}">Get it &rarr;</a></div>')

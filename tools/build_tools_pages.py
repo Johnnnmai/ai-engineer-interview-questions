@@ -4,12 +4,12 @@
   /study-plan/           day-by-day plan from today to the interview date, linking only pages that exist
 
 Run from the repo root:  python3 tools/build_tools_pages.py
-Paid links use OFFER_Q from tools/build_question_pages.py, so EARLYBF is controlled by the single OFFER_CODE constant there.
+Paid links use OFFER_Q from tools/build_question_pages.py, so any offer code is controlled by the single OFFER_CODE constant there.
 Static only: no API calls, no tracking beyond utm parameters on Gumroad links.
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_question_pages import (PROMO_HTML, PROMO_SHORT, SITE, ROOT, OFFER_Q, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, PM_PRICE,
+from build_question_pages import (PROMO_HTML, PROMO_SHORT, SITE, ROOT, OFFER_Q, PROMO_ON, PROMO_TEXT, PROMO_STICKY_LONG, PROMO_STICKY_SHORT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, PM_PRICE,
                                   PAGES, BY_SLUG, head, foot)
 import build_answer_check as A
 import llm_prices as LP
@@ -18,12 +18,12 @@ e = html.escape
 ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
 GR = "https://sirjohnnymai.gumroad.com/l/"
 IB_FREE = "https://sirjohnnymai.gumroad.com/l/ib-top-30-questions"
-DS_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026 (EARLYBF valid, 40% off)
-PMPB_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026 (EARLYBF valid, 40% off)
+DS_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026
+PMPB_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026
 
 
 def paid(product, campaign, content):
-    """Gumroad link with the shared offer query (empty after EARLYBF ends) plus site utm."""
+    """Gumroad link with the shared offer query (empty while OFFER_CODE is empty) plus site utm."""
     base = GR + product + OFFER_Q
     return base + ("&" if "?" in base else "?") + f"utm_source=site&utm_medium=tool&utm_campaign={campaign}&utm_content={content}"
 
@@ -44,8 +44,8 @@ def promo():
 
 
 def sticky(href, label="Buy the playbook"):
-    deal = '<span class="long promo"> &middot; 40% off until Nov 3</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
-    short = '<span class="short promo"> &middot; 40% off</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
+    deal = f'<span class="long promo"> &middot; {PROMO_STICKY_LONG}</span>' if PROMO_ON else f'<span class=long> &middot; {PRICE}</span>'
+    short = f'<span class="short promo"> &middot; {PROMO_STICKY_SHORT}</span>' if PROMO_ON else f'<span class=short> &middot; {PRICE}</span>'
     return (f'<div class=sticky-cta role=complementary aria-label="{label}" aria-hidden=true>'
             f'<span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>{deal}{short}</span>'
             f'<a class=btn href="{e(href)}">Get it &rarr;</a></div>')

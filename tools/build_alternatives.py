@@ -7,7 +7,7 @@ Competitor facts come from each product's own page on Nov 1, 2026. Re-check befo
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, PROMO_ON, PROMO_TEXT, PRICE, SITE, ROOT, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE,
+from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, PROMO_ON, PROMO_TEXT, PROMO_STICKY_LONG, PROMO_STICKY_SHORT, PRICE, SITE, ROOT, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE,
                                   CTA_TEXT, CTA_BUTTON, PM_URL, PM_LEAD, PM_LINK_TEXT, PM_POST, head, foot)
 
 URL = f"{SITE}/alternatives/"
@@ -107,7 +107,7 @@ def build():
          cta_box("cta_end"),
          '</div></main>',
          f'<div class=sticky-cta role=complementary aria-label="Buy the playbook" aria-hidden=true><span class=t><b><span class=full>{PRODUCT_NAME}</span><span class=short>{PRODUCT_SHORT}</span></b>'
-         + ('<span class="long promo"> &middot; 40% off until Nov 3</span><span class="short promo"> &middot; 40% off</span>' if PROMO_ON else '') +
+         + (f'<span class="long promo"> &middot; {PROMO_STICKY_LONG}</span><span class="short promo"> &middot; {PROMO_STICKY_SHORT}</span>' if PROMO_ON else '') +
          f'</span><a class=btn href="{e(buy("sticky_bar"))}">Get it &rarr;</a></div>',
          foot("../")]
     os.makedirs(os.path.join(ROOT, "alternatives"), exist_ok=True)

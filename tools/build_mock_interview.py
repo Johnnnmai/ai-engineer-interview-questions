@@ -3,12 +3,12 @@
 
 Run from the repo root:  python3 tools/build_mock_interview.py
 Questions and buy links come from tools/build_answer_check.py (data()), which reuses CTA_URL in
-tools/build_question_pages.py, so removing EARLYBF there removes it here after a rebuild.
+tools/build_question_pages.py, so clearing OFFER_CODE there clears it here after a rebuild.
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_answer_check as A
-from build_question_pages import PROMO_HTML, PROMO_ON, PROMO_TEXT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PM_LEAD, PM_LINK_TEXT, PM_POST, PM_PRICE, head, foot
+from build_question_pages import PROMO_HTML, PROMO_ON, PROMO_TEXT, PROMO_STICKY_LONG, PROMO_STICKY_SHORT, PRICE, PRODUCT_NAME, PRODUCT_SHORT, CTA_LABEL, CTA_HEADLINE, CTA_TEXT, CTA_BUTTON, PM_LEAD, PM_LINK_TEXT, PM_POST, PM_PRICE, head, foot
 
 ROOT = A.ROOT
 URL = f"{A.SITE}/mock-interview/"
@@ -154,7 +154,7 @@ def build():
          f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; <a href="{A.IB_SITE}/">100 investment banking interview questions</a></p>',
          '</div></main>',
          f'<div class=sticky-cta role=complementary aria-label="{CTA_BUTTON}" aria-hidden=true><span class=t><b><span class=full id=sticky-full>{PRODUCT_NAME}</span><span class=short id=sticky-short>{PRODUCT_SHORT}</span></b>'
-         + ('<span class="long promo"> &middot; 40% off until Nov 3</span><span class="short promo"> &middot; 40% off</span>' if PROMO_ON else '') +
+         + (f'<span class="long promo"> &middot; {PROMO_STICKY_LONG}</span><span class="short promo"> &middot; {PROMO_STICKY_SHORT}</span>' if PROMO_ON else '') +
          f'</span><a class=btn id=sticky-buy href="{e(data["aie"]["cta"]["sticky"])}">Get it &rarr;</a></div>',
          JS.replace("__DATA__", json.dumps(data)),
          foot("../")]

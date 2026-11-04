@@ -15,10 +15,10 @@ from zh_mirror_data import LEVEL_ZH, ZH_PAGES, ZH_URLS, zh_alternates
 
 ROOT = B.ROOT
 SITE = B.SITE
-# Single EARLYBF switch lives in build_question_pages.OFFER_CODE; empty string turns the promo off here too.
-OFFER_CODE = getattr(B, "OFFER_CODE", "EARLYBF" if B.PROMO_ON else "")
+# Single offer switch lives in build_question_pages.OFFER_CODE; empty string turns the promo off here too.
+OFFER_CODE = B.OFFER_CODE
 OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
-PROMO_ON = bool(OFFER_CODE)
+PROMO_ON = bool(OFFER_CODE and PROMO_TEXT)
 UTM = "utm_source=site&utm_medium=zh_mirror&utm_campaign=line20_20261101"
 
 ZH_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-zh" + OFFER_Q
@@ -28,7 +28,9 @@ ZH_SPEC = "20 章、5 套答题框架（FLAME、SPARK、FORGE、RISE、EMBER）�
 EN_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
 EN_PRICE = B.PRICE
 FREE_URL = "https://sirjohnnymai.gumroad.com/l/aie-top-30-questions"
-PROMO_TEXT = "优惠码 EARLYBF 立减 40%，截至太平洋时间 11 月 3 日 23:59"
+PROMO_TEXT = ""  # zh promo copy; set together with B.OFFER_CODE for a future offer
+ZH_STICKY_LONG = ""
+ZH_STICKY_SHORT = ""
 ARROW = B.ARROW
 EN_BY_SLUG = {p["slug"]: p for p in PAGES}
 
@@ -75,8 +77,8 @@ def cta(tag, content):
 
 
 def sticky(tag):
-    deal = '<span class="long promo"> &middot; EARLYBF 立减 40%，至 11 月 3 日</span>' if PROMO_ON else f'<span class=long> &middot; {ZH_PRICE}</span>'
-    short = '<span class="short promo"> &middot; 立减 40%</span>' if PROMO_ON else f'<span class=short> &middot; {ZH_PRICE}</span>'
+    deal = f'<span class="long promo"> &middot; {ZH_STICKY_LONG}</span>' if PROMO_ON else f'<span class=long> &middot; {ZH_PRICE}</span>'
+    short = f'<span class="short promo"> &middot; {ZH_STICKY_SHORT}</span>' if PROMO_ON else f'<span class=short> &middot; {ZH_PRICE}</span>'
     return (f'<div class=sticky-cta role=complementary aria-label="购买中文手册" aria-hidden=true>'
             f'<span class=t><b><span class=full>{ZH_NAME}</span><span class=short>中文手册</span></b>{deal}{short}</span>'
             f'<a class=btn href="{e(url_for(ZH_URL, tag + "_sticky_bar"))}">获取 &rarr;</a></div>')
