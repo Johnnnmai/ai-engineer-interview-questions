@@ -137,6 +137,68 @@ EXTRA_CSS = """<style>
 .cards a b{display:block;font-size:1.1rem;margin:0 0 4px}.cards a span{color:var(--ink-2);font-size:var(--fs-small)}
 </style>"""
 
+# Only the free RAG guide. Voluntary Web3Forms subscribe box plus a page-specific end CTA.
+# The access_key is Web3Forms' public form key; it is meant to live in the page HTML.
+RAG_SUBSCRIBE_CSS = """
+.subscribe{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s3) var(--s4);margin:var(--s6) 0;display:grid;gap:12px;justify-items:start;position:relative}
+.subscribe p{margin:0;color:var(--ink-2);max-width:62ch}
+.subscribe .field{display:grid;gap:6px;width:100%}
+.subscribe .row{display:flex;flex-wrap:wrap;gap:10px;width:100%;align-items:center}
+.subscribe label{font:500 var(--fs-small)/1.4 var(--font-sans);color:var(--ink)}
+.subscribe input[type=email]{font:400 1rem/1.4 var(--font-sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);padding:14px 18px;min-width:min(100%,16rem);flex:1}
+.subscribe input[type=email]:focus-visible,.subscribe button:focus-visible{outline:2px solid var(--pop);outline-offset:2px}
+.subscribe .hp{display:none}
+.subscribe .status{font-size:var(--fs-small);min-height:1.4em}
+.subscribe button[disabled]{opacity:.65}
+@media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}.subscribe .btn{justify-content:center}}
+"""
+RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook/BUYER35"
+RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
+
+
+def page_css(slug):
+    if slug != "rag-interview-questions":
+        return EXTRA_CSS
+    return EXTRA_CSS.replace("</style>", RAG_SUBSCRIBE_CSS + "</style>")
+
+
+def rag_subscribe_form():
+    """Optional email list. Nothing is pre-checked, and the guide stays readable without subscribing."""
+    return (
+        '<form class=subscribe id=rag-subscribe action="https://api.web3forms.com/submit" method="POST">'
+        '<p class=label id=rag-subscribe-title>Optional email updates</p>'
+        '<p id=rag-subscribe-note>Get occasional free AI engineer interview prep updates. Unsubscribe anytime. No spam.</p>'
+        f'<input type=hidden name=access_key value="{RAG_SUBSCRIBE_KEY}">'
+        '<input type=hidden name=subject value="AI Engineer RAG guide subscriber">'
+        '<input type=hidden name=from_name value="RAG Guide">'
+        '<input class=hp type=checkbox name=botcheck tabindex=-1 autocomplete=off aria-hidden=true>'
+        '<div class=field><label for=rag-email>Email address</label>'
+        '<div class=row><input id=rag-email name=email type=email required autocomplete=email inputmode=email aria-describedby=rag-subscribe-note>'
+        '<button class="btn btn-primary" type=submit>Subscribe</button></div></div>'
+        '<p class=status id=rag-subscribe-status role=status aria-live=polite></p></form>'
+        '<script>(function(){var form=document.getElementById("rag-subscribe");if(!form||!window.fetch)return;'
+        'var status=document.getElementById("rag-subscribe-status");var btn=form.querySelector("button[type=submit]");'
+        'form.addEventListener("submit",function(ev){ev.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}'
+        'var data={access_key:form.access_key.value,subject:form.subject.value,from_name:form.from_name.value,email:form.email.value,botcheck:""};'
+        'if(form.botcheck&&form.botcheck.checked)data.botcheck="yes";'
+        'btn.disabled=true;status.textContent="Sending.";'
+        'fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)})'
+        '.then(function(res){return res.json().then(function(body){return {body:body};});})'
+        '.then(function(r){btn.disabled=false;if(r.body&&r.body.success){form.reset();status.textContent="You are subscribed. Updates are occasional and free. Unsubscribe anytime.";}else{status.textContent="Could not subscribe just now. The guide stays free either way.";}})'
+        '.catch(function(){btn.disabled=false;status.textContent="Could not subscribe just now. The guide stays free either way.";});});})();</script>'
+    )
+
+
+def rag_end_cta():
+    """End-of-page playbook link for the RAG guide only. No offer countdown and no outcome promise."""
+    return (
+        '<div class=cta><span class=label>The Playbook</span><b>Check each claim, then keep practicing</b>'
+        '<p>Use this free guide to practice checking each RAG claim against its source and tying it to the conditions where it holds. '
+        'If you want a next step, the existing paid playbook is a self-serve digital download (EPUB and HTML). '
+        'It is practice material. It does not promise an interview result.</p>'
+        f'<a class="btn btn-primary" href="{e(RAG_PLAYBOOK_URL)}">Get the playbook {ARROW}</a></div>'
+    )
+
 
 def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace("</", "<\\/") + "</script>"
@@ -221,7 +283,7 @@ def build_page(kind, slug, path):
     # split before FAQ to place a mid-page CTA and the practice box
     parts = body.split("<h2>FAQ</h2>")
     crumb = {"company": "Company interview guides", "guide": "Prep guides", "alternative": "Alternatives"}[kind]
-    o = [head(title, desc, url, rel, tags + EXTRA_CSS)]
+    o = [head(title, desc, url, rel, tags + page_css(slug))]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="{rel}">{B.SITE_NAME}</a> / <a href="../">{crumb}</a></div>'
              f'<h1>{e(title)}</h1><p class=lead>{e(lead)}</p>' + (s5_hero(slug, f"{rel}answer-check/", "Score my answer free") if seo5 else hero_buy(slug, f"{rel}answer-check/", "Score my answer free", utm)) + '</div></header>')
     o.append('<main id=main class=body><div class=read>')
@@ -237,7 +299,11 @@ def build_page(kind, slug, path):
     o.append(s5_cta(slug, "cta_mid") if seo5 else cta(slug, "cta_mid", utm, free_alt(f"{slug}_mid_free", utm)))
     if len(parts) > 1:
         o.append("<h2>FAQ</h2>" + parts[1])
-    o.append(s5_cta(slug, "cta_end") if seo5 else cta(slug, "cta_end", utm, free_alt(f"{slug}_end_free", utm)))
+    if slug == "rag-interview-questions":
+        o.append(rag_subscribe_form())
+        o.append(rag_end_cta())
+    else:
+        o.append(s5_cta(slug, "cta_end") if seo5 else cta(slug, "cta_end", utm, free_alt(f"{slug}_end_free", utm)))
     if kind == "alternative":
         o.append(f'<p><a href="../">All alternatives</a> &middot; <a href="{rel}guides/">Prep guides</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
     else:
