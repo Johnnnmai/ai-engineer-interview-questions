@@ -299,3 +299,10 @@ try:
     PAGES = PAGES + _B2
 except ImportError:
     pass
+
+# Batch 3 (Nov 8 2026): Harness-drafted from index.html answers, codex-reviewed. Lives in question_pages_batch3.py.
+try:
+    from question_pages_batch3 import PAGES as _B3
+    PAGES = PAGES + _B3
+except ImportError:
+    pass

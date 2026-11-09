@@ -1,0 +1,238 @@
+# Batch 3 question pages (Nov 8 2026). Drafted by the VM Harness from index.html answers, reviewed by codex, schema-checked. Same schema as question_pages_data.py.
+PAGES = [
+ {
+  "slug": "what-is-query-transformation-in-rag",
+  "q": "What is query transformation in RAG and why does it help?",
+  "desc": "What query transformation does in RAG, why it improves retrieval, and when the added latency and model calls are worth the cost for enterprise search.",
+  "level": "Mid",
+  "src": [
+   37
+  ],
+  "testing": "Whether you can explain common query transformations, connect them to retrieval recall, and evaluate their latency tradeoff.",
+  "steps": [
+   "Query transformation rewrites the user's request before retrieval, bridging vocabulary differences between the question and indexed documents.",
+   "Common rewrites resolve pronouns from chat history, expand acronyms, and split multi-part questions into separate subqueries.",
+   "HyDE generates a hypothetical answer and embeds that answer to retrieve passages related to the expected response.",
+   "Transformation helps when relevant documents use different wording than the user, so it can improve retrieval recall.",
+   "Because transformation can add model calls and latency, compare retrieval recall and answer quality against a no-rewrite baseline."
+  ],
+  "sample": [
+   "I see query transformation as a query-rewrite step that runs before retrieval. The system takes the user's question and produces one or more search queries that are more likely to match the indexed text. This is useful because people and documents often describe the same concept in different language, so a semantically relevant document may not look close to the original wording.",
+   "Depending on the case, the rewrite can resolve pronouns from earlier chat turns, expand an acronym, or split a multi-part question into separate subqueries. For example, if someone asks what it supports after describing a company product, I would substitute the relevant product name before searching. Another technique is HyDE. I generate a hypothetical answer, embed that answer rather than the question, and use the resulting vector to find supporting passages. The important point is that each transformed query still retrieves evidence that I can inspect before answering.",
+   "Transformation is not automatically better, though. Model-based transformation can add calls and latency and may introduce errors. I would compare the transformed and original queries on a fixed retrieval set, looking at relevant-document recall and answer quality rather than assuming a gain. I would use it for ambiguous, conversational, or multi-part questions, and keep the original query as a fallback. That lets me pay the extra latency only when the measured recall improvement justifies it."
+  ],
+  "followups": [
+   [
+    "When would I prefer HyDE over a normal query rewrite?",
+    "I would consider HyDE when the relevant documents use language that differs from the question and generating a plausible answer may lead the retriever closer to that vocabulary."
+   ],
+   [
+    "How do I measure whether query transformation is helping?",
+    "I would compare it with the original query on a fixed retrieval set, measuring relevant-document recall and downstream answer quality while also recording latency."
+   ],
+   [
+    "What can go wrong during query transformation?",
+    "A rewrite can introduce an incorrect entity, drop part of the request, or produce queries that retrieve plausible but irrelevant passages, so I would inspect the transformed queries."
+   ]
+  ],
+  "mistakes": [
+   "Treating query transformation as a guaranteed improvement in retrieval recall.",
+   "Using a hypothetical answer as source evidence instead of treating it only as a retrieval proxy.",
+   "Rewriting a multi-part question into one query rather than considering separate subqueries.",
+   "Ignoring potential added model calls and latency when deciding whether transformation is worthwhile."
+  ],
+  "related": [
+   "what-is-rag",
+   "how-to-choose-a-chunking-strategy-for-rag",
+   "how-do-you-evaluate-a-rag-system"
+  ]
+ },
+ {
+  "slug": "what-is-agentic-rag",
+  "q": "What is agentic RAG?",
+  "desc": "What agentic RAG means, how iterative retrieval handles multi-hop questions, and how to control cost, latency, and evaluation in production systems.",
+  "level": "Mid",
+  "src": [
+   39
+  ],
+  "testing": "Whether you can distinguish agentic retrieval from a fixed pipeline and explain its benefits, costs, and production controls.",
+  "steps": [
+   "Agentic RAG replaces one fixed retrieve-then-generate pass with a model-controlled retrieval loop.",
+   "The model decides when and what to search and can issue several queries during that loop.",
+   "It reads the returned results and may search again when it still needs evidence.",
+   "This supports multi-hop questions, but it can increase cost and make evaluation harder.",
+   "Cap the number of steps and log each retrieval so the decision path can be inspected."
+  ],
+  "sample": [
+   "I would define agentic RAG as a retrieval-augmented generation system where the model controls part of the retrieval loop. In a basic RAG pipeline, I rewrite a query once, retrieve documents, and pass them to the model. In an agentic version, the model can decide whether it needs to search, choose what to look for, issue multiple queries, read the results, and decide whether to search again before it writes the answer.",
+   "That extra control is useful for questions that cannot be answered from one retrieval pass. For a multi-hop question, I might retrieve evidence about one entity, notice that another fact is missing, and issue a second query that connects the two. I can also ask for a narrower search if the first results look weak. The system therefore treats retrieval as an action the agent can iterate on, while the model uses the retrieved passages as evidence for the final response.",
+   "The tradeoff is that this can make the system more expensive, slower, and harder to evaluate than a fixed pipeline. Additional searches add retrieval overhead, and model calls to plan searches or process results can increase token cost. A model may also loop without converging. In production, I would cap the number of steps, log every query and retrieved document, and preserve a trace so I can diagnose both the answer and the path. I would test it on multi-hop tasks against a simpler baseline, measuring success as well as steps, cost, and latency rather than assuming the agentic design wins."
+  ],
+  "followups": [
+   [
+    "What distinguishes agentic RAG from a multi-query RAG pipeline?",
+    "A multi-query pipeline runs a preset query expansion, while agentic RAG lets the model choose later searches after reading the results of earlier ones."
+   ],
+   [
+    "When is agentic RAG worth the additional cost?",
+    "I would favor it when a single retrieval pass cannot connect the evidence needed for a multi-hop task, and when testing shows better task success despite the extra steps."
+   ],
+   [
+    "How do I prevent the retrieval loop from running indefinitely?",
+    "I would set a step cap, define stopping conditions, and monitor repeated queries and step counts in production logs."
+   ]
+  ],
+  "mistakes": [
+   "Calling any pipeline with several retrievals agentic without a model-controlled retrieval loop.",
+   "Assuming more searches will always produce a better answer.",
+   "Running the agent without a step cap or stopping condition.",
+   "Evaluating only the final answer without retaining retrieval logs and decision traces."
+  ],
+  "related": [
+   "what-is-rag",
+   "single-agent-vs-multi-agent",
+   "how-do-you-evaluate-a-rag-system"
+  ]
+ },
+ {
+  "slug": "how-to-evaluate-an-ai-agent",
+  "q": "How do you evaluate an AI agent?",
+  "desc": "How to evaluate an AI agent with realistic tasks, measurable end states, trajectory review, error recovery, cost, and latency across model or prompt changes.",
+  "level": "Mid",
+  "src": [
+   49
+  ],
+  "testing": "Whether you can build a repeatable agent evaluation that measures outcomes, efficiency, recovery, and unsafe trajectory behavior.",
+  "steps": [
+   "Create a fixed suite of realistic tasks with clearly defined and checkable end states.",
+   "Measure task success rate as the primary metric and report results by task type.",
+   "Track step count, cost, latency, and error recovery alongside correctness.",
+   "Inspect trajectories, including tool calls and intermediate actions, rather than judging only the final response.",
+   "Rerun the same suite for every model or prompt change and review regressions."
+  ],
+  "sample": [
+   "I would evaluate an AI agent with a fixed suite of realistic tasks that have checkable end states. For example, a support task succeeds only if the agent opens the right ticket and attaches the correct records, not merely if its final message sounds plausible. I would define the expected state and validation rules before running the suite, then report task success rate as the primary measure. Results should be broken out by task type so a gain on easy tasks does not hide a failure on a critical workflow.",
+   "I would also measure step count, cost, latency, and error recovery. These operational metrics show whether the agent reaches the right state efficiently and whether it can recover after a failed tool call or an incorrect intermediate result. A useful test changes one condition, such as making one tool return an error, and checks whether the agent responds appropriately instead of repeating the same call. I would keep the scenario and judge consistent across versions so the comparison is meaningful.",
+   "Trajectory review is essential because final-answer scoring can hide unsafe behavior. I would inspect the tool calls, intermediate state changes, and retrieved evidence. If the agent reaches the correct answer after an unauthorized action or a risky tool call, I would count the run as a failure even though the outcome looks right. Finally, I would rerun the same suite for every model or prompt change and review regressions, rather than relying on a few manual demos."
+  ],
+  "followups": [
+   [
+    "Can I use an LLM judge to evaluate an agent?",
+    "I would use deterministic checks whenever the task has a clear end state. For less structured qualities, an LLM judge can help, but I would calibrate it against human review and keep the rubric consistent."
+   ],
+   [
+    "How do I detect regressions between agent versions?",
+    "I would run the same fixed suite, compare success and operational metrics by task type, and investigate every meaningful drop rather than relying on an overall average."
+   ],
+   [
+    "How do I test error recovery?",
+    "I would introduce controlled failures, such as a timeout or invalid tool response, and verify that the agent handles the failure appropriately without repeating the same action indefinitely."
+   ]
+  ],
+  "mistakes": [
+   "Scoring only the final message and ignoring the path used to reach it.",
+   "Treating a correct final answer as success when the trajectory included a risky or unauthorized tool call.",
+   "Omitting step count, cost, latency, and error recovery from the evaluation.",
+   "Using a few manual demonstrations instead of a fixed suite that can detect regressions."
+  ],
+  "related": [
+   "what-is-an-ai-agent",
+   "how-to-make-ai-agents-reliable-in-production",
+   "how-to-make-llm-as-a-judge-reliable"
+  ]
+ },
+ {
+  "slug": "how-to-monitor-llm-in-production",
+  "q": "How do you monitor an LLM system in production?",
+  "desc": "How to monitor an LLM system in production with structured logs, traces, dashboards, alerts, quality checks, and feedback while protecting sensitive user data.",
+  "level": "Entry",
+  "src": [
+   83
+  ],
+  "testing": "Whether you can define request-level logging, multi-step tracing, operational alerts, quality monitoring, and safe handling of production data.",
+  "steps": [
+   "Log each request with its prompt version, model, token usage, latency, cost, and outcome.",
+   "Trace multi-step calls so the order of model, retrieval, and tool operations is visible.",
+   "Build dashboards and alerts for error rate, p95 latency, cost spikes, and quality signals.",
+   "Sample conversations for review and track user feedback to identify quality problems.",
+   "Redact PII before information is written to logs and restrict access to sensitive records."
+  ],
+  "sample": [
+   "I would monitor an LLM system at three levels: individual requests, multi-step traces, and aggregate service health. For every request, I would log a request identifier, the prompt or template version, model name, token counts, latency, cost, and a structured outcome. Those fields let me connect a user report to the exact call that produced it. I would avoid storing unnecessary prompt content, and I would redact personally identifiable information before any text reaches a log or observability tool.",
+   "For an agent or multi-step workflow, request logs are not enough. I would add distributed traces that show each model call, tool call, retrieval step, input, output, and error in the order they occurred. Dashboards would track error rate, p95 latency, token usage, and cost, while alerts would fire for sustained error increases, p95 latency regressions, and abnormal cost spikes. I would be careful to make alerts actionable so responders know which service and version are affected.",
+   "Operational logs and traces alone do not establish whether an output was useful. I would sample conversations for periodic human review, track thumbs-up, thumbs-down, and other user feedback, and add quality signals such as schema validity, refusal rates, or retrieval hit rates where they apply. I would segment these metrics by prompt version and model so I can detect a quality regression that averages hide. Finally, I would document retention limits, verify that redaction works, and restrict access to sensitive logs."
+  ],
+  "followups": [
+   [
+    "Which production signals should trigger alerts?",
+    "I would prioritize sustained error-rate increases, p95 latency regressions, abnormal cost spikes, and sharp changes in quality signals. Each alert should identify the affected service and version."
+   ],
+   [
+    "How do I monitor quality when there are too many conversations to review?",
+    "I would combine sampled human review with user feedback and targeted automatic checks such as schema validity, refusal rates, or retrieval hit rates, then segment the results by model and prompt version."
+   ],
+   [
+    "How should monitoring handle sensitive user data?",
+    "I would redact PII before logging, minimize the content retained, restrict access, and define retention limits. I would also test that the redaction works across prompts, traces, and error messages."
+   ]
+  ],
+  "mistakes": [
+   "Logging only final responses without prompt version, model, token usage, latency, cost, or outcome.",
+   "Using aggregate dashboards without request-level logs and traces for multi-step workflows.",
+   "Sending an alert for every isolated fluctuation instead of sustained changes that need attention.",
+   "Storing raw PII in logs because the observability tool is considered internal."
+  ],
+  "related": [
+   "how-do-you-evaluate-an-llm",
+   "what-are-llm-guardrails",
+   "how-to-make-ai-agents-reliable-in-production"
+  ]
+ },
+ {
+  "slug": "how-to-handle-pii-in-ai-systems",
+  "q": "How do you handle PII in AI systems?",
+  "desc": "How to handle PII in AI systems using minimization, detection, redaction, encryption, retention limits, deletion workflows, and recall testing for logs.",
+  "level": "Mid",
+  "src": [
+   87
+  ],
+  "testing": "Whether you can apply PII controls across data collection, model prompts, logs, storage, retention, and deletion while testing redaction effectiveness.",
+  "steps": [
+   "Minimize the data sent to the AI system and include only fields the feature actually needs.",
+   "Detect PII and redact or tokenize it before it enters prompts, logs, or other stored artifacts.",
+   "Review provider data-retention and training terms before sending user data.",
+   "Encrypt sensitive data at rest and in transit, restrict access, and apply retention limits.",
+   "Support deletion requests and test redaction recall, since missed PII can expose sensitive data in logs."
+  ],
+  "sample": [
+   "I would treat PII as a data-minimization problem first, not only as a filtering problem. Before sending data to a model, I need to know whether the prompt actually needs each field, so I remove names, contact details, or account identifiers when they are not necessary. I would also review provider retention and training terms to confirm that submitted data is not retained or used in ways the application cannot accept. No model or provider setting makes unnecessary data safe to collect.",
+   "Next, I would detect and handle PII before it reaches prompts, vector stores, traces, or application logs. Detection can cover structured identifiers and patterns such as email addresses, phone numbers, and payment information. Redaction replaces sensitive values with placeholders, while tokenization can create reversible references when the application needs to restore a value later. I would prefer a deterministic rule for well-defined fields and a tested model-based detector for more varied text. Whatever I use, I would keep the original mapping outside the prompt and logs.",
+   "Security controls must cover the rest of the data lifecycle. I would encrypt data at rest and in transit, restrict access to sensitive mappings, apply retention limits, and build a workflow for deletion requests across the application, logs, and vector indexes. I would test redaction recall with labeled examples, including obfuscated and unusual formats, because missed PII can expose sensitive data in logs. I would also monitor detection failures and review any change to the pipeline with the same tests."
+  ],
+  "followups": [
+   [
+    "What is the difference between redaction and tokenization?",
+    "Redaction replaces the sensitive value so it cannot be restored directly. Tokenization substitutes a reference that a separate authorized system may map back to the original value when the application needs it."
+   ],
+   [
+    "How do I test whether my PII redaction works?",
+    "I would use a labeled set that includes common identifiers, unusual formats, and obfuscated values, then measure how many sensitive values escaped into prompts and logs. I would review false positives as well."
+   ],
+   [
+    "What should a deletion workflow cover?",
+    "It should identify the relevant application records, logs, vector indexes, and retained mappings so the deletion request can be handled consistently rather than only removing one database row."
+   ]
+  ],
+  "mistakes": [
+   "Sending raw PII to the model and only redacting it from the displayed answer.",
+   "Assuming provider retention and training terms remove the application's own privacy obligations.",
+   "Keeping the original PII or a redaction mapping in the same logs as the processed content.",
+   "Deploying a detector without testing how often it misses PII."
+  ],
+  "related": [
+   "what-are-llm-guardrails",
+   "access-control-in-rag",
+   "what-is-rag"
+  ]
+ }
+]
