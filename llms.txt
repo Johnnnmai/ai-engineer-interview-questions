@@ -10,6 +10,20 @@ Content is educational interview preparation, not a record of questions asked by
 - [Question deep dives](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/): one page per question with framework, sample answer and follow-ups
 - [Chinese mirror (first 20 questions)](https://johnnnmai.github.io/ai-engineer-interview-questions/zh/)
 
+
+## Recent deep dives (Nov 2026)
+
+- [What is query transformation in RAG?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-query-transformation-in-rag/)
+- [What is agentic RAG?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-agentic-rag/)
+- [How do you evaluate an AI agent?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-evaluate-an-ai-agent/)
+- [How do you monitor an LLM system in production?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-monitor-llm-in-production/)
+- [How do you handle PII in AI systems?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-pii-in-ai-systems/)
+- [What is self-attention?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-self-attention/)
+- [Fine-tuning vs in-context learning](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/fine-tuning-vs-in-context-learning/)
+- [Zero-shot vs few-shot prompting](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/zero-shot-vs-few-shot-prompting/)
+- [What is a system prompt?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-system-prompt/)
+- [How do you choose a vector database?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pgvector-vs-pinecone-vs-other-vector-databases/)
+
 ## Free tools
 
 - [Answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/): score a practiced answer against a rubric in the browser
@@ -51,3 +65,9 @@ Content is educational interview preparation, not a record of questions asked by
 - [Databricks AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/databricks/)
 - [Scale AI AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/scale-ai/)
 - [Perplexity AI Engineer Interview: What to Expect and How to Prepare (2026)](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/perplexity/)
+
+## Machine interface (read-only)
+
+- [questions.json](https://johnnnmai.github.io/ai-engineer-interview-questions/api/questions.json): static JSON catalog of question deep-dives (id, title, level, answer summary, canonical URL)
+- [API index](https://johnnnmai.github.io/ai-engineer-interview-questions/api/): human-readable pointer page
+- [mcp.json](https://johnnnmai.github.io/ai-engineer-interview-questions/mcp.json): MCP/server descriptor (descriptor-only; no hosted MCP HTTP endpoint). Local stdio server: https://github.com/Johnnnmai/ai-interview-questions-mcp

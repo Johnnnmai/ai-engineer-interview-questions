@@ -169,6 +169,46 @@ def foot(rel, deep=True):
             f'{UTM_SCRIPT}{UI_SCRIPT}</body></html>\n')
 
 
+# Batch 3 pages (Nov 8 2026): same voluntary Web3Forms subscribe pattern as the RAG guide (tools/build_content_pages.py).
+try:
+    from question_pages_batch3 import PAGES as _B3P
+    B3_SLUGS = {x["slug"] for x in _B3P}
+except ImportError:
+    B3_SLUGS = set()
+B3_LASTMOD = "2026-11-08"
+B3_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"  # Web3Forms public form key, same as the RAG guide form
+B3_CSS = """<style>.subscribe{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s3) var(--s4);margin:var(--s6) 0;display:grid;gap:12px;justify-items:start}
+.subscribe p{margin:0;color:var(--ink-2);max-width:62ch}.subscribe .field{display:grid;gap:6px;width:100%}.subscribe .row{display:flex;flex-wrap:wrap;gap:10px;width:100%;align-items:center}
+.subscribe label{font:500 var(--fs-small)/1.4 var(--font-sans);color:var(--ink)}
+.subscribe input[type=email]{font:400 1rem/1.4 var(--font-sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);padding:14px 18px;min-width:min(100%,16rem);flex:1}
+.subscribe .hp{display:none}.subscribe .status{font-size:var(--fs-small);min-height:1.4em}
+@media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}}</style>"""
+
+
+def b3_subscribe(slug):
+    """Optional email list, nothing pre-checked; the page stays fully readable without subscribing."""
+    return (
+        '<form class=subscribe id=q-subscribe action="https://api.web3forms.com/submit" method="POST">'
+        '<p class=label>Optional email updates</p>'
+        '<p id=q-subscribe-note>Get occasional free AI engineer interview prep updates. Unsubscribe anytime. No spam.</p>'
+        f'<input type=hidden name=access_key value="{B3_SUBSCRIBE_KEY}">'
+        f'<input type=hidden name=subject value="AI Engineer question page subscriber: {e(slug)}">'
+        '<input type=hidden name=from_name value="Question Pages">'
+        '<input class=hp type=checkbox name=botcheck tabindex=-1 autocomplete=off aria-hidden=true>'
+        '<div class=field><label for=q-email>Email address</label>'
+        '<div class=row><input id=q-email name=email type=email required autocomplete=email inputmode=email aria-describedby=q-subscribe-note>'
+        '<button class="btn btn-primary" type=submit>Subscribe</button></div></div>'
+        '<p class=status id=q-subscribe-status role=status aria-live=polite></p></form>'
+        '<script>(function(){var form=document.getElementById("q-subscribe");if(!form||!window.fetch)return;'
+        'var status=document.getElementById("q-subscribe-status");var btn=form.querySelector("button[type=submit]");'
+        'form.addEventListener("submit",function(ev){ev.preventDefault();if(!form.checkValidity()){form.reportValidity();return;}'
+        'var data={access_key:form.access_key.value,subject:form.subject.value,from_name:form.from_name.value,email:form.email.value,botcheck:""};'
+        'if(form.botcheck&&form.botcheck.checked)data.botcheck="yes";btn.disabled=true;status.textContent="Sending.";'
+        'fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)})'
+        '.then(function(res){return res.json();}).then(function(b){btn.disabled=false;if(b&&b.success){form.reset();status.textContent="You are subscribed. Updates are occasional and free. Unsubscribe anytime.";}else{status.textContent="Could not subscribe just now. The page stays free either way.";}})'
+        '.catch(function(){btn.disabled=false;status.textContent="Could not subscribe just now. The page stays free either way.";});});})();</script>')
+
+
 def page(p):
     url = f"{SITE}/questions/{p['slug']}/"
     rel = "../../"
@@ -179,7 +219,7 @@ def page(p):
     ld_tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     src = ", ".join(f'<a href="../../#q{n}">#{n}</a>' for n in p["src"])
     ac = "../../answer-check/" + (f"?track=aie&amp;q={p['slug']}" if p["slug"] in _AC_AIE else "")
-    o = [head(p["q"], p["desc"], url, rel, ld_tag + zh_alternates(p["slug"]))]
+    o = [head(p["q"], p["desc"], url, rel, ld_tag + zh_alternates(p["slug"]) + (B3_CSS if p["slug"] in B3_SLUGS else ""))]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../../">{SITE_NAME}</a> / <a href="../">Questions</a></div>'
              f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
              f'<p class=lead>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p>'
@@ -193,6 +233,8 @@ def page(p):
         o.append('<h2>Likely follow-ups</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in p["followups"]))
     o.append('<h2>Common mistakes</h2><ul class=mist>' + "".join(f"<li>{e(m)}</li>" for m in p["mistakes"]) + "</ul>")
     o.append(cta(p["slug"]))
+    if p["slug"] in B3_SLUGS:
+        o.append(b3_subscribe(p["slug"]))
     o.append('<h2>Related questions</h2><ul class=related>' +
              "".join(f'<li><a href="../{r}/">{e(BY_SLUG[r]["q"])}</a></li>' for r in p["related"]) + topic_links(p["slug"]) +
              f'<li><a href="../../study-plan/">Build a day-by-day study plan to your interview date</a></li><li><a href="../../llm-cost-calculator/">Estimate LLM API cost per day and month</a></li>'
@@ -263,7 +305,7 @@ def main():
     open(os.path.join(ROOT, "questions", "index.html"), "w").write(index())
     urls = [f"{SITE}/", f"{SITE}/questions/"] + [f"{SITE}/questions/{p['slug']}/" for p in PAGES] + [f"{SITE}/answer-check/", f"{SITE}/mock-interview/", f"{SITE}/alternatives/", f"{SITE}/llm-cost-calculator/", f"{SITE}/study-plan/"]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in urls]
+    sm += [f"  <url><loc>{u}</loc><lastmod>{B3_LASTMOD if any(u.endswith('/' + b + '/') for b in B3_SLUGS) else LASTMOD}</lastmod></url>" for u in urls]
     sm += [f"  <url><loc>{u}</loc><lastmod>{LASTMOD}</lastmod></url>" for u in ZH_URLS]
     # line 19/21 company pages and prep guides (built by tools/build_content_pages.py)
     for d in ("companies", "guides", "alternatives"):

@@ -16,6 +16,21 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 ---
 
+## New question pages (Nov 2026)
+
+Deep-dive pages from the bank (free, no sign-up):
+
+1. [How do you evaluate an AI agent?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-evaluate-an-ai-agent/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+2. [How do you handle PII in AI systems?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-pii-in-ai-systems/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+3. [How do you monitor an LLM system in production?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-monitor-llm-in-production/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+4. [What is agentic RAG?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-agentic-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+5. [What is query transformation in RAG and why does it help?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-query-transformation-in-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+6. [Fine-tuning vs in-context learning: what is the difference?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/fine-tuning-vs-in-context-learning/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+7. [How do you choose a vector database (pgvector, Pinecone, and others)?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pgvector-vs-pinecone-vs-other-vector-databases/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+8. [What is a system prompt and what belongs in it?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-system-prompt/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+9. [What is self-attention and why does it matter?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-self-attention/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+10. [Zero-shot vs few-shot prompting: when do you use each?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/zero-shot-vs-few-shot-prompting/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+
 **Who this is for:** AI Engineer, LLM Engineer, Applied AI / Applied ML Engineer, GenAI Engineer, Agent Engineer, ML Engineer moving into LLM work, Forward Deployed / Solutions Engineer (AI), AI Product Engineer.
 
 **How to use:** answer each question out loud in under 2 minutes, then read the model answer and score yourself 1-5. Anything below 4 is your study list. Practice the follow-up too.
