@@ -16,14 +16,12 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 ### Coach J at Valenx (1:1 mock)
 
-Coach J at Valenx runs a 60-minute live mock for AI/ML or PM-style rounds, with written feedback within 2 business days. Price is $150. Payment page is not live yet.
+Coach J at Valenx runs a 60-minute live mock for AI/ML or PM-style rounds, with written feedback within 2 business days. Price is $150.
 
-**[Request a session](mailto:hello@valenx.org?subject=Coach%20J%20session%20-%20aie_qbank_readme)** (SWAP_WHEN_CTO_PAY_URL)
+**[Book a session with Coach J, $150](https://buy.stripe.com/8x27sKgFd1Y9eo4bsS5kk0x?utm_source=aie_qbank&utm_medium=cta&utm_campaign=paid_redirect_20261109)**
 
 Also: [Grok Bot Team Setup Pack ($49)](https://johnnnmai.github.io/valenx-bots/?utm_source=aie_qbank&utm_medium=owned_cta&utm_campaign=paid_redirect_20261109&utm_content=readme_bot)
 
-
----
 
 ## New question pages (Nov 2026)
 
