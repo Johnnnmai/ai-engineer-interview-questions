@@ -14,11 +14,11 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 📘 **Full interview kit** — [The complete AI Engineer Interview bundle](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions).
 
-### Coach J at Valenx (1:1 mock)
+### AI Engineer Interview Playbook
 
-Coach J at Valenx runs a 60-minute live mock for AI/ML or PM-style rounds, with written feedback within 2 business days. Price is $150.
+A structured interview practice pack with prompts and scoring notes for AI engineer rounds. Price is $19.99.
 
-**[Book a session with Coach J, $150](https://buy.stripe.com/8x27sKgFd1Y9eo4bsS5kk0x?utm_source=aie_qbank&utm_medium=cta&utm_campaign=paid_redirect_20261109)**
+**[Get the AI Engineer Interview Playbook, $19.99](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=qbank&utm_medium=cta&utm_campaign=playbook_cta_20261109&utm_content=readme)**
 
 Also: [Grok Bot Team Setup Pack ($49)](https://johnnnmai.github.io/valenx-bots/?utm_source=aie_qbank&utm_medium=owned_cta&utm_campaign=paid_redirect_20261109&utm_content=readme_bot)
 
