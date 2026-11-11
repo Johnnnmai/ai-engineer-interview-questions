@@ -152,7 +152,7 @@ RAG_SUBSCRIBE_CSS = """
 .subscribe button[disabled]{opacity:.65}
 @media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}.subscribe .btn{justify-content:center}}
 """
-RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook/BUYER35"
+RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook"
 RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
 
 
