@@ -29,18 +29,18 @@ The following is a **general AI engineering industry pattern**, not a verified A
 
 | Round | What to practice | Free resource on this site |
 |---|---|---|
-| Coding | Python data structures, tests and complexity out loud | [Timed mock interview round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/) |
-| ML fundamentals | Transformers, overfitting, metrics, training vs inference | [LLM interview questions guide](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-interview-questions/) |
-| On-device and efficiency | Quantization, distillation, memory and latency budgets | [Quantization in LLMs](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-quantization-in-llms/) |
-| Evaluation | Offline sets, human ratings, experiments, regressions | [LLM evaluation interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-evaluation-interview-questions/) |
-| LLM application | Retrieval, agents, prompt design, safety | [RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/) |
-| Behavioral | Two project stories with numbers and one honest failure | [Answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/) |
+| Coding | Python data structures, tests and complexity out loud | [Timed mock interview round](https://aie.valenx.org/mock-interview/) |
+| ML fundamentals | Transformers, overfitting, metrics, training vs inference | [LLM interview questions guide](https://aie.valenx.org/guides/llm-interview-questions/) |
+| On-device and efficiency | Quantization, distillation, memory and latency budgets | [Quantization in LLMs](https://aie.valenx.org/questions/what-is-quantization-in-llms/) |
+| Evaluation | Offline sets, human ratings, experiments, regressions | [LLM evaluation interview questions](https://aie.valenx.org/guides/llm-evaluation-interview-questions/) |
+| LLM application | Retrieval, agents, prompt design, safety | [RAG interview questions](https://aie.valenx.org/guides/rag-interview-questions/) |
+| Behavioral | Two project stories with numbers and one honest failure | [Answer self-check](https://aie.valenx.org/answer-check/) |
 
 ## A focused preparation plan
 
 Divide your time into three blocks. First, coding: solve practical problems out loud, write tests, and state complexity. Second, fundamentals tied to the posting: if it mentions vision, review convolution and vision transformers; if it mentions language models, review attention, decoding, fine-tuning and evaluation; if it mentions efficiency, review quantization, pruning and distillation with their quality risks. Third, design and stories: practice two designs where the constraint is device memory, battery or privacy, and prepare stories that show ownership and careful measurement.
 
-A small project helps. For example, take a public model, quantize it, measure accuracy, latency and memory before and after, and explain the trade-off you would pick for a phone. Schedule the work with the [study plan tool](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/), price any cloud fallback with the [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/), and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
+A small project helps. For example, take a public model, quantize it, measure accuracy, latency and memory before and after, and explain the trade-off you would pick for a phone. Schedule the work with the [study plan tool](https://aie.valenx.org/study-plan/), price any cloud fallback with the [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/), and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
 
 ## 10 practice questions
 

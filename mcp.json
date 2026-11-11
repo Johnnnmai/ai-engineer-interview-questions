@@ -1,18 +1,18 @@
 {
   "name": "ai-engineer-interview-questions",
-  "description": "Read-only AI engineer interview question bank. Prefer the static JSON catalog on GitHub Pages. A local stdio MCP exists as the GitHub repo Johnnnmai/ai-interview-questions-mcp (offline; not an npm package and not a hosted HTTP MCP endpoint).",
-  "homepage": "https://johnnnmai.github.io/ai-engineer-interview-questions/",
+  "description": "Read-only AI engineer interview question bank. Prefer the static JSON catalog on the site. A local stdio MCP exists as a separate offline project (not an npm package and not a hosted HTTP MCP endpoint).",
+  "homepage": "https://aie.valenx.org/",
   "read_only": true,
   "resources": [
     {
       "name": "questions_json",
-      "uri": "https://johnnnmai.github.io/ai-engineer-interview-questions/api/questions.json",
+      "uri": "https://aie.valenx.org/api/questions.json",
       "mimeType": "application/json",
       "description": "Static catalog of question pages with answer summaries and canonical URLs."
     },
     {
       "name": "llms_txt",
-      "uri": "https://johnnnmai.github.io/ai-engineer-interview-questions/llms.txt",
+      "uri": "https://aie.valenx.org/llms.txt",
       "mimeType": "text/plain",
       "description": "AI-oriented site map of guides, tools and question deep-dives."
     }
@@ -20,7 +20,6 @@
   "mcp_server": {
     "status": "descriptor_only_not_hosted",
     "transport": "stdio",
-    "repository": "https://github.com/Johnnnmai/ai-interview-questions-mcp",
-    "note": "Clone and run locally. There is no zero-cost hosted MCP HTTP/SSE endpoint for this bank on existing infrastructure in this change. Do not claim a remote MCP URL."
+    "note": "Run a local stdio server if you maintain one. There is no zero-cost hosted MCP HTTP/SSE endpoint for this bank. Do not claim a remote MCP URL."
   }
 }

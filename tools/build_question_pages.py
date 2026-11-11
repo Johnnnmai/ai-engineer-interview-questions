@@ -15,7 +15,7 @@ except ImportError:
     _AC_AIE = {}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
+SITE = "https://aie.valenx.org"
 SITE_NAME = "AI Engineer Interview Questions"
 LASTMOD = "2026-11-01"
 

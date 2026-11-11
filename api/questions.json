@@ -1,7 +1,7 @@
 {
   "name": "AI Engineer Interview Questions",
   "description": "Read-only catalog of AI engineer interview question deep-dives with answer summaries and canonical URLs.",
-  "homepage": "https://johnnnmai.github.io/ai-engineer-interview-questions/",
+  "homepage": "https://aie.valenx.org/",
   "license": "Educational use; content by Valenx Press",
   "generated_at": "2026-11-09T04:38:39Z",
   "count": 60,
@@ -13,7 +13,7 @@
       "level": "Senior",
       "description": "Access control in RAG for interviews: permission metadata on every chunk, filtering inside retrieval, ACL sync with source systems, and how to test it.",
       "answer_summary": "The rule I follow is that the model should only ever see text the user is allowed to read. So access control belongs in retrieval, not in the prompt.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/access-control-in-rag/"
+      "url": "https://aie.valenx.org/questions/access-control-in-rag/"
     },
     {
       "id": "design-a-customer-support-chatbot",
@@ -22,7 +22,7 @@
       "level": "Senior",
       "description": "System design interview answer for an LLM customer-support assistant: intake, RAG over help docs, account tools, escalation, guardrails, evals and metrics.",
       "answer_summary": "I would start by asking what it should handle: common how-to questions only, or account-specific requests such as billing status? Which languages and channels, what volume, and which actions can it take without a human?",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/design-a-customer-support-chatbot/"
+      "url": "https://aie.valenx.org/questions/design-a-customer-support-chatbot/"
     },
     {
       "id": "design-an-llm-gateway",
@@ -31,7 +31,7 @@
       "level": "Senior",
       "description": "LLM gateway system design: one API across providers, auth and quotas, routing and fallbacks, caching, logging with redaction, cost tracking and policy controls.",
       "answer_summary": "A gateway sits between internal applications and model providers. Its first job is a single API, often OpenAI-compatible, that can reach several hosted providers and our own models.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/design-an-llm-gateway/"
+      "url": "https://aie.valenx.org/questions/design-an-llm-gateway/"
     },
     {
       "id": "embedding-model-vs-generative-model",
@@ -40,7 +40,7 @@
       "level": "Entry",
       "description": "Embedding model vs generative model for interviews: vectors vs tokens, what each is used for, relative cost, and how they work together in RAG systems.",
       "answer_summary": "An embedding model turns text into a single vector of fixed length, for example a few hundred or a few thousand numbers. It is trained so that texts with similar meaning have vectors that are close by a measure such as cosine similarity.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/embedding-model-vs-generative-model/"
+      "url": "https://aie.valenx.org/questions/embedding-model-vs-generative-model/"
     },
     {
       "id": "explain-lora-and-qlora",
@@ -49,7 +49,7 @@
       "level": "Mid",
       "description": "LoRA and QLoRA explained for AI engineer interviews: low-rank adapters, 4-bit base models, which layers to adapt and the hyperparameters that matter most.",
       "answer_summary": "LoRA freezes the base weights and learns a low-rank update for selected matrices: W + BA, where A and B have a small rank r, often 8 to 64. Trainable parameters drop by orders of magnitude, adapters are small files, and several adapters can share one base model.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/explain-lora-and-qlora/"
+      "url": "https://aie.valenx.org/questions/explain-lora-and-qlora/"
     },
     {
       "id": "explain-the-transformer-architecture",
@@ -58,7 +58,7 @@
       "level": "Entry",
       "description": "How to explain the transformer architecture in an AI engineer interview: blocks, self-attention, residuals, decoder-only models and RoPE, with follow-ups.",
       "answer_summary": "A transformer is a stack of identical blocks. Each block has multi-head self-attention, which lets every token mix information from other tokens, and a position-wise feed-forward network.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/explain-the-transformer-architecture/"
+      "url": "https://aie.valenx.org/questions/explain-the-transformer-architecture/"
     },
     {
       "id": "fine-tuning-vs-in-context-learning",
@@ -67,7 +67,7 @@
       "level": "Mid",
       "description": "Compare fine-tuning and in-context learning, including when to update model weights, prompt examples, data needs, iteration speed, cost, and use cases.",
       "answer_summary": "I would start by separating what changes. With in-context learning, I put the instructions and any examples directly into the prompt.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/fine-tuning-vs-in-context-learning/"
+      "url": "https://aie.valenx.org/questions/fine-tuning-vs-in-context-learning/"
     },
     {
       "id": "hnsw-vs-ivf",
@@ -76,7 +76,7 @@
       "level": "Senior",
       "description": "HNSW vs IVF vector indexes for interviews: graph vs cluster search, recall, latency and memory trade-offs, tuning parameters, and measuring recall@k.",
       "answer_summary": "Exact nearest-neighbor search compares the query with every vector, which is too slow at scale, so we use approximate indexes.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/hnsw-vs-ivf/"
+      "url": "https://aie.valenx.org/questions/hnsw-vs-ivf/"
     },
     {
       "id": "how-do-you-evaluate-a-rag-system",
@@ -85,7 +85,7 @@
       "level": "Senior",
       "description": "How to evaluate a RAG system: retrieval metrics, faithfulness and citation checks, golden sets, calibrated LLM judges, and how to debug bad answers.",
       "answer_summary": "I evaluate it in two parts. For retrieval I use recall@k, precision@k, MRR or nDCG against labelled question-to-source pairs.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-do-you-evaluate-a-rag-system/"
+      "url": "https://aie.valenx.org/questions/how-do-you-evaluate-a-rag-system/"
     },
     {
       "id": "how-do-you-evaluate-an-llm",
@@ -94,7 +94,7 @@
       "level": "Mid",
       "description": "How to evaluate an LLM application in an interview: eval sets, LLM-as-judge, offline vs online evaluation and regression testing, with common mistakes.",
       "answer_summary": "Evaluating LLM applications is hard because outputs are open-ended, many answers can be correct, quality has several dimensions (correctness, faithfulness, tone, safety), and small prompt or model changes shift behavior. So I build a task-specific eval set instead of relying on public benchmarks.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-do-you-evaluate-an-llm/"
+      "url": "https://aie.valenx.org/questions/how-do-you-evaluate-an-llm/"
     },
     {
       "id": "how-to-ab-test-an-ai-feature",
@@ -103,7 +103,7 @@
       "level": "Senior",
       "description": "How to A/B test an AI feature: offline evals first, a user-level primary metric, guardrail metrics, enough sample size, and handling noisy model outputs.",
       "answer_summary": "I treat it as two stages. Offline, the new prompt or model has to beat the current one on our eval suite without regressions on safety or format.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-ab-test-an-ai-feature/"
+      "url": "https://aie.valenx.org/questions/how-to-ab-test-an-ai-feature/"
     },
     {
       "id": "how-to-build-a-fine-tuning-dataset",
@@ -112,7 +112,7 @@
       "level": "Mid",
       "description": "How to build a fine-tuning dataset: define the behavior, collect real inputs, write high-quality outputs, dedupe, balance, hold out an eval set and iterate.",
       "answer_summary": "I begin by writing down exactly what the model should do: the task, the output format, the tone and how it should handle cases it cannot answer. That spec becomes the guide for everyone producing examples.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-build-a-fine-tuning-dataset/"
+      "url": "https://aie.valenx.org/questions/how-to-build-a-fine-tuning-dataset/"
     },
     {
       "id": "how-to-cache-llm-responses",
@@ -121,7 +121,7 @@
       "level": "Mid",
       "description": "Caching for LLM applications: exact-match response caches, provider prompt caching, semantic caching risks, cache keys, invalidation and permission scoping.",
       "answer_summary": "I think of three layers. The simplest is an exact-match cache: hash the model name and version, the full prompt and the sampling parameters, and store the response.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-cache-llm-responses/"
+      "url": "https://aie.valenx.org/questions/how-to-cache-llm-responses/"
     },
     {
       "id": "how-to-choose-a-chunking-strategy-for-rag",
@@ -130,7 +130,7 @@
       "level": "Mid",
       "description": "Chunking strategy for RAG interviews: structure-aware splitting, chunk size and overlap trade-offs, small-to-parent retrieval, and measuring recall.",
       "answer_summary": "I start from the documents. Policies, manuals and wikis have headings and paragraphs, so I split along that structure and keep the heading path as metadata, for example 'Billing > Refunds > Annual plans'.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-choose-a-chunking-strategy-for-rag/"
+      "url": "https://aie.valenx.org/questions/how-to-choose-a-chunking-strategy-for-rag/"
     },
     {
       "id": "how-to-choose-an-embedding-model",
@@ -139,7 +139,7 @@
       "level": "Mid",
       "description": "How to choose an embedding model for RAG or search: benchmark on your own query pairs, weigh language, domain, length, dimension and cost, and version the index.",
       "answer_summary": "I start with our data, not a leaderboard. I collect one to two hundred real or realistic queries and label which chunks should come back for each.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-choose-an-embedding-model/"
+      "url": "https://aie.valenx.org/questions/how-to-choose-an-embedding-model/"
     },
     {
       "id": "how-to-debug-poor-rag-answers",
@@ -148,7 +148,7 @@
       "level": "Senior",
       "description": "How to debug poor RAG answers in an interview: trace ingestion, parsing, chunking, retrieval, ranking and generation, and fix the earliest failing stage.",
       "answer_summary": "I start by turning complaints into concrete cases: a set of questions with bad answers, and for each one the document and passage that should have answered it. Then I trace each case through the pipeline in order.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-debug-poor-rag-answers/"
+      "url": "https://aie.valenx.org/questions/how-to-debug-poor-rag-answers/"
     },
     {
       "id": "how-to-evaluate-an-ai-agent",
@@ -157,7 +157,7 @@
       "level": "Mid",
       "description": "How to evaluate an AI agent with realistic tasks, measurable end states, trajectory review, error recovery, cost, and latency across model or prompt changes.",
       "answer_summary": "I would evaluate an AI agent with a fixed suite of realistic tasks that have checkable end states. For example, a support task succeeds only if the agent opens the right ticket and attaches the correct records, not merely if its final message sounds plausible.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-evaluate-an-ai-agent/"
+      "url": "https://aie.valenx.org/questions/how-to-evaluate-an-ai-agent/"
     },
     {
       "id": "how-to-get-reliable-json-output-from-an-llm",
@@ -166,7 +166,7 @@
       "level": "Mid",
       "description": "Reliable JSON output from LLMs: schema modes and constrained decoding, validation with Pydantic, repair retries, and schema design tips for interviews.",
       "answer_summary": "I treat structured output as an engineering problem, not a prompting problem. First I enforce the format at generation time: hosted APIs offer a JSON-schema or structured output mode, and with a self-hosted model I use constrained decoding so only tokens that keep the output valid can be sampled.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-get-reliable-json-output-from-an-llm/"
+      "url": "https://aie.valenx.org/questions/how-to-get-reliable-json-output-from-an-llm/"
     },
     {
       "id": "how-to-handle-memory-in-ai-agents",
@@ -175,7 +175,7 @@
       "level": "Mid",
       "description": "Memory in AI agents for interviews: short-term context, summaries, long-term stores with retrieval, structured user facts, and privacy and staleness rules.",
       "answer_summary": "I split memory into a few layers. Working memory is what sits in the context window right now: recent messages, the current plan and tool results.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-memory-in-ai-agents/"
+      "url": "https://aie.valenx.org/questions/how-to-handle-memory-in-ai-agents/"
     },
     {
       "id": "how-to-handle-pii-in-ai-systems",
@@ -184,7 +184,7 @@
       "level": "Mid",
       "description": "How to handle PII in AI systems using minimization, detection, redaction, encryption, retention limits, deletion workflows, and recall testing for logs.",
       "answer_summary": "I would treat PII as a data-minimization problem first, not only as a filtering problem. Before sending data to a model, I need to know whether the prompt actually needs each field, so I remove names, contact details, or account identifiers when they are not necessary.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-pii-in-ai-systems/"
+      "url": "https://aie.valenx.org/questions/how-to-handle-pii-in-ai-systems/"
     },
     {
       "id": "how-to-make-ai-agents-reliable-in-production",
@@ -193,7 +193,7 @@
       "level": "Senior",
       "description": "Making AI agents reliable in production: narrow scope, validated tools, step and cost limits, human approval for risky actions, tracing and trajectory evals.",
       "answer_summary": "Reliability comes from the system around the model. I start by narrowing scope: one well-defined job, a handful of tools with clear descriptions, and fixed workflow steps wherever the path is predictable, leaving the open-ended loop only where it is really needed.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-make-ai-agents-reliable-in-production/"
+      "url": "https://aie.valenx.org/questions/how-to-make-ai-agents-reliable-in-production/"
     },
     {
       "id": "how-to-make-llm-as-a-judge-reliable",
@@ -202,7 +202,7 @@
       "level": "Senior",
       "description": "Making LLM-as-a-judge reliable: specific rubrics, pairwise comparisons with swapped order, bias checks, and calibrating the judge against human labels.",
       "answer_summary": "An LLM judge is useful because it scales, but it is a measurement tool, so I calibrate it like one. First, the rubric: instead of asking whether an answer is good, I ask narrow questions such as whether every claim is supported by the provided sources, yes or no, with examples of passing and failing answers.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-make-llm-as-a-judge-reliable/"
+      "url": "https://aie.valenx.org/questions/how-to-make-llm-as-a-judge-reliable/"
     },
     {
       "id": "how-to-monitor-llm-in-production",
@@ -211,7 +211,7 @@
       "level": "Entry",
       "description": "How to monitor an LLM system in production with structured logs, traces, dashboards, alerts, quality checks, and feedback while protecting sensitive user data.",
       "answer_summary": "I would monitor an LLM system at three levels: individual requests, multi-step traces, and aggregate service health. For every request, I would log a request identifier, the prompt or template version, model name, token counts, latency, cost, and a structured outcome.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-monitor-llm-in-production/"
+      "url": "https://aie.valenx.org/questions/how-to-monitor-llm-in-production/"
     },
     {
       "id": "how-to-reduce-llm-inference-cost",
@@ -220,7 +220,7 @@
       "level": "Mid",
       "description": "How to reduce LLM inference cost: measure first, route to smaller models, trim prompts, cache, batch offline work, quantize self-hosted models, and re-check quality.",
       "answer_summary": "I start by measuring where the money goes. I break down spend by feature, model and token type, because output tokens usually cost several times more than input tokens, and I look at cost per successful task rather than per call, since a cheap model that needs three retries is not cheap.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-reduce-llm-inference-cost/"
+      "url": "https://aie.valenx.org/questions/how-to-reduce-llm-inference-cost/"
     },
     {
       "id": "how-to-reduce-llm-latency",
@@ -229,7 +229,7 @@
       "level": "Mid",
       "description": "How to reduce LLM latency: measure time to first token and tokens per second, stream, shorten prompts and outputs, use smaller models, cache and parallelize.",
       "answer_summary": "I split latency into parts before changing anything. Time to first token depends on queueing, network and prefill, which grows with prompt length.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-reduce-llm-latency/"
+      "url": "https://aie.valenx.org/questions/how-to-reduce-llm-latency/"
     },
     {
       "id": "pgvector-vs-pinecone-vs-other-vector-databases",
@@ -238,7 +238,7 @@
       "level": "Entry",
       "description": "How to choose a vector database, comparing pgvector, managed services, self-hosted engines, and hybrid search options by scale, latency, and operations.",
       "answer_summary": "I start by turning the product requirements into a decision framework: filtering needs, expected scale, latency targets, how much operations work my team can absorb, and cost. I would not pick a database because it is fashionable.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pgvector-vs-pinecone-vs-other-vector-databases/"
+      "url": "https://aie.valenx.org/questions/pgvector-vs-pinecone-vs-other-vector-databases/"
     },
     {
       "id": "pre-training-vs-instruction-tuning-vs-rlhf",
@@ -247,7 +247,7 @@
       "level": "Mid",
       "description": "Pre-training vs instruction tuning vs RLHF and DPO: what each LLM training stage adds, how much data it uses, and how to explain it in an interview.",
       "answer_summary": "I think of it as three stages with different jobs. Pre-training is next-token prediction over trillions of tokens.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pre-training-vs-instruction-tuning-vs-rlhf/"
+      "url": "https://aie.valenx.org/questions/pre-training-vs-instruction-tuning-vs-rlhf/"
     },
     {
       "id": "rag-vs-fine-tuning",
@@ -256,7 +256,7 @@
       "level": "Mid",
       "description": "RAG vs fine-tuning interview answer: when to prompt, when to add retrieval, when to fine-tune a model, and why strong answers often combine the two.",
       "answer_summary": "I start with prompting plus a small eval set because it is the fastest loop. In-context learning changes no weights and iteration is instant, but every request pays for the extra tokens and behavior is bounded by the window.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/rag-vs-fine-tuning/"
+      "url": "https://aie.valenx.org/questions/rag-vs-fine-tuning/"
     },
     {
       "id": "reasoning-models-vs-chat-models",
@@ -265,7 +265,7 @@
       "level": "Mid",
       "description": "Reasoning models vs chat models for interviews: RL-trained chains of thought, inference-time compute, when they win, and how to route and budget them.",
       "answer_summary": "A standard chat model answers more or less directly after reading the prompt. A reasoning model is trained, typically with reinforcement learning on problems where the answer can be checked, such as math and unit-tested code, to produce a long internal chain of thought first.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/reasoning-models-vs-chat-models/"
+      "url": "https://aie.valenx.org/questions/reasoning-models-vs-chat-models/"
     },
     {
       "id": "single-agent-vs-multi-agent",
@@ -274,7 +274,7 @@
       "level": "Senior",
       "description": "Single agent vs multi-agent systems: why to start with one agent, when parallel or specialized sub-agents help, and the cost and debugging trade-offs.",
       "answer_summary": "I start with a single agent unless there is a clear reason not to. One agent with well-designed tools keeps all context in one place, costs less and is much easier to trace when something goes wrong.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/single-agent-vs-multi-agent/"
+      "url": "https://aie.valenx.org/questions/single-agent-vs-multi-agent/"
     },
     {
       "id": "temperature-vs-top-p",
@@ -283,7 +283,7 @@
       "level": "Entry",
       "description": "Temperature vs top-p for interviews: how each changes sampling, sensible settings for extraction, code and creative tasks, and why temperature 0 still varies.",
       "answer_summary": "Both settings control how the next token is sampled from the model's probability distribution. Temperature rescales the logits before the softmax.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/temperature-vs-top-p/"
+      "url": "https://aie.valenx.org/questions/temperature-vs-top-p/"
     },
     {
       "id": "what-are-llm-guardrails",
@@ -292,7 +292,7 @@
       "level": "Mid",
       "description": "LLM guardrails explained: input checks, retrieval and tool controls, output validation and action approval, plus latency, false positives and monitoring.",
       "answer_summary": "Guardrails are checks placed around the model, not inside it, at each point where something can go wrong. On the input side, I screen for prompt injection attempts and requests outside the product's scope, and redact personal data if it should not go to the model provider.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-are-llm-guardrails/"
+      "url": "https://aie.valenx.org/questions/what-are-llm-guardrails/"
     },
     {
       "id": "what-are-scaling-laws",
@@ -301,7 +301,7 @@
       "level": "Senior",
       "description": "LLM scaling laws explained for interviews: power-law loss, compute-optimal training, about 20 tokens per parameter, and why teams overtrain smaller models.",
       "answer_summary": "Scaling laws say that pre-training loss decreases predictably, close to a power law, as you scale parameters, data and compute. That predictability is what makes them useful: you can run small experiments, fit the curve and estimate what a larger run will reach before spending the budget.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-are-scaling-laws/"
+      "url": "https://aie.valenx.org/questions/what-are-scaling-laws/"
     },
     {
       "id": "what-is-a-context-window",
@@ -310,7 +310,7 @@
       "level": "Entry",
       "description": "Context window interview answer: what counts toward it, why bigger windows still need retrieval, token budgets per section, and cost and latency trade-offs.",
       "answer_summary": "The context window is the total number of tokens a model can attend to in one request, which includes the system prompt, conversation history, any retrieved documents and the tokens it generates. If the input fills the window, there is no room left for the answer.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-context-window/"
+      "url": "https://aie.valenx.org/questions/what-is-a-context-window/"
     },
     {
       "id": "what-is-a-system-prompt",
@@ -319,7 +319,7 @@
       "level": "Entry",
       "description": "What goes in a system prompt, how to structure its role, scope, rules, style and refusals, and what to keep out for security and prompt caching.",
       "answer_summary": "I think of a system prompt as the highest-priority instruction block for a conversation. It tells the model who it is, what job it is handling, and which rules it must follow.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-system-prompt/"
+      "url": "https://aie.valenx.org/questions/what-is-a-system-prompt/"
     },
     {
       "id": "what-is-agentic-rag",
@@ -328,7 +328,7 @@
       "level": "Mid",
       "description": "What agentic RAG means, how iterative retrieval handles multi-hop questions, and how to control cost, latency, and evaluation in production systems.",
       "answer_summary": "I would define agentic RAG as a retrieval-augmented generation system where the model controls part of the retrieval loop. In a basic RAG pipeline, I rewrite a query once, retrieve documents, and pass them to the model.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-agentic-rag/"
+      "url": "https://aie.valenx.org/questions/what-is-agentic-rag/"
     },
     {
       "id": "what-is-an-ai-agent",
@@ -337,7 +337,7 @@
       "level": "Entry",
       "description": "What is an AI agent? Interview answer on agents vs chains and workflows, the ReAct loop, and how to make and evaluate agents reliably in production.",
       "answer_summary": "A chain is a fixed sequence of steps defined by the developer. An agent is a loop where the model chooses the next action, which tool to call and with what arguments, based on observations, until it decides the task is done.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-an-ai-agent/"
+      "url": "https://aie.valenx.org/questions/what-is-an-ai-agent/"
     },
     {
       "id": "what-is-benchmark-contamination",
@@ -346,7 +346,7 @@
       "level": "Mid",
       "description": "Benchmark contamination explained: test data in training sets, why it inflates scores, how to detect it, and why private task evals matter for model choice.",
       "answer_summary": "Benchmark contamination means a model has seen the test during training. Popular benchmarks are posted on the web along with discussions of the answers, and large training crawls pick them up.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-benchmark-contamination/"
+      "url": "https://aie.valenx.org/questions/what-is-benchmark-contamination/"
     },
     {
       "id": "what-is-catastrophic-forgetting",
@@ -355,7 +355,7 @@
       "level": "Mid",
       "description": "Catastrophic forgetting in LLM fine-tuning: why narrow training erodes general skills, and limiting it with LoRA, data mixing, low learning rates and evals.",
       "answer_summary": "Catastrophic forgetting is when fine-tuning on a new, narrow task makes the model worse at things it used to do. The gradients from the new data move shared weights without any signal to preserve other skills.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-catastrophic-forgetting/"
+      "url": "https://aie.valenx.org/questions/what-is-catastrophic-forgetting/"
     },
     {
       "id": "what-is-chain-of-thought-prompting",
@@ -364,7 +364,7 @@
       "level": "Mid",
       "description": "Chain-of-thought prompting for interviews: how step-by-step reasoning helps multi-step tasks, its cost, faithfulness limits and how reasoning models change it.",
       "answer_summary": "Chain-of-thought prompting means getting the model to write intermediate reasoning before the answer, either with an instruction such as asking it to work through the problem step by step, or with few-shot examples that show the reasoning. Because each generated token conditions the next, writing out steps gives the model room to compute what it cannot do in a single jump.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-chain-of-thought-prompting/"
+      "url": "https://aie.valenx.org/questions/what-is-chain-of-thought-prompting/"
     },
     {
       "id": "what-is-dpo",
@@ -373,7 +373,7 @@
       "level": "Senior",
       "description": "DPO explained for AI engineer interviews: learning from chosen and rejected pairs without a reward model, the beta setting, data needs and comparison with PPO.",
       "answer_summary": "DPO is a way to align a model with preferences without the full RLHF machinery. Classic RLHF trains a reward model on human comparisons, then uses reinforcement learning such as PPO to maximize that reward while a KL penalty keeps the policy close to the starting model.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-dpo/"
+      "url": "https://aie.valenx.org/questions/what-is-dpo/"
     },
     {
       "id": "what-is-function-calling",
@@ -382,7 +382,7 @@
       "level": "Mid",
       "description": "Function calling explained for AI engineer interviews: tool schemas, the call and result loop, writing good tool descriptions and validating arguments safely.",
       "answer_summary": "Function calling lets a model ask your application to run code. You send the model a list of tools, each with a name, a plain-language description of when to use it and a JSON schema for its parameters.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-function-calling/"
+      "url": "https://aie.valenx.org/questions/what-is-function-calling/"
     },
     {
       "id": "what-is-hybrid-search",
@@ -391,7 +391,7 @@
       "level": "Mid",
       "description": "Hybrid search for RAG interviews: combining BM25 keyword search with vector search, reciprocal rank fusion, and when exact terms make it the right default.",
       "answer_summary": "Hybrid search runs two retrievers over the same corpus. A lexical retriever such as BM25 scores documents by exact term matches, weighted by how rare the terms are.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-hybrid-search/"
+      "url": "https://aie.valenx.org/questions/what-is-hybrid-search/"
     },
     {
       "id": "what-is-kv-cache",
@@ -400,7 +400,7 @@
       "level": "Mid",
       "description": "KV cache interview answer: why keys and values are cached during decoding, how to estimate its memory, and how GQA, quantization and paging shrink it.",
       "answer_summary": "During autoregressive decoding the keys and values of earlier tokens do not change, so they are stored and reused; each new token computes only its own query, key and value. That turns per-step attention from recomputing the whole prefix into one pass over cached tensors.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-kv-cache/"
+      "url": "https://aie.valenx.org/questions/what-is-kv-cache/"
     },
     {
       "id": "what-is-lost-in-the-middle",
@@ -409,7 +409,7 @@
       "level": "Senior",
       "description": "Lost in the middle explained: why LLMs use facts at the start and end of long contexts more reliably, and the retrieval and ordering fixes interviewers expect.",
       "answer_summary": "Lost in the middle describes a position effect in long prompts. In a 2023 study, models answered questions most accurately when the relevant document was at the beginning or end of the context and noticeably worse when it sat in the middle, even though it was well within the context window.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-lost-in-the-middle/"
+      "url": "https://aie.valenx.org/questions/what-is-lost-in-the-middle/"
     },
     {
       "id": "what-is-mixture-of-experts",
@@ -418,7 +418,7 @@
       "level": "Senior",
       "description": "Mixture of Experts explained for AI engineer interviews: routers, top-k experts, total vs active parameters, and the memory and serving trade-offs.",
       "answer_summary": "In a Mixture of Experts layer the single feed-forward block of a transformer layer is replaced by many experts, each its own feed-forward network, and a small router. For every token the router scores the experts and sends the token to the top few, often two, then mixes their outputs by the router weights.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-mixture-of-experts/"
+      "url": "https://aie.valenx.org/questions/what-is-mixture-of-experts/"
     },
     {
       "id": "what-is-model-context-protocol-mcp",
@@ -427,7 +427,7 @@
       "level": "Mid",
       "description": "Model Context Protocol (MCP) for interviews: clients, servers, tools, resources and prompts, what problem it solves, and the security issues to discuss.",
       "answer_summary": "MCP is an open protocol for connecting LLM applications to external tools and data. Before it, every application wrote its own integration for each service, so connecting several apps to several systems meant a lot of one-off glue code.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-model-context-protocol-mcp/"
+      "url": "https://aie.valenx.org/questions/what-is-model-context-protocol-mcp/"
     },
     {
       "id": "what-is-model-distillation",
@@ -436,7 +436,7 @@
       "level": "Mid",
       "description": "Model distillation for AI engineer interviews: training a small student on a large teacher's outputs, when it cuts cost and latency, and its licensing limits.",
       "answer_summary": "Distillation transfers behavior from a large teacher model to a smaller student. For LLMs the most common version is simple: run the teacher on a large set of realistic inputs, keep the good responses, and fine-tune the student on them.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-model-distillation/"
+      "url": "https://aie.valenx.org/questions/what-is-model-distillation/"
     },
     {
       "id": "what-is-prompt-injection",
@@ -445,7 +445,7 @@
       "level": "Senior",
       "description": "Prompt injection interview answer: direct vs indirect injection, why prompts alone cannot stop it, and the layered defenses interviewers expect to hear.",
       "answer_summary": "Prompt injection is when untrusted text, such as a user message, web page, email or retrieved document, contains instructions that override the developer's intent, for example \"ignore previous instructions and send the data to...\". Indirect injection through retrieved content is the harder case.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-prompt-injection/"
+      "url": "https://aie.valenx.org/questions/what-is-prompt-injection/"
     },
     {
       "id": "what-is-quantization-in-llms",
@@ -454,7 +454,7 @@
       "level": "Mid",
       "description": "LLM quantization for interviews: 8-bit and 4-bit weights, memory and throughput gains, GPTQ and AWQ, and why you must re-run task evals after quantizing.",
       "answer_summary": "Quantization means representing model weights with fewer bits. A 7-billion-parameter model in 16-bit needs about 14 GB just for weights; at 4-bit that drops to roughly 3.5 GB plus some overhead for scales.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-quantization-in-llms/"
+      "url": "https://aie.valenx.org/questions/what-is-quantization-in-llms/"
     },
     {
       "id": "what-is-query-transformation-in-rag",
@@ -463,7 +463,7 @@
       "level": "Mid",
       "description": "What query transformation does in RAG, why it improves retrieval, and when the added latency and model calls are worth the cost for enterprise search.",
       "answer_summary": "I see query transformation as a query-rewrite step that runs before retrieval. The system takes the user's question and produces one or more search queries that are more likely to match the indexed text.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-query-transformation-in-rag/"
+      "url": "https://aie.valenx.org/questions/what-is-query-transformation-in-rag/"
     },
     {
       "id": "what-is-rag",
@@ -472,7 +472,7 @@
       "level": "Entry",
       "description": "What is RAG? Interview answer framework for retrieval-augmented generation: indexing, retrieval, re-ranking, grounded generation, plus common mistakes.",
       "answer_summary": "RAG has two paths. At indexing time I parse documents, split them into chunks, embed each chunk and store the vectors with metadata such as source, date and permissions.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-rag/"
+      "url": "https://aie.valenx.org/questions/what-is-rag/"
     },
     {
       "id": "what-is-re-ranking-in-rag",
@@ -481,7 +481,7 @@
       "level": "Mid",
       "description": "Re-ranking in RAG for interviews: retrieve wide then re-score with a cross-encoder, why it beats embeddings alone, and how to size candidates and latency.",
       "answer_summary": "Retrieval with embeddings uses a bi-encoder: the query and each document are embedded separately and compared with a similarity score. That is fast enough to search millions of chunks, but each vector is a compressed summary, so the ranking is approximate.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-re-ranking-in-rag/"
+      "url": "https://aie.valenx.org/questions/what-is-re-ranking-in-rag/"
     },
     {
       "id": "what-is-red-teaming-in-ai",
@@ -490,7 +490,7 @@
       "level": "Senior",
       "description": "Red-teaming an LLM system: scoping harms, adversarial and injection testing, automated attack generation, severity triage, fixes and regression tests.",
       "answer_summary": "Red-teaming means deliberately trying to make the system fail in harmful ways before real users do. I start by scoping it to the product.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-red-teaming-in-ai/"
+      "url": "https://aie.valenx.org/questions/what-is-red-teaming-in-ai/"
     },
     {
       "id": "what-is-self-attention",
@@ -499,7 +499,7 @@
       "level": "Entry",
       "description": "Learn what self-attention is, how query, key, and value projections work, why it improves long-range context, and where its quadratic cost appears.",
       "answer_summary": "I explain self-attention as a way for the model to decide which other tokens in the sequence matter for the token it is processing. Each token is projected into a query, a key and a value.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-self-attention/"
+      "url": "https://aie.valenx.org/questions/what-is-self-attention/"
     },
     {
       "id": "what-is-the-react-pattern",
@@ -508,7 +508,7 @@
       "level": "Mid",
       "description": "ReAct pattern for LLM agents explained: the thought, action, observation loop, why grounding in tool results helps, and the stop and budget controls it needs.",
       "answer_summary": "ReAct is the loop most tool-using agents are built on. The model thinks briefly about what it needs, takes an action such as searching documentation or querying a database, reads the observation that comes back, and decides the next step.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-the-react-pattern/"
+      "url": "https://aie.valenx.org/questions/what-is-the-react-pattern/"
     },
     {
       "id": "what-is-tokenization-in-llms",
@@ -517,7 +517,7 @@
       "level": "Entry",
       "description": "Tokenization in LLMs for interviews: BPE and subword tokens, why cost and context are counted in tokens, language differences and odd failure modes.",
       "answer_summary": "Tokenization turns text into the integer IDs the model actually reads. Modern LLMs use subword tokenizers such as BPE: frequent words become a single token, rarer words are split into pieces, and anything can still be represented through byte-level fallbacks.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-tokenization-in-llms/"
+      "url": "https://aie.valenx.org/questions/what-is-tokenization-in-llms/"
     },
     {
       "id": "why-do-llms-hallucinate",
@@ -526,7 +526,7 @@
       "level": "Mid",
       "description": "Why do LLMs hallucinate? Interview answer on the cause, how to reduce it with grounding, citations and constraints, and how to measure faithfulness.",
       "answer_summary": "The model is trained to produce plausible continuations, not to verify facts, and it has no built-in signal for what it does not know. So it will produce fluent text even when the answer is not supported.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/why-do-llms-hallucinate/"
+      "url": "https://aie.valenx.org/questions/why-do-llms-hallucinate/"
     },
     {
       "id": "workflows-vs-agents",
@@ -535,7 +535,7 @@
       "level": "Mid",
       "description": "Workflows vs agents for AI engineer interviews: fixed code paths vs model-directed loops, decision criteria, hybrids, and why predictability usually wins.",
       "answer_summary": "The difference is who controls the path. In a workflow my code decides the sequence: for example, classify the ticket, retrieve the policy, draft a reply, check it against rules, send it for review.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/workflows-vs-agents/"
+      "url": "https://aie.valenx.org/questions/workflows-vs-agents/"
     },
     {
       "id": "zero-shot-vs-few-shot-prompting",
@@ -544,7 +544,7 @@
       "level": "Entry",
       "description": "When to use zero-shot versus few-shot prompting, how to select examples, and how to avoid biased outputs from imbalanced labels or style patterns.",
       "answer_summary": "I start by thinking about how much structure the task needs. For a common task with a simple format, I use zero-shot prompting: I describe the task and give any necessary context, but no demonstrations.",
-      "url": "https://johnnnmai.github.io/ai-engineer-interview-questions/questions/zero-shot-vs-few-shot-prompting/"
+      "url": "https://aie.valenx.org/questions/zero-shot-vs-few-shot-prompting/"
     }
   ]
 }

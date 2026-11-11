@@ -26,12 +26,12 @@ Prices are from each seller's own page on Nov 2, 2026. Valenx Press is not affil
 | [DataLemur](https://datalemur.com/pricing) | $15 monthly or $60 yearly | 100+ SQL questions and 70+ data science questions from Ace the Data Science Interview | Budget SQL practice |
 | [LeetML](https://leetml.org/) | Free tier with 500 problems; Pro $19/mo or $149/yr | ML and AI problems with solutions, grading and study plans | ML and AI engineer problem drills |
 | [Hello Interview](https://www.hellointerview.com/premium) | $47 for 1 month, $89 for 1 year, $299 lifetime | System design articles, videos, guided practice and AI mocks | System design and ML system design |
-| [This site, free](https://johnnnmai.github.io/ai-engineer-interview-questions/) | $0 | 100 AI engineer questions, 50 deep dives, self-check, mock round, study plan, cost calculator | LLM, RAG, agents and evaluation fundamentals |
+| [This site, free](https://aie.valenx.org/) | $0 | 100 AI engineer questions, 50 deep dives, self-check, mock round, study plan, cost calculator | LLM, RAG, agents and evaluation fundamentals |
 | [The 0 to 1 AI Engineer Interview Playbook](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook) | $19.99 one time on Gumroad | One PDF, 370+ pages, 20 chapters, 5 answer frameworks, an 8-week plan | A one-time method for AI engineer loops |
 
 ## ML engineer vs AI engineer: why the right alternative differs
 
-The two titles overlap, but interviews often weight different topics. As general guidance, ML engineer loops lean on modeling, feature work, training pipelines and classic ML system design such as ranking or recommendation. AI engineer loops lean on building products on top of foundation models: prompt and context design, retrieval, tool use, evaluation, safety and cost. The [AI engineer vs ML engineer interview guide](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-engineer-vs-ml-engineer-interview/) breaks the difference down by round.
+The two titles overlap, but interviews often weight different topics. As general guidance, ML engineer loops lean on modeling, feature work, training pipelines and classic ML system design such as ranking or recommendation. AI engineer loops lean on building products on top of foundation models: prompt and context design, retrieval, tool use, evaluation, safety and cost. The [AI engineer vs ML engineer interview guide](https://aie.valenx.org/guides/ai-engineer-vs-ml-engineer-interview/) breaks the difference down by round.
 
 That is why one platform rarely covers everything. A SQL heavy bank helps a data scientist a lot and an AI engineer only a little. A system design course helps both, but only if it covers LLM specific designs.
 
@@ -39,10 +39,10 @@ That is why one platform rarely covers everything. A SQL heavy bank helps a data
 
 - **SQL or analytics screen:** StrataScratch, DataLemur or Interview Query. Pick by price and question style. If you only need two weeks, a monthly plan or a free tier may be enough.
 - **Python coding:** any coding bank works; ML flavored problems on LeetML are closer to day-to-day model work.
-- **ML fundamentals:** review core ideas out loud. Good starting points are the [transformer architecture deep dive](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/explain-the-transformer-architecture/) and [RAG vs fine-tuning](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/rag-vs-fine-tuning/).
-- **LLM application design:** practice a RAG assistant end to end with the [RAG system design scoring rubric](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-system-design-interview-scoring-rubric/), then price it with the [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/).
-- **Evaluation:** expect questions like "how do you know the new prompt is better". Use the [LLM evaluation interview questions guide](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-evaluation-interview-questions/) and the [LLM as a judge deep dive](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-make-llm-as-a-judge-reliable/).
-- **Spoken delivery:** record a two-minute answer and score it with the free [answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/), then run a timed [mock interview round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/).
+- **ML fundamentals:** review core ideas out loud. Good starting points are the [transformer architecture deep dive](https://aie.valenx.org/questions/explain-the-transformer-architecture/) and [RAG vs fine-tuning](https://aie.valenx.org/questions/rag-vs-fine-tuning/).
+- **LLM application design:** practice a RAG assistant end to end with the [RAG system design scoring rubric](https://aie.valenx.org/guides/rag-system-design-interview-scoring-rubric/), then price it with the [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/).
+- **Evaluation:** expect questions like "how do you know the new prompt is better". Use the [LLM evaluation interview questions guide](https://aie.valenx.org/guides/llm-evaluation-interview-questions/) and the [LLM as a judge deep dive](https://aie.valenx.org/questions/how-to-make-llm-as-a-judge-reliable/).
+- **Spoken delivery:** record a two-minute answer and score it with the free [answer self-check](https://aie.valenx.org/answer-check/), then run a timed [mock interview round](https://aie.valenx.org/mock-interview/).
 
 ## What Interview Query still does better
 
@@ -52,12 +52,12 @@ Interview Query has a large set of data science questions in one place, company 
 
 This is general guidance. Shorten or stretch it to your interview date.
 
-1. **Days 1 to 3:** skim the [free question bank](https://johnnnmai.github.io/ai-engineer-interview-questions/) and the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions). Mark every question you cannot answer in two minutes.
+1. **Days 1 to 3:** skim the [free question bank](https://aie.valenx.org/) and the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions). Mark every question you cannot answer in two minutes.
 2. **Days 4 to 7:** one SQL or coding session a day on the platform you picked, plus two deep dives on your weakest LLM topics.
 3. **Days 8 to 11:** one design question a day, scored against the rubric, with a cost estimate.
-4. **Days 12 to 14:** timed mock rounds and a project walkthrough you can explain in five minutes. The [study plan tool](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/) turns this into dated tasks.
+4. **Days 12 to 14:** timed mock rounds and a project walkthrough you can explain in five minutes. The [study plan tool](https://aie.valenx.org/study-plan/) turns this into dated tasks.
 
-Compare more options, including books and courses, on the [AI engineer interview prep alternatives page](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/). If you are weighing broader subscriptions, see [Exponent (now Aced) alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/exponent-alternatives/) and [Hello Interview alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/hello-interview-alternatives/).
+Compare more options, including books and courses, on the [AI engineer interview prep alternatives page](https://aie.valenx.org/alternatives/). If you are weighing broader subscriptions, see [Exponent (now Aced) alternatives](https://aie.valenx.org/alternatives/exponent-alternatives/) and [Hello Interview alternatives](https://aie.valenx.org/alternatives/hello-interview-alternatives/).
 
 ## FAQ
 

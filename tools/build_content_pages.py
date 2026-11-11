@@ -238,8 +238,8 @@ def parse(path, kind):
 
 def md_html(s):
     h = markdown.markdown(s, extensions=["tables"])
-    h = re.sub(r'<a href="(https?://(?!johnnnmai\.github\.io)[^"]+)"', r'<a href="\1" rel="noopener">', h)
-    return h.replace('href="https://johnnnmai.github.io/ai-engineer-interview-questions/', 'href="../../')
+    h = re.sub(r'<a href="(https?://(?!aie\.valenx\.org)[^"]+)"', r'<a href="\1" rel="noopener">', h)
+    return h.replace('href="https://aie.valenx.org/', 'href="../../')
 
 
 def practice_box(related, campaign, rel="../../"):

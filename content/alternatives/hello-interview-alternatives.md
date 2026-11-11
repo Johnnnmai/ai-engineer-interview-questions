@@ -24,7 +24,7 @@ Hello Interview's strengths are system design depth and realistic practice. Look
 | This site's free question bank | $0 | 100 questions, 50 deep dives, self-check, mock timer | LLM, RAG and agent fundamentals |
 | The 0&rarr;1 AI Engineer Interview Playbook | $19.99 one-time on Gumroad | PDF, 370+ pages, 20 chapters, 5 frameworks, 8-week plan | RAG, agents, LLM system design and evals loops |
 
-Aced details are on the [Exponent alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/exponent-alternatives/) page. ByteByteGo and Educative facts are from the [full alternatives comparison](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/), checked Nov 1, 2026.
+Aced details are on the [Exponent alternatives](https://aie.valenx.org/alternatives/exponent-alternatives/) page. ByteByteGo and Educative facts are from the [full alternatives comparison](https://aie.valenx.org/alternatives/), checked Nov 1, 2026.
 
 ## Classic ML system design vs AI engineer system design
 
@@ -37,16 +37,16 @@ The difference matters when you pick prep material.
 | Main costs | Training and serving compute | Tokens per request and latency |
 | Key risks | Data leakage, drift | Hallucination, prompt injection, permission leaks |
 
-If your recruiter describes the loop as LLM or GenAI focused, practice the right column with [AI system design interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/) and the [RAG design rubric](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-system-design-interview-scoring-rubric/).
+If your recruiter describes the loop as LLM or GenAI focused, practice the right column with [AI system design interview questions](https://aie.valenx.org/guides/ai-system-design-interview-questions/) and the [RAG design rubric](https://aie.valenx.org/guides/rag-system-design-interview-scoring-rubric/).
 
 ## How to choose
 
 1. **You want realistic system design reps with feedback:** Hello Interview's Guided Practice and Live Practice are built for that.
 2. **You want people, not an AI interviewer:** Aced includes peer mock interviews.
-3. **Your loop is about RAG, agents and evals:** start with free [RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/) and [AI agent interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-agent-interview-questions/), then add a focused guide.
-4. **Your budget is close to zero:** the free bank, the [timed mock round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/), the [answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/) and the [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/) cover a lot.
+3. **Your loop is about RAG, agents and evals:** start with free [RAG interview questions](https://aie.valenx.org/guides/rag-interview-questions/) and [AI agent interview questions](https://aie.valenx.org/guides/ai-agent-interview-questions/), then add a focused guide.
+4. **Your budget is close to zero:** the free bank, the [timed mock round](https://aie.valenx.org/mock-interview/), the [answer self-check](https://aie.valenx.org/answer-check/) and the [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/) cover a lot.
 
-Many candidates combine options: a system design platform for practice reps plus LLM-specific material for the AI rounds. Plan the split by date with the free [study plan](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/).
+Many candidates combine options: a system design platform for practice reps plus LLM-specific material for the AI rounds. Plan the split by date with the free [study plan](https://aie.valenx.org/study-plan/).
 
 ## FAQ
 

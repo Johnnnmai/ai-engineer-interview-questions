@@ -311,7 +311,7 @@ ZH_SLUGS = [p["slug"] for p in ZH_PAGES]
 
 # hreflang pairs for the /zh/ mirror (line 20). Used by build_zh_mirror.py and, via a guarded import,
 # by build_question_pages.py so the English pages point back to their Chinese versions.
-ZH_SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
+ZH_SITE = "https://aie.valenx.org"
 ZH_URLS = [f"{ZH_SITE}/zh/"] + [f"{ZH_SITE}/zh/{s}/" for s in ZH_SLUGS]
 
 

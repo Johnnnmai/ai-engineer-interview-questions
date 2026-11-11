@@ -54,7 +54,7 @@ Use the last three days to test your readiness under interview conditions rather
 - **Day 13, full mock:** simulate a coding round, a RAG design round, and questions about LLM evaluation. Review recordings against a rubric for directness, technical correctness, measurable trade-offs, and admitting uncertainty.
 - **Day 14, targeted review:** revisit only the weakest five concepts, rerun the tests, redraw the architecture without notes, and practice concise answers. Stop introducing new frameworks and prepare questions about the actual team's data and reliability needs.
 - Keep final evidence simple: a runnable project or defensible prototype, a diagram, a compact scorecard, and examples of where the system fails. These artifacts are stronger than an unsupported claim of production-grade quality.
-- For additional practice, use the free [AI engineer interview question bank](https://johnnnmai.github.io/ai-engineer-interview-questions/) and compare each spoken answer with a documented model answer.
+- For additional practice, use the free [AI engineer interview question bank](https://aie.valenx.org/) and compare each spoken answer with a documented model answer.
 
 ## FAQ
 

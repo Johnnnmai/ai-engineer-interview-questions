@@ -16,8 +16,8 @@ from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, OFFER_EXPIRE
                                    TIER9_URL, IB_TIER9_URL, TIER9_UTM, TIER9_LEAD, TIER9_LINK_TEXT, TIER9_POST, IB_TIER9_LINK_TEXT, IB_TIER9_POST)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://johnnnmai.github.io/ai-engineer-interview-questions"
-IB_SITE = "https://johnnnmai.github.io/investment-banking-interview-questions"
+SITE = "https://aie.valenx.org"
+IB_SITE = ""  # no handle-free public IB host yet; do not emit github.io IB URLs
 URL = f"{SITE}/answer-check/"
 # Paid links reuse the offer query of CTA_URL (tools/build_question_pages.py), so clearing OFFER_CODE there clears it here.
 OFFER_Q = urlsplit(CTA_URL).query
@@ -102,7 +102,7 @@ def data():
                     "followup": p["followups"][0][0] if p["followups"] else "", "concepts": concepts(r["concepts"]), "logic": []})
     ib = []
     for slug, r in D.IB.items():
-        ib.append({"slug": slug, "q": ib_title(r["q"]), "model": f"{IB_SITE}/questions/{slug}/", "followup": D.IB_FOLLOWUPS.get(slug, ""),
+        ib.append({"slug": slug, "q": ib_title(r["q"]), "model": f"?track=ib&q={slug}", "followup": D.IB_FOLLOWUPS.get(slug, ""),
                    "concepts": concepts(r["concepts"]), "logic": r.get("logic", [])})
     assert len(aie) == len(PAGES) == 50 and len(ib) == 50, (len(aie), len(ib))
     tracks = {
@@ -355,10 +355,10 @@ def build():
          '<h2>Questions you can check</h2><div class=qcols><div><b>AI Engineer (' + str(len(d["tracks"]["aie"]["questions"])) + ')</b><ul>'
          + "".join(f'<li><a href="../questions/{q["slug"]}/">{e(q["q"])}</a></li>' for q in d["tracks"]["aie"]["questions"]) +
          '</ul></div><div><b>Investment Banking (' + str(len(d["tracks"]["ib"]["questions"])) + ')</b><ul>'
-         + "".join(f'<li><a href="{IB_SITE}/questions/{q["slug"]}/">{e(q["q"])}</a></li>' for q in d["tracks"]["ib"]["questions"]) +
+         + "".join(f'<li><a href="?track=ib&q={q["slug"]}">{e(q["q"])}</a></li>' for q in d["tracks"]["ib"]["questions"]) +
          '</ul></div></div>',
          cta_box(),
-         f'<p class=muted>Scores are a self-check for practice, not a prediction of any interview outcome. <a href="{IB_SITE}/">All 100 investment banking interview questions</a>.</p>',
+         '<p class=muted>Scores are a self-check for practice, not a prediction of any interview outcome. All 100 investment banking interview questions.</p>',
          '</div></main>',
          '<script type="application/json" id=ac-data>' + json.dumps(d, ensure_ascii=False).replace("</", "<\\/") + '</script>',
          '<script id=ac-engine>' + JS + '</script><script>' + UI + '</script>',

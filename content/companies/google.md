@@ -12,7 +12,7 @@ Google publishes official pages on its hiring process and interview preparation,
 
 **Public careers sources:** [Google Careers: How we hire](https://www.google.com/about/careers/applications/how-we-hire/) | [Google Careers: Interview prep](https://www.google.com/about/careers/applications/interview-tips/) | [Google Careers job search](https://www.google.com/about/careers/applications/jobs/results/?q=%22AI%20engineer%22)
 
-Titles vary. Search for software engineer roles with machine learning or generative AI in the description, applied AI roles, customer-facing AI engineering roles in cloud teams, and research engineering roles. Each one weights coding, modeling and product work differently. Read the qualifications list of the exact posting and note which skills appear in both the minimum and preferred sections, because those are usually the safest focus for your prep. If you are aiming at research teams, also read the [Google DeepMind interview guide](https://johnnnmai.github.io/ai-engineer-interview-questions/companies/google-deepmind/) on this site.
+Titles vary. Search for software engineer roles with machine learning or generative AI in the description, applied AI roles, customer-facing AI engineering roles in cloud teams, and research engineering roles. Each one weights coding, modeling and product work differently. Read the qualifications list of the exact posting and note which skills appear in both the minimum and preferred sections, because those are usually the safest focus for your prep. If you are aiming at research teams, also read the [Google DeepMind interview guide](https://aie.valenx.org/companies/google-deepmind/) on this site.
 
 ## Typical loop stages
 
@@ -29,18 +29,18 @@ The following is a **general AI engineering industry pattern**, not a verified G
 
 | Round | What to practice | Free resource on this site |
 |---|---|---|
-| Coding | Arrays, graphs, dynamic programming, tests and complexity out loud | [Timed mock interview round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/) |
-| ML fundamentals | Transformers, attention cost, scaling, overfitting and evaluation | [Transformer architecture deep dive](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/explain-the-transformer-architecture/) |
-| LLM application | Retrieval, tool calling, structured output, safety | [RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/) |
-| Evaluation | Offline sets, online A/B tests, LLM judges, regressions | [LLM evaluation interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/llm-evaluation-interview-questions/) |
-| System design | Requirements, data flow, serving, latency and cost | [LLM API cost calculator](https://johnnnmai.github.io/ai-engineer-interview-questions/llm-cost-calculator/) |
-| Behavioral | Two project stories with numbers and one honest failure | [Answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/) |
+| Coding | Arrays, graphs, dynamic programming, tests and complexity out loud | [Timed mock interview round](https://aie.valenx.org/mock-interview/) |
+| ML fundamentals | Transformers, attention cost, scaling, overfitting and evaluation | [Transformer architecture deep dive](https://aie.valenx.org/questions/explain-the-transformer-architecture/) |
+| LLM application | Retrieval, tool calling, structured output, safety | [RAG interview questions](https://aie.valenx.org/guides/rag-interview-questions/) |
+| Evaluation | Offline sets, online A/B tests, LLM judges, regressions | [LLM evaluation interview questions](https://aie.valenx.org/guides/llm-evaluation-interview-questions/) |
+| System design | Requirements, data flow, serving, latency and cost | [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/) |
+| Behavioral | Two project stories with numbers and one honest failure | [Answer self-check](https://aie.valenx.org/answer-check/) |
 
 ## A focused preparation plan
 
 Spend the first third of your time on coding, because a weak coding round is hard to offset with ML depth. Solve problems out loud, state complexity, and write tests for edge cases before you are asked. In the second third, review ML and LLM fundamentals until you can explain each in two minutes: attention and its cost, why a model hallucinates, how quantization trades accuracy for speed, and when retrieval beats fine-tuning. In the last third, practice two designs end to end and rehearse your project stories.
 
-Build one small project you can explain in depth, such as a retrieval assistant over a public dataset with a labeled evaluation set. Record the baseline, the change you made, the metric that moved and the one that regressed. Then use the [study plan tool](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/) to schedule the work up to your interview date, and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
+Build one small project you can explain in depth, such as a retrieval assistant over a public dataset with a labeled evaluation set. Record the baseline, the change you made, the metric that moved and the one that regressed. Then use the [study plan tool](https://aie.valenx.org/study-plan/) to schedule the work up to your interview date, and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
 
 ## 10 practice questions
 

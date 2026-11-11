@@ -151,7 +151,7 @@ def build():
          f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad. '
          f'Then <a href="{e(tier9("ib", "mock_cta_box_ib"))}">{e(A.tier9("ib")["name"])}</a>.</p></div>',
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in faq),
-         f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; <a href="{A.IB_SITE}/">100 investment banking interview questions</a></p>',
+         f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; 100 investment banking interview questions</p>',
          '</div></main>',
          f'<div class=sticky-cta role=complementary aria-label="{CTA_BUTTON}" aria-hidden=true><span class=t><b><span class=full id=sticky-full>{PRODUCT_NAME}</span><span class=short id=sticky-short>{PRODUCT_SHORT}</span></b>'
          + (f'<span class="long promo"> &middot; {PROMO_STICKY_LONG}</span><span class="short promo"> &middot; {PROMO_STICKY_SHORT}</span>' if PROMO_ON else '') +

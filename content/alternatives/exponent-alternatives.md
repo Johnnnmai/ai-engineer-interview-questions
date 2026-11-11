@@ -24,13 +24,13 @@ Aced does a lot well: peer mock interviews, video answers and coverage of many r
 | This site's free question bank | $0 | 100 questions, 50 deep dives, self-check, mock timer | Checking your level and practicing out loud |
 | The 0&rarr;1 AI Engineer Interview Playbook | $19.99 one-time on Gumroad | PDF, 370+ pages, 20 chapters, 5 frameworks, 8-week plan | A complete method for RAG, agents and evals loops |
 
-ByteByteGo and Educative facts are from the [full alternatives comparison](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/), checked Nov 1, 2026. Hello Interview details are on the [Hello Interview alternatives](https://johnnnmai.github.io/ai-engineer-interview-questions/alternatives/hello-interview-alternatives/) page.
+ByteByteGo and Educative facts are from the [full alternatives comparison](https://aie.valenx.org/alternatives/), checked Nov 1, 2026. Hello Interview details are on the [Hello Interview alternatives](https://aie.valenx.org/alternatives/hello-interview-alternatives/) page.
 
 ## How to choose
 
 1. **You need live practice with people:** stay with Aced, whose peer mocks are its strongest feature. No PDF replaces a person asking follow-ups.
 2. **Your loop is mostly system design:** compare Aced with Hello Interview, which centers on system design and AI mock interviews.
-3. **Your loop is LLM-heavy and your budget is small:** start with the free [AI engineer question bank](https://johnnnmai.github.io/ai-engineer-interview-questions/), the [timed mock round](https://johnnnmai.github.io/ai-engineer-interview-questions/mock-interview/) and the [answer self-check](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/), then add a one-time guide for the gaps.
+3. **Your loop is LLM-heavy and your budget is small:** start with the free [AI engineer question bank](https://aie.valenx.org/), the [timed mock round](https://aie.valenx.org/mock-interview/) and the [answer self-check](https://aie.valenx.org/answer-check/), then add a one-time guide for the gaps.
 4. **You prefer to own the material:** a book or PDF is a single payment with no renewal to cancel.
 
 ## Cost over a typical prep window
@@ -46,10 +46,10 @@ Annual totals assume the annual plan is billed as 12 months at the listed monthl
 
 ## A free 2-week plan before you subscribe to anything
 
-- **Days 1 to 3:** answer 20 questions from the [question bank](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/) out loud and score them with the self-check.
-- **Days 4 to 7:** work through [RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/) and [AI agent interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-agent-interview-questions/).
-- **Days 8 to 12:** practice one prompt a day from [AI system design interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/).
-- **Days 13 to 14:** run full mock rounds and fix the weakest topic. Build your own dates with the [study plan](https://johnnnmai.github.io/ai-engineer-interview-questions/study-plan/).
+- **Days 1 to 3:** answer 20 questions from the [question bank](https://aie.valenx.org/questions/) out loud and score them with the self-check.
+- **Days 4 to 7:** work through [RAG interview questions](https://aie.valenx.org/guides/rag-interview-questions/) and [AI agent interview questions](https://aie.valenx.org/guides/ai-agent-interview-questions/).
+- **Days 8 to 12:** practice one prompt a day from [AI system design interview questions](https://aie.valenx.org/guides/ai-system-design-interview-questions/).
+- **Days 13 to 14:** run full mock rounds and fix the weakest topic. Build your own dates with the [study plan](https://aie.valenx.org/study-plan/).
 
 ## FAQ
 

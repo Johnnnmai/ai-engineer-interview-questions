@@ -60,7 +60,7 @@ Use a repeatable answer structure and one measured project so every claim can su
 
 - Check real postings before the interview and adjust the weights. The table is a preparation aid, not a claim about a universal hiring process or any particular company's questions.
 
-Topic question sets: [RAG interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/rag-interview-questions/), [AI agent interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-agent-interview-questions/) and [AI system design interview questions](https://johnnnmai.github.io/ai-engineer-interview-questions/guides/ai-system-design-interview-questions/).
+Topic question sets: [RAG interview questions](https://aie.valenx.org/guides/rag-interview-questions/), [AI agent interview questions](https://aie.valenx.org/guides/ai-agent-interview-questions/) and [AI system design interview questions](https://aie.valenx.org/guides/ai-system-design-interview-questions/).
 
 ## FAQ
 

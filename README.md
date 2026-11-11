@@ -1,6 +1,6 @@
 # 100 AI Engineer Interview Questions (2026) with Full Model Answers
 
-**Free:** [Check your interview answer](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)  |  **Weekly drill packs:** [Valenx Pass](https://valenx.org/go/pass-y?utm_source=github&utm_campaign=ai-engineer-interview-questions&utm_content=readme), $79/yr, a new drill pack every Monday, cancel anytime.
+**Free:** [Check your interview answer](https://aie.valenx.org/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)  |  **Weekly drill packs:** [Valenx Pass](https://valenx.org/go/pass-y?utm_source=github&utm_campaign=ai-engineer-interview-questions&utm_content=readme), $79/yr, a new drill pack every Monday, cancel anytime.
 
 _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / Mid / Senior** · Free, no sign-up
 
@@ -8,7 +8,7 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 ### Quick start
 
-🆓 **Self-check** — [Paste your answer and get a score in 30 seconds](https://johnnnmai.github.io/ai-engineer-interview-questions/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
+🆓 **Self-check** — [Paste your answer and get a score in 30 seconds](https://aie.valenx.org/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
 
 🆓 **Top 30 questions** — [Free 13-page guide with model answers (PDF)](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
 
@@ -20,23 +20,20 @@ A structured interview practice pack with prompts and scoring notes for AI engin
 
 **[Get the AI Engineer Interview Playbook, $19.99](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=qbank&utm_medium=cta&utm_campaign=playbook_cta_20261109&utm_content=readme)**
 
-Also: [Grok Bot Team Setup Pack ($49)](https://johnnnmai.github.io/valenx-bots/?utm_source=aie_qbank&utm_medium=owned_cta&utm_campaign=paid_redirect_20261109&utm_content=readme_bot)
-
-
 ## New question pages (Nov 2026)
 
 Deep-dive pages from the bank (free, no sign-up):
 
-1. [How do you evaluate an AI agent?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-evaluate-an-ai-agent/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-2. [How do you handle PII in AI systems?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-handle-pii-in-ai-systems/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-3. [How do you monitor an LLM system in production?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/how-to-monitor-llm-in-production/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-4. [What is agentic RAG?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-agentic-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-5. [What is query transformation in RAG and why does it help?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-query-transformation-in-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-6. [Fine-tuning vs in-context learning: what is the difference?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/fine-tuning-vs-in-context-learning/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-7. [How do you choose a vector database (pgvector, Pinecone, and others)?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/pgvector-vs-pinecone-vs-other-vector-databases/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-8. [What is a system prompt and what belongs in it?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-a-system-prompt/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-9. [What is self-attention and why does it matter?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/what-is-self-attention/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
-10. [Zero-shot vs few-shot prompting: when do you use each?](https://johnnnmai.github.io/ai-engineer-interview-questions/questions/zero-shot-vs-few-shot-prompting/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+1. [How do you evaluate an AI agent?](https://aie.valenx.org/questions/how-to-evaluate-an-ai-agent/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+2. [How do you handle PII in AI systems?](https://aie.valenx.org/questions/how-to-handle-pii-in-ai-systems/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+3. [How do you monitor an LLM system in production?](https://aie.valenx.org/questions/how-to-monitor-llm-in-production/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+4. [What is agentic RAG?](https://aie.valenx.org/questions/what-is-agentic-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+5. [What is query transformation in RAG and why does it help?](https://aie.valenx.org/questions/what-is-query-transformation-in-rag/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+6. [Fine-tuning vs in-context learning: what is the difference?](https://aie.valenx.org/questions/fine-tuning-vs-in-context-learning/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+7. [How do you choose a vector database (pgvector, Pinecone, and others)?](https://aie.valenx.org/questions/pgvector-vs-pinecone-vs-other-vector-databases/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+8. [What is a system prompt and what belongs in it?](https://aie.valenx.org/questions/what-is-a-system-prompt/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+9. [What is self-attention and why does it matter?](https://aie.valenx.org/questions/what-is-self-attention/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
+10. [Zero-shot vs few-shot prompting: when do you use each?](https://aie.valenx.org/questions/zero-shot-vs-few-shot-prompting/?utm_source=github&utm_medium=readme&utm_campaign=ai-engineer-interview-questions)
 
 **Who this is for:** AI Engineer, LLM Engineer, Applied AI / Applied ML Engineer, GenAI Engineer, Agent Engineer, ML Engineer moving into LLM work, Forward Deployed / Solutions Engineer (AI), AI Product Engineer.
 
