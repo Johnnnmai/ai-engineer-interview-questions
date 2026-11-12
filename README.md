@@ -10,15 +10,15 @@ _Last updated: November 1, 2026_ · Every question answered · Graded **Entry / 
 
 🆓 **Self-check** — [Paste your answer and get a score in 30 seconds](https://aie.valenx.org/answer-check/?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
 
-🆓 **Top 30 questions** — [Free 13-page guide with model answers (PDF)](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
+🆓 **Top 30 questions** — [Free 13-page guide with model answers (PDF)](https://valenx.org/get/aie-top-30-questions?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions)
 
-📘 **Full interview kit** — [The complete AI Engineer Interview bundle](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions).
+📘 **Full interview kit** — [The complete AI Engineer Interview bundle](https://valenx.org/kit?utm_source=github&utm_medium=readme&utm_campaign=line26_20261101&utm_content=ai-engineer-interview-questions).
 
 ### AI Engineer Interview Playbook
 
 A structured interview practice pack with prompts and scoring notes for AI engineer rounds. Price is $19.99.
 
-**[Get the AI Engineer Interview Playbook, $19.99](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=qbank&utm_medium=cta&utm_campaign=playbook_cta_20261109&utm_content=readme)**
+**[Get the AI Engineer Interview Playbook, $19.99](https://valenx.org/kit?utm_source=qbank&utm_medium=cta&utm_campaign=playbook_cta_20261109&utm_content=readme)**
 
 ## New question pages (Nov 2026)
 
@@ -307,7 +307,7 @@ If you can draw the flowchart, build a workflow (deterministic steps with model 
 
 ---
 
-**[Get the full playbook: frameworks, system-design walkthroughs, 8-week plan ($19.99)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_mid)**
+**[Get the full playbook: frameworks, system-design walkthroughs, 8-week plan ($19.99)](https://valenx.org/kit?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_mid)**
 
 ---
 
@@ -659,6 +659,6 @@ Graders return 0 or 1 (exact match, schema valid, judge pass). Report per-case d
 
 ---
 
-**[The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_bottom)** · [Paperback/Kindle](https://valenx.org/books/aie?utm_source=github&utm_medium=readme&utm_content=ai-engineer-interview-questions_L643)
+**[The 0 to 1 AI Engineer Interview Playbook ($19.99, instant PDF)](https://valenx.org/kit?utm_source=github&utm_medium=qbank&utm_campaign=aie_qbank_20261101&utm_content=readme_bottom)** · [Paperback/Kindle](https://valenx.org/books/aie?utm_source=github&utm_medium=readme&utm_content=ai-engineer-interview-questions_L643)
 
 © 2026 Valenx Press · Last updated November 1, 2026 · Questions reflect common public interview patterns; no company affiliation. Corrections welcome via issues.

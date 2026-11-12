@@ -61,7 +61,7 @@ Questions run from fundamentals to production. Each answer is a short model answ
 
 ## How to practice
 
-For each question, give a one-sentence definition, the main trade-off, a concrete example and one failure case. Record your answer, paste the transcript into the free [answer self-check](https://aie.valenx.org/answer-check/), and then run a timed [mock interview round](https://aie.valenx.org/mock-interview/). If your interview has a date, the [study plan tool](https://aie.valenx.org/study-plan/) spreads these topics over the days you have. Keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for quick review.
+For each question, give a one-sentence definition, the main trade-off, a concrete example and one failure case. Record your answer, paste the transcript into the free [answer self-check](https://aie.valenx.org/answer-check/), and then run a timed [mock interview round](https://aie.valenx.org/mock-interview/). If your interview has a date, the [study plan tool](https://aie.valenx.org/study-plan/) spreads these topics over the days you have. Keep the [free Top 30 AI engineer questions PDF](https://valenx.org/get/aie-top-30-questions) for quick review.
 
 ## FAQ
 

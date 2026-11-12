@@ -27,7 +27,7 @@ Prices are from each seller's own page on Nov 2, 2026. Valenx Press is not affil
 | [LeetML](https://leetml.org/) | Free tier with 500 problems; Pro $19/mo or $149/yr | ML and AI problems with solutions, grading and study plans | ML and AI engineer problem drills |
 | [Hello Interview](https://www.hellointerview.com/premium) | $47 for 1 month, $89 for 1 year, $299 lifetime | System design articles, videos, guided practice and AI mocks | System design and ML system design |
 | [This site, free](https://aie.valenx.org/) | $0 | 100 AI engineer questions, 50 deep dives, self-check, mock round, study plan, cost calculator | LLM, RAG, agents and evaluation fundamentals |
-| [The 0 to 1 AI Engineer Interview Playbook](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook) | $19.99 one time on Gumroad | One PDF, 370+ pages, 20 chapters, 5 answer frameworks, an 8-week plan | A one-time method for AI engineer loops |
+| [The 0 to 1 AI Engineer Interview Playbook](https://valenx.org/kit) | $19.99 one time on Gumroad | One PDF, 370+ pages, 20 chapters, 5 answer frameworks, an 8-week plan | A one-time method for AI engineer loops |
 
 ## ML engineer vs AI engineer: why the right alternative differs
 
@@ -52,7 +52,7 @@ Interview Query has a large set of data science questions in one place, company 
 
 This is general guidance. Shorten or stretch it to your interview date.
 
-1. **Days 1 to 3:** skim the [free question bank](https://aie.valenx.org/) and the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions). Mark every question you cannot answer in two minutes.
+1. **Days 1 to 3:** skim the [free question bank](https://aie.valenx.org/) and the [free Top 30 AI engineer questions PDF](https://valenx.org/get/aie-top-30-questions). Mark every question you cannot answer in two minutes.
 2. **Days 4 to 7:** one SQL or coding session a day on the platform you picked, plus two deep dives on your weakest LLM topics.
 3. **Days 8 to 11:** one design question a day, scored against the rubric, with a cost estimate.
 4. **Days 12 to 14:** timed mock rounds and a project walkthrough you can explain in five minutes. The [study plan tool](https://aie.valenx.org/study-plan/) turns this into dated tasks.

@@ -24,7 +24,7 @@ OFFER_Q = urlsplit(CTA_URL).query
 AIE_BUY = CTA_URL.split("?")[0]   # primary for the AI engineer track: the AI engineer playbook
 PM_BUY = PM_URL.split("?")[0]      # secondary text link on the AI engineer track only: the PM direction bundle
 # Primary for the IB track: the free IB Top 30 product (Gumroad, $0+). No offer code on a free product.
-IB_BUY = "https://sirjohnnymai.gumroad.com/l/ib-top-30-questions"
+IB_BUY = "https://valenx.org/get/ib-top-30-questions"
 IB_FREE_NAME = "IB Interview: Top 30 Questions"
 TOOL_UTM = "utm_source=tool&utm_medium=answercheck&utm_campaign={track}"
 
