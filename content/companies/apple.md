@@ -40,7 +40,7 @@ The following is a **general AI engineering industry pattern**, not a verified A
 
 Divide your time into three blocks. First, coding: solve practical problems out loud, write tests, and state complexity. Second, fundamentals tied to the posting: if it mentions vision, review convolution and vision transformers; if it mentions language models, review attention, decoding, fine-tuning and evaluation; if it mentions efficiency, review quantization, pruning and distillation with their quality risks. Third, design and stories: practice two designs where the constraint is device memory, battery or privacy, and prepare stories that show ownership and careful measurement.
 
-A small project helps. For example, take a public model, quantize it, measure accuracy, latency and memory before and after, and explain the trade-off you would pick for a phone. Schedule the work with the [study plan tool](https://aie.valenx.org/study-plan/), price any cloud fallback with the [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/), and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
+A small project helps. For example, take a public model, quantize it, measure accuracy, latency and memory before and after, and explain the trade-off you would pick for a phone. Schedule the work with the [study plan tool](https://aie.valenx.org/study-plan/), price any cloud fallback with the [LLM API cost calculator](https://aie.valenx.org/llm-cost-calculator/), and keep the [free Top 30 AI engineer questions PDF](https://valenx.org/get/aie-top-30-questions) for review.
 
 ## 10 practice questions
 

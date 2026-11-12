@@ -16,8 +16,8 @@ import llm_prices as LP
 
 e = html.escape
 ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
-GR = "https://sirjohnnymai.gumroad.com/l/"
-IB_FREE = "https://sirjohnnymai.gumroad.com/l/ib-top-30-questions"
+GR = "https://valenx.org/get/"
+IB_FREE = "https://valenx.org/get/ib-top-30-questions"
 DS_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026
 PMPB_PRICE = "$19.99"  # list price on the live Gumroad product page, Nov 1 2026
 

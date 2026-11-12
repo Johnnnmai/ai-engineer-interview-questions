@@ -25,7 +25,7 @@ LASTMOD = "2026-11-01"
 # To run a future offer, set OFFER_CODE plus the PROMO_* copy below together, then re-run every builder in tools/.
 OFFER_CODE = ""  # no active offer (the Nov 2026 launch code ended Nov 3 2026 11:59 PM PT)
 OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
-CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
+CTA_URL = "https://valenx.org/kit" + OFFER_Q
 OFFER_EXPIRES = ""  # ISO UTC expiry of OFFER_CODE; promo lines also hide client-side after it
 PROMO_TEXT = ""  # e.g. "N% off with code X until <date>"; must stay empty while OFFER_CODE is empty
 PROMO_SHORT = ""  # badge text under 560px so the pill stays on one line at 320 to 375
@@ -41,7 +41,7 @@ CTA_HEADLINE = "Want the full method?"
 CTA_TEXT = "The 0 to 1 AI Engineer Interview Playbook covers the answer frameworks, system-design walkthroughs and an 8-week plan."
 CTA_BUTTON = "Get the playbook"
 # Secondary text link only: the PM direction bundle (North America Interview Full Package, slug xzptir). PM and TPM content, not AI engineer prep.
-PM_URL = "https://sirjohnnymai.gumroad.com/l/xzptir" + OFFER_Q
+PM_URL = "https://valenx.org/get/xzptir" + OFFER_Q
 PM_NAME = "North America Interview Full Package"
 PM_PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
 PM_LEAD = "Interviewing for PM or TPM? "
@@ -50,8 +50,8 @@ PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM intervie
 # $9 tier, secondary only (the playbook above stays primary): the 50-question scoring rubric PDFs on Gumroad.
 # Both use OFFER_Q, so an offer code appears on these links only while OFFER_CODE is set.
 # Placements: question pages, questions index and root (hero_buy + cta), answer-check and mock round (aie track: AIE rubric, ib track: IB rubric).
-TIER9_URL = "https://sirjohnnymai.gumroad.com/l/aie-50-questions-scoring-rubric" + OFFER_Q
-IB_TIER9_URL = "https://sirjohnnymai.gumroad.com/l/ib-50-questions-scoring-rubric" + OFFER_Q
+TIER9_URL = "https://valenx.org/get/aie-50-questions-scoring-rubric" + OFFER_Q
+IB_TIER9_URL = "https://valenx.org/get/ib-50-questions-scoring-rubric" + OFFER_Q
 TIER9_UTM = "utm_source=site&utm_medium=cta&utm_campaign=tripwire9_20261101"
 TIER9_PRICE = "$9"  # list price on both Gumroad product pages, Nov 1 2026
 TIER9_LEAD = "Smaller start: "

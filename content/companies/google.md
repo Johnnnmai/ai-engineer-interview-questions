@@ -40,7 +40,7 @@ The following is a **general AI engineering industry pattern**, not a verified G
 
 Spend the first third of your time on coding, because a weak coding round is hard to offset with ML depth. Solve problems out loud, state complexity, and write tests for edge cases before you are asked. In the second third, review ML and LLM fundamentals until you can explain each in two minutes: attention and its cost, why a model hallucinates, how quantization trades accuracy for speed, and when retrieval beats fine-tuning. In the last third, practice two designs end to end and rehearse your project stories.
 
-Build one small project you can explain in depth, such as a retrieval assistant over a public dataset with a labeled evaluation set. Record the baseline, the change you made, the metric that moved and the one that regressed. Then use the [study plan tool](https://aie.valenx.org/study-plan/) to schedule the work up to your interview date, and keep the [free Top 30 AI engineer questions PDF](https://sirjohnnymai.gumroad.com/l/aie-top-30-questions) for review.
+Build one small project you can explain in depth, such as a retrieval assistant over a public dataset with a labeled evaluation set. Record the baseline, the change you made, the metric that moved and the one that regressed. Then use the [study plan tool](https://aie.valenx.org/study-plan/) to schedule the work up to your interview date, and keep the [free Top 30 AI engineer questions PDF](https://valenx.org/get/aie-top-30-questions) for review.
 
 ## 10 practice questions
 

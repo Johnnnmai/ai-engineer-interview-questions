@@ -73,8 +73,8 @@ def main():
     o.append('<main id=main class="body root"><div class=read>' + body + '</div></main>' + B.sticky(SLUG, UTM))
     o.append(B.foot(REL))
     out = "".join(o)
-    links = re.findall(r'href="(https://[^"]*gumroad\.com[^"]*)"', out)
-    assert links and all(l.startswith("https://sirjohnnymai.gumroad.com/l/") for l in links), links
+    links = re.findall(r'href="(https://(?:[^"]*gumroad\.com|valenx\.org/(?:kit|get/))[^"]*)"', out)
+    assert links and all(l.startswith(("https://valenx.org/get/", "https://valenx.org/kit")) for l in links), links
     assert all(("offer_code=" in l) == bool(B.OFFER_CODE) for l in links), links
     assert any(l.startswith(B.CTA_URL.split("?")[0]) for l in links), links
     open(os.path.join(ROOT, "index.html"), "w").write(out)

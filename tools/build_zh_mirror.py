@@ -21,13 +21,13 @@ OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
 PROMO_ON = bool(OFFER_CODE and PROMO_TEXT)
 UTM = "utm_source=site&utm_medium=zh_mirror&utm_campaign=line20_20261101"
 
-ZH_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-zh" + OFFER_Q
+ZH_URL = "https://valenx.org/get/ai-engineer-interview-zh" + OFFER_Q
 ZH_NAME = "如何从0到1准备AI Engineer面试"
 ZH_PRICE = "$9.99"  # list price on the live Gumroad product page, Nov 1 2026
 ZH_SPEC = "20 章、5 套答题框架（FLAME、SPARK、FORGE、RISE、EMBER）、100 道题库和 8 周备考计划"  # from the product cover
-EN_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
+EN_URL = "https://valenx.org/kit" + OFFER_Q
 EN_PRICE = B.PRICE
-FREE_URL = "https://sirjohnnymai.gumroad.com/l/aie-top-30-questions"
+FREE_URL = "https://valenx.org/get/aie-top-30-questions"
 PROMO_TEXT = ""  # zh promo copy; set together with B.OFFER_CODE for a future offer
 ZH_STICKY_LONG = ""
 ZH_STICKY_SHORT = ""

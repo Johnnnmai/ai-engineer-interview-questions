@@ -12,7 +12,7 @@ import build_question_pages as B
 from build_question_pages import SITE, ROOT, BY_SLUG, head, foot, hero_buy, cta, sticky, buy_url
 
 e = html.escape
-FREE_TOP30 = "https://sirjohnnymai.gumroad.com/l/aie-top-30-questions"
+FREE_TOP30 = "https://valenx.org/get/aie-top-30-questions"
 DATE = "2026-11-01"
 ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
 
@@ -68,7 +68,7 @@ NEW_DATE = "2026-11-03"
 # any offer code: clear it and re-run, and the offer code and every promo line leave these pages too. No PM link (not PM or TPM pages).
 SEO5 = {"interview-query-alternatives", "google", "apple", "llm-interview-questions", "prompt-engineering-interview-questions"}
 NEW_PAGES |= SEO5
-GUMROAD = "https://sirjohnnymai.gumroad.com/l/"
+GUMROAD = "https://valenx.org/get/"
 SEO5_BASES = {"ai-engineer-interview-playbook": lambda: B.CTA_URL, "aie-50-questions-scoring-rubric": lambda: B.TIER9_URL,
               "aie-top-30-questions": lambda: FREE_TOP30}
 
@@ -110,9 +110,9 @@ def s5_sticky(slug):
 def s5_body_links(h, slug):
     """Product links written in the markdown get the seo5 utm and, for paid products, the OFFER_CODE base."""
     def sub(m):
-        base = SEO5_BASES.get(m.group(1))
+        base = SEO5_BASES.get(m.group(1) or "ai-engineer-interview-playbook")
         return f'href="{e(s5(base(), slug, "body"))}"' if base else m.group(0)
-    return re.sub(r'href="' + re.escape(GUMROAD) + r'([a-z0-9-]+)"', sub, h)
+    return re.sub(r'href="(?:' + re.escape(GUMROAD) + r'([a-z0-9-]+)|https://valenx\.org/kit)"', sub, h)
 
 
 
@@ -152,7 +152,7 @@ RAG_SUBSCRIBE_CSS = """
 .subscribe button[disabled]{opacity:.65}
 @media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}.subscribe .btn{justify-content:center}}
 """
-RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook"
+RAG_PLAYBOOK_URL = "https://valenx.org/kit"
 RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
 
 
