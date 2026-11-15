@@ -152,7 +152,7 @@ RAG_SUBSCRIBE_CSS = """
 .subscribe button[disabled]{opacity:.65}
 @media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}.subscribe .btn{justify-content:center}}
 """
-RAG_PLAYBOOK_URL = "https://valenx.org/kit"
+RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=aie.valenx.org&utm_medium=seo&utm_campaign=rag-interview-questions_legacy"
 RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
 
 

@@ -27,7 +27,7 @@ Prices are from each seller's own page on Nov 2, 2026. Valenx Press is not affil
 | [LeetML](https://leetml.org/) | Free tier with 500 problems; Pro $19/mo or $149/yr | ML and AI problems with solutions, grading and study plans | ML and AI engineer problem drills |
 | [Hello Interview](https://www.hellointerview.com/premium) | $47 for 1 month, $89 for 1 year, $299 lifetime | System design articles, videos, guided practice and AI mocks | System design and ML system design |
 | [This site, free](https://aie.valenx.org/) | $0 | 100 AI engineer questions, 50 deep dives, self-check, mock round, study plan, cost calculator | LLM, RAG, agents and evaluation fundamentals |
-| [The 0 to 1 AI Engineer Interview Playbook](https://valenx.org/kit) | $19.99 one time on Gumroad | One PDF, 370+ pages, 20 chapters, 5 answer frameworks, an 8-week plan | A one-time method for AI engineer loops |
+| [The 0 to 1 AI Engineer Interview Playbook](https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=aie.valenx.org&utm_medium=seo&utm_campaign=interview-query-alternatives_legacy) | $19.99 one time on Gumroad | One PDF, 370+ pages, 20 chapters, 5 answer frameworks, an 8-week plan | A one-time method for AI engineer loops |
 
 ## ML engineer vs AI engineer: why the right alternative differs
 

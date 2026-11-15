@@ -25,7 +25,7 @@ LASTMOD = "2026-11-01"
 # To run a future offer, set OFFER_CODE plus the PROMO_* copy below together, then re-run every builder in tools/.
 OFFER_CODE = ""  # no active offer (the Nov 2026 launch code ended Nov 3 2026 11:59 PM PT)
 OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
-CTA_URL = "https://valenx.org/kit" + OFFER_Q
+CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
 OFFER_EXPIRES = ""  # ISO UTC expiry of OFFER_CODE; promo lines also hide client-side after it
 PROMO_TEXT = ""  # e.g. "N% off with code X until <date>"; must stay empty while OFFER_CODE is empty
 PROMO_SHORT = ""  # badge text under 560px so the pill stays on one line at 320 to 375
