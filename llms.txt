@@ -50,6 +50,9 @@ Content is educational interview preparation, not a record of questions asked by
 - [AI System Design Interview Questions (2026): 15 LLM Design Prompts with Answer Outlines](https://aie.valenx.org/guides/ai-system-design-interview-questions/): 15 AI and LLM system design interview prompts with answer outlines, a 45-minute round structure and a self-scoring checklist for 2026.
 - [LLM Interview Questions and Answers (2026): 25 Questions from Basics to Production](https://aie.valenx.org/guides/llm-interview-questions/): 25 LLM interview questions with model answers: transformers, tokens, decoding, LoRA, RLHF, quantization, hallucination and serving, plus a level table and FAQ.
 - [Prompt Engineering Interview Questions and Answers (2026)](https://aie.valenx.org/guides/prompt-engineering-interview-questions/): 22 prompt engineering interview questions with model answers: few-shot, chain of thought, JSON output, prompt injection, evaluation and versioning, plus FAQ.
+- [AI Engineer Interview Questions 2026: What Interviewers Actually Ask](https://aie.valenx.org/guides/ai-engineer-interview-questions/): What AI engineer interviews ask, grouped by RAG, agents, evals and production, plus a free worked debug sample.
+- [RAG Interview Prep: One-Week Plan and Key Concepts](https://aie.valenx.org/guides/rag-interview-prep/): A seven-day RAG interview prep plan, a worked pipeline sample, and how to talk about retrieval vs generation metrics.
+- [PM Interview Template (2026): A Fill-in Answer Spine for PM, TPM and PGM](https://aie.valenx.org/guides/pm-interview-template/): A free five-step PM interview template sample, with how a TPM or PGM answer would shift.
 
 ## Company interview guides
 
