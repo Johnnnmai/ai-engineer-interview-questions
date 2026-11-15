@@ -156,6 +156,11 @@ RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-pla
 RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
 
 
+
+def pv_script(rel):
+    """Guide-page visit counter. Failures are ignored in the script itself."""
+    return f'<script src="{rel}assets/aie-pv.js" defer></script>'
+
 def page_css(slug):
     if slug != "rag-interview-questions":
         return EXTRA_CSS
@@ -309,7 +314,7 @@ def build_page(kind, slug, path):
     else:
         o.append(f'<p><a href="../">All {crumb.lower()}</a> &middot; <a href="{rel}{"guides" if kind == "company" else "companies"}/">'
                f'{"Prep guides" if kind == "company" else "Company interview guides"}</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
-    o.append('</div></main>' + (s5_sticky(slug) if seo5 else sticky(slug, utm)) + foot(rel))
+    o.append('</div></main>' + (s5_sticky(slug) if seo5 else sticky(slug, utm)) + foot(rel) + pv_script(rel))
     return "".join(o), title, desc
 
 
@@ -335,7 +340,7 @@ def build_index(kind, items):
     o.append(practice_box(["what-is-rag", "how-do-you-evaluate-an-llm", "design-an-llm-gateway"], camp, rel))
     o.append(cta(f"{folder}-index", "cta_box", utm, free_alt(f"{folder}_index_free", utm)))
     o.append(f'<p><a href="{rel}{"guides" if kind == "company" else "companies"}/">{"Prep guides" if kind == "company" else "Company interview guides"}</a> &middot; <a href="{rel}questions/">Question deep dives</a></p>')
-    o.append('</div></main>' + sticky(f"{folder}-index", utm) + foot(rel))
+    o.append('</div></main>' + sticky(f"{folder}-index", utm) + foot(rel) + pv_script(rel))
     return "".join(o)
 
 
