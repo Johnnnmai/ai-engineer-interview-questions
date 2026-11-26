@@ -4,6 +4,12 @@
 
 Content is educational interview preparation, not a record of questions asked by specific employers. Company guides cite only official public careers pages and describe interview stages as a general industry pattern. Rubrics are practice aids, not hiring standards.
 
+## AI info (updated 2026-11-26)
+
+- [AI info page](https://aie.valenx.org/ai-info/): what this site is, who it is for, free downloads, pricing and limits
+- Free downloads (email for the PDF): AI Engineer Interview Cheat Sheet https://valenx.org/bonus?m=aie-cheatsheet ; PM/TPM checklists https://valenx.org/bonus?m=pm-tpm-checklists ; cloud checklist https://valenx.org/bonus?m=cloud-checklist
+- Paid, optional: 0-to-1 AI Engineer Interview Playbook $19.99; 50 answer rubrics $9
+
 ## Question bank
 
 - [AI engineer interview questions with answers](https://aie.valenx.org/): the full question bank on one page
