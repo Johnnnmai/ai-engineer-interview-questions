@@ -63,10 +63,19 @@ def secondary(content):
             f'，{EN_PRICE}，Gumroad 英文版。也可以先{free_link(content + "_free")}。</p>')
 
 
+BF_HTML = (
+    '<p class="bf-bundle" style="margin-top:8px;font-size:14px;">'
+    '<strong>Black Friday (through Nov 30):</strong> 30% off with code <code>BF30</code> - '
+    '<a href="https://valenx.org/go/bf-pm?utm_source=aie.valenx.org&amp;utm_medium=site&amp;utm_campaign=bf30_202611">PM/TPM/PGM Interview Structure Templates ($16.80, list $24)</a>. '
+    'Also the <a href="https://valenx.org/go/bf-bundle?utm_source=aie.valenx.org&amp;utm_medium=site&amp;utm_campaign=bf30_202611">3-Playbook Bundle ($20.30, list $29)</a>.</p>'
+)
+
+
 def hero_buy(tag, ghost_href, ghost_text):
     return (f'<div class=acts><a class="btn btn-primary" href="{e(url_for(ZH_URL, tag + "_hero"))}">获取中文手册 {ARROW}</a>'
             f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
-            f'<p class=price-line><span>中文手册 <span class=num>{ZH_PRICE}</span>，Gumroad 即时下载</span>{promo()}</p>')
+            f'<p class=price-line><span>中文手册 <span class=num>{ZH_PRICE}</span>，Gumroad 即时下载</span>{promo()}</p>'
+            + BF_HTML)
 
 
 def cta(tag, content):
