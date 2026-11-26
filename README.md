@@ -22,6 +22,8 @@ A structured interview practice pack with prompts and scoring notes for AI engin
 
 **Black Friday (through Nov 30):** 30% off with code `BF30` - [3-Playbook Bundle ($20.30, list $29)](https://valenx.org/go/bf-bundle?utm_source=github&utm_medium=readme&utm_campaign=bf30_202611) (PM/TPM + AI Engineer + Data Science). Also: [PM/TPM/PGM Interview Structure Templates ($16.80, list $24)](https://valenx.org/go/bf-pm?utm_source=github&utm_medium=readme&utm_campaign=bf30_202611).
 
+**Free ($0):** [AI Engineer Interview Cheat Sheet, 12 questions (PDF)](https://valenx.org/go/free-aie?utm_source=github&utm_medium=readme&utm_campaign=leadmagnet_202611&utm_content=ai-engineer-interview-questions) or the [Top 30 AI Engineer Interview Questions guide (13-page PDF)](https://valenx.org/go/free-aie30?utm_source=github&utm_medium=readme&utm_campaign=leadmagnet_202611&utm_content=ai-engineer-interview-questions). Type $0 at checkout; the PDF arrives by email.
+
 ## New question pages (Nov 2026)
 
 Deep-dive pages from the bank (free, no sign-up):
