@@ -123,7 +123,7 @@ def head(title, desc, url, rel, alt, extra=""):
             f'<meta property="og:type" content="article"><meta property="og:url" content="{url}"><meta property="og:locale" content="zh_CN">'
             f'<meta property="og:image" content="{SITE}/zh/assets/zh-cover.jpg"><meta name="twitter:card" content="summary_large_image">'
             f'<link rel=canonical href="{url}">{alt}{B.icons(rel)}<link rel=preconnect href="https://fonts.googleapis.com">'
-            f'<link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="{rel}assets/valenx.css">{ZH_CSS}{extra}</head>'
+            f'<link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="{rel}assets/valenx.css">{ZH_CSS}{extra}<script src="/ga4.js" async></script></head>'
             f'<body><a class=skip href="#main">跳到正文</a>'
             f'<nav class=nav aria-label="站点"><a class=brand href="{rel}zh/"><span class=mark>VP</span>Valenx Press<span class=long>&nbsp;&middot; AI 工程师面试题中文版</span></a>'
             f'<div class=nav-group><a href="{rel}zh/">中文题目</a><a href="{rel}answer-check/">答案自查</a><a class=hide-sm href="{rel}questions/">English</a></div></nav>')

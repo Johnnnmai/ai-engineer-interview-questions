@@ -154,7 +154,7 @@ def head(title, desc, url, rel, extra="", og_title=None):
             f'<meta property="og:type" content="article"><meta property="og:url" content="{url}">'
             f'<meta property="og:image" content="{SITE}/assets/playbook-og.jpg"><meta name="twitter:card" content="summary_large_image">'
             f'<link rel=canonical href="{url}">{icons(rel)}<link rel=preconnect href="https://fonts.googleapis.com">'
-            f'<link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="{rel}assets/valenx.css">{extra}</head>'
+            f'<link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="{rel}assets/valenx.css">{extra}<script src="/ga4.js" async></script></head>'
             f'<body><a class=skip href="#main">Skip to content</a>'
             f'<nav class=nav aria-label="Site"><a class=brand href="{rel}"><span class=mark>VP</span>Valenx Press<span class=long>&nbsp;&middot; {SITE_NAME}</span></a>'
             f'<div class=nav-group><a href="{rel}questions/">Questions</a><a href="{rel}answer-check/">Self-check</a><a class=hide-sm href="{rel}">All 100</a></div></nav>')
