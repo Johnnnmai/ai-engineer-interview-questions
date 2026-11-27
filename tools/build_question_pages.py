@@ -166,7 +166,7 @@ def foot(rel, deep=True):
             f'{dd}Free tools: <a href="{rel}answer-check/">Answer self-check</a> &middot; <a href="{rel}study-plan/">Study plan</a> &middot; '
             f'<a href="{rel}llm-cost-calculator/">LLM cost calculator</a> &middot; <a href="{rel}mock-interview/">Mock round</a> &middot; '
             f'Guides: <a href="{rel}companies/">Company interview guides</a> &middot; <a href="{rel}guides/">Prep guides</a> &middot; '
-            f'Questions reflect common public interview patterns; no company affiliation.</div></footer>'
+            f'Questions reflect common public interview patterns; no company affiliation. &middot; <a href="/about/">About</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a></div></footer>'
             f'{UTM_SCRIPT}{UI_SCRIPT}</body></html>\n')
 
 

@@ -134,7 +134,7 @@ def foot(rel):
             f'<a href="{rel}questions/">English question deep dives</a> &middot; <a href="{rel}">All 100 questions</a> &middot; '
             f'免费工具：<a href="{rel}answer-check/">答案自查</a> &middot; <a href="{rel}study-plan/">学习计划</a> &middot; '
             f'<a href="{rel}llm-cost-calculator/">LLM 成本计算器</a> &middot; <a href="{rel}mock-interview/">模拟面试</a> &middot; '
-            f'题目整理自公开的常见面试题型，与任何公司无关联。</div></footer>'
+            f'题目整理自公开的常见面试题型，与任何公司无关联。 &middot; <a href="/about/">关于</a> &middot; <a href="/contact/">联系</a> &middot; <a href="/privacy/">隐私政策</a> &middot; <a href="/terms/">使用条款</a></div></footer>'
             f'{B.UTM_SCRIPT}{B.UI_SCRIPT}</body></html>\n')
 
 
