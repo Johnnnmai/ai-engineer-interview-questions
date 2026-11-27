@@ -78,7 +78,7 @@ function done(){$('stage').hidden=true;var o='';st.qs.forEach(function(q,i){o+='
  $('done').hidden=false;$('d-h').focus();}
 function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function promoOn(c){var u=document.documentElement.getAttribute('data-offer-until');return !!c.promo&&!!u&&Date.now()<Date.parse(u);}
-function syncTrack(){var t=val('track'),c=D[t].cta;$('lv-row').hidden=t!=='aie';var b=$('hero-buy');if(b){b.href=c.hero;b.textContent=c.btn;}var hp=document.querySelector('#hero-price .promo');if(hp)hp.hidden=!promoOn(c);var ht=$('hero-pricetxt');if(ht)ht.innerHTML=t==='aie'?'<span class=num>'+D.aie.cta.price+'</span> on Gumroad, instant download':'<span class=num>Free</span> 13-page guide on Gumroad, instant download';
+function syncTrack(){var t=val('track'),c=D[t].cta;$('lv-row').hidden=t!=='aie';var b=$('hero-buy');if(b){b.href=c.hero;b.textContent=c.btn;}var hp=document.querySelector('#hero-price .promo');if(hp)hp.hidden=!promoOn(c);var ht=$('hero-pricetxt');if(ht)ht.innerHTML=t==='aie'?'<span class=num>'+D.aie.cta.price+'</span> , instant download':'<span class=num>Free</span> 13-page guide , instant download';
  var s=$('sticky-buy');if(s){s.href=c.sticky;s.textContent=(c.promo?'Get it':'Get it free')+' \u2192';}$('sticky-full').textContent=c.full;$('sticky-short').textContent=c.short;
  document.querySelectorAll('.sticky-cta .promo').forEach(function(x){x.hidden=!promoOn(c);});}
 document.addEventListener('DOMContentLoaded',function(){
@@ -123,7 +123,7 @@ def build():
          '<span class=badge>Free tool</span><h1>Mock interview round generator, with a timer</h1>'
          f'<p class=lead>Random questions, a clock, no notes. Draw 3 to 8 questions from {n_aie} AI engineer or {n_ib} investment banking questions, answer each one out loud before time runs out, then score every answer with the free self-check.</p>'
          f'<div class=acts><a class="btn btn-primary" href="#setup">Start a round {ARROW}</a><a class="btn btn-ghost" id=hero-buy href="{e(data["aie"]["cta"]["hero"])}">{CTA_BUTTON}</a></div>'
-         f'<p class=price-line id=hero-price><span id=hero-pricetxt><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo}</p></div></header>',
+         f'<p class=price-line id=hero-price><span id=hero-pricetxt><span class=num>{PRICE}</span> , instant download</span>{promo}</p></div></header>',
          '<main id=main class=body><div class="read mk">',
          '<section id=setup aria-labelledby=setup-h><h2 id=setup-h>Set up your round</h2>'
          f'<fieldset><legend>Track</legend><div class=seg>{seg("track", [("aie", "AI Engineer"), ("ib", "Investment Banking")], "aie")}</div></fieldset>'

@@ -130,7 +130,7 @@ def calc_page():
              f'{len(models)} models from OpenAI, Anthropic, Google, DeepSeek and Mistral, list prices as of Nov 1, 2026, each linked to the provider page.</p>'
              f'<div class=acts><a class="btn btn-primary" href="#calc">Estimate my cost {ARROW}</a>'
              f'<a class="btn btn-ghost" href="{e(paid("ai-engineer-interview-playbook", C_CAMP, "hero"))}">Get the AI engineer playbook</a></div>'
-             f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p></div></header>')
+             f'<p class=price-line><span><span class=num>{PRICE}</span> , instant download</span>{promo()}</p></div></header>')
     o.append('<main id=main class=body><div class=read>')
     # tool
     opts, cur = [], None
@@ -337,7 +337,7 @@ def plan_page():
              'and a mock round before the interview. Free, printable, built on the free question pages.</p>'
              f'<div class=acts><a class="btn btn-primary" href="#plan">Build my plan {ARROW}</a>'
              f'<a class="btn btn-ghost" href="{e(paid("ai-engineer-interview-playbook", P_CAMP, "hero"))}">Get the AI engineer playbook</a></div>'
-             f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p></div></header>')
+             f'<p class=price-line><span><span class=num>{PRICE}</span> , instant download</span>{promo()}</p></div></header>')
     o.append('<main id=main class=body><div class=read>')
     o.append('<section id=plan class=tool aria-labelledby=plan-h><h2 id=plan-h style="margin-top:0">Your interview</h2><div class=grid2>'
              '<div><label class=f for=d>Interview date</label><input id=d type=date></div>'

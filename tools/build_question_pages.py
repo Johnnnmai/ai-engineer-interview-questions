@@ -25,7 +25,7 @@ LASTMOD = "2026-11-01"
 # To run a future offer, set OFFER_CODE plus the PROMO_* copy below together, then re-run every builder in tools/.
 OFFER_CODE = ""  # no active offer (the Nov 2026 launch code ended Nov 3 2026 11:59 PM PT)
 OFFER_Q = f"?offer_code={OFFER_CODE}" if OFFER_CODE else ""
-CTA_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook" + OFFER_Q
+CTA_URL = "https://valenx.org/go/aie-playbook" + OFFER_Q
 OFFER_EXPIRES = ""  # ISO UTC expiry of OFFER_CODE; promo lines also hide client-side after it
 PROMO_TEXT = ""  # e.g. "N% off with code X until <date>"; must stay empty while OFFER_CODE is empty
 PROMO_SHORT = ""  # badge text under 560px so the pill stays on one line at 320 to 375
@@ -56,9 +56,9 @@ TIER9_UTM = "utm_source=site&utm_medium=cta&utm_campaign=tripwire9_20261101"
 TIER9_PRICE = "$9"  # list price on both Gumroad product pages, Nov 1 2026
 TIER9_LEAD = "Smaller start: "
 TIER9_LINK_TEXT = f"Score your answers against 50 rubrics, {TIER9_PRICE}"
-TIER9_POST = ". 50 AI engineer questions, one rubric each, PDF on Gumroad."
+TIER9_POST = ". 50 AI engineer questions, one rubric each, PDF."
 IB_TIER9_LINK_TEXT = f"Score your answers against 50 IB rubrics, {TIER9_PRICE}"
-IB_TIER9_POST = ". 50 investment banking questions, one rubric each, PDF on Gumroad."
+IB_TIER9_POST = ". 50 investment banking questions, one rubric each, PDF."
 # ----------------------------------------------------
 PROMO_ON = bool(OFFER_CODE and PROMO_TEXT)
 
@@ -116,7 +116,7 @@ def cta(slug, content="cta_box", utm=None, extra=""):
 def hero_buy(slug, ghost_href, ghost_text, utm=None):
     return (f'<div class=acts><a class="btn btn-primary" href="{e(buy_url(slug, "hero", utm))}">{CTA_BUTTON} {ARROW}</a>'
             f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
-            f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo()}</p>'
+            f'<p class=price-line><span><span class=num>{PRICE}</span> , instant download</span>{promo()}</p>'
             f'{tier9_link(slug + "_hero")}')
 
 

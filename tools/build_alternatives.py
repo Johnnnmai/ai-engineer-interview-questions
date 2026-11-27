@@ -77,7 +77,7 @@ def build():
          '<span class=badge>Compared Nov 1, 2026</span><h1>AI engineer interview prep alternatives: ByteByteGo vs Educative vs Gumroad guides vs free</h1>'
          '<p class=lead>Six ways to prep for ML and AI engineer loops, side by side: price, format and what each is best at. Prices are from each seller&rsquo;s own page.</p>'
          f'<div class=acts><a class="btn btn-primary" href="{e(buy("hero"))}">{CTA_BUTTON} {ARROW}</a><a class="btn btn-ghost" href="../">Start with 100 free questions</a></div>'
-         f'<p class=price-line><span><span class=num>{PRICE}</span> on Gumroad, instant download</span>{promo}</p></div></header>',
+         f'<p class=price-line><span><span class=num>{PRICE}</span> , instant download</span>{promo}</p></div></header>',
          '<main id=main class=body><div class=read>',
          '<h2>The short version</h2><ul>'
          '<li><b>Classic ML system design:</b> the ByteByteGo book.</li>'

@@ -89,7 +89,7 @@ def s5_free(slug, term):
 def s5_hero(slug, ghost_href, ghost_text):
     return (f'<div class=acts><a class="btn btn-primary" href="{e(s5(B.CTA_URL, slug, "hero"))}">{B.CTA_BUTTON} {ARROW}</a>'
             f'<a class="btn btn-ghost" href="{ghost_href}">{ghost_text}</a></div>'
-            f'<p class=price-line><span><span class=num>{B.PRICE}</span> on Gumroad, instant download</span>{B.promo()}</p>'
+            f'<p class=price-line><span><span class=num>{B.PRICE}</span> , instant download</span>{B.promo()}</p>'
             + s5_tier9(slug, "hero_tier9"))
 
 
@@ -152,7 +152,7 @@ RAG_SUBSCRIBE_CSS = """
 .subscribe button[disabled]{opacity:.65}
 @media (max-width:560px){.subscribe .row{flex-direction:column;align-items:stretch}.subscribe .btn{justify-content:center}}
 """
-RAG_PLAYBOOK_URL = "https://sirjohnnymai.gumroad.com/l/ai-engineer-interview-playbook?utm_source=aie.valenx.org&utm_medium=seo&utm_campaign=rag-interview-questions_legacy"
+RAG_PLAYBOOK_URL = "https://valenx.org/go/aie-playbook?utm_source=aie.valenx.org&utm_medium=seo&utm_campaign=rag-interview-questions_legacy"
 RAG_SUBSCRIBE_KEY = "13d92adb-56a8-4202-a463-41f01f2c8443"
 
 
