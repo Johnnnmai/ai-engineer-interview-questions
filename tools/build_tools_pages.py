@@ -52,7 +52,7 @@ def sticky(href, label="Buy the playbook"):
 
 
 def pm_alt(href, label="PM direction bundle"):
-    return (f'<p class=alt-buy>Interviewing for PM or TPM instead? <a href="{e(href)}">See the {label}</a>, {PM_PRICE} on Gumroad: '
+    return (f'<p class=alt-buy>Interviewing for PM or TPM instead? <a href="{e(href)}">See the {label}</a>, {PM_PRICE}: '
             f'PM, TPM and PGM interview handbook, resume system and 1:1 cheat sheet. PM content, not AI engineer prep.</p>')
 
 

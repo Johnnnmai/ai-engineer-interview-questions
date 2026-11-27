@@ -46,7 +46,7 @@ PM_NAME = "North America Interview Full Package"
 PM_PRICE = "$59"  # list price on the live Gumroad product page, Nov 1 2026
 PM_LEAD = "Interviewing for PM or TPM? "
 PM_LINK_TEXT = "See the full PM package"
-PM_POST = f", {PM_PRICE} on Gumroad: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep."
+PM_POST = f", {PM_PRICE}: a resume system, a PM, TPM and PGM interview handbook, a 1:1 cheat sheet and a PM playbook. PM and TPM content, not AI engineer prep."
 # $9 tier, secondary only (the playbook above stays primary): the 50-question scoring rubric PDFs on Gumroad.
 # Both use OFFER_Q, so an offer code appears on these links only while OFFER_CODE is set.
 # Placements: question pages, questions index and root (hero_buy + cta), answer-check and mock round (aie track: AIE rubric, ib track: IB rubric).
