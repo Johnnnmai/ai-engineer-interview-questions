@@ -9,6 +9,7 @@ from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from question_pages_data import PAGES
+from question_pages_worked import WORKED
 try:
     from answer_check_data import AIE as _AC_AIE
 except ImportError:
@@ -144,12 +145,12 @@ def icons(rel):
             f'<link rel=apple-touch-icon href="{rel}assets/apple-touch-icon.png">')
 
 
-def head(title, desc, url, rel, extra=""):
+def head(title, desc, url, rel, extra="", og_title=None):
     until = f' data-offer-until="{OFFER_EXPIRES}"' if PROMO_ON else ""
     return (f'<!doctype html><html lang=en{until}><head><meta charset=utf-8>'
             f'<meta name=viewport content="width=device-width,initial-scale=1">'
             f'<title>{e(title)}</title><meta name=description content="{e(desc)}">'
-            f'<meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">'
+            f'<meta property="og:title" content="{e(og_title or title)}"><meta property="og:description" content="{e(desc)}">'
             f'<meta property="og:type" content="article"><meta property="og:url" content="{url}">'
             f'<meta property="og:image" content="{SITE}/assets/playbook-og.jpg"><meta name="twitter:card" content="summary_large_image">'
             f'<link rel=canonical href="{url}">{icons(rel)}<link rel=preconnect href="https://fonts.googleapis.com">'
@@ -209,6 +210,16 @@ def b3_subscribe(slug):
         '.catch(function(){btn.disabled=false;status.textContent="Could not subscribe just now. The page stays free either way.";});});})();</script>')
 
 
+# Short <title> strings from MPBX-46. H1 and og:title stay as p['q'] so a rebuild
+# does not restore titles over 65 characters.
+TITLE_OVERRIDES = {
+    'pre-training-vs-instruction-tuning-vs-rlhf': 'Pre-training vs instruction tuning vs RLHF',
+    'embedding-model-vs-generative-model': 'Embedding model vs generative model: the difference',
+    'hnsw-vs-ivf': 'HNSW vs IVF: recall, speed and memory tradeoffs',
+    'single-agent-vs-multi-agent': 'Single-agent vs multi-agent: when is it worth it?',
+    'pgvector-vs-pinecone-vs-other-vector-databases': 'How to choose a vector database (pgvector, Pinecone)',
+}
+
 def page(p):
     url = f"{SITE}/questions/{p['slug']}/"
     rel = "../../"
@@ -219,7 +230,8 @@ def page(p):
     ld_tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     src = ", ".join(f'<a href="../../#q{n}">#{n}</a>' for n in p["src"])
     ac = "../../answer-check/" + (f"?track=aie&amp;q={p['slug']}" if p["slug"] in _AC_AIE else "")
-    o = [head(p["q"], p["desc"], url, rel, ld_tag + zh_alternates(p["slug"]) + (B3_CSS if p["slug"] in B3_SLUGS else ""))]
+    page_title = TITLE_OVERRIDES.get(p["slug"], p["q"])
+    o = [head(page_title, p["desc"], url, rel, ld_tag + zh_alternates(p["slug"]) + (B3_CSS if p["slug"] in B3_SLUGS else ""), og_title=p["q"])]
     o.append(f'<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../../">{SITE_NAME}</a> / <a href="../">Questions</a></div>'
              f'<span class="lvl {LVL[p["level"]]}">{p["level"]}</span><h1>{e(p["q"])}</h1>'
              f'<p class=lead>How to answer it in an AI engineer interview: what is being tested, a step-by-step framework, a sample answer and the mistakes to avoid.</p>'
@@ -229,6 +241,8 @@ def page(p):
     o.append(f'<h2>What the interviewer is testing</h2><p>{e(p["testing"])}</p>')
     o.append('<h2>Answer framework</h2><ol class=steps>' + "".join(f"<li>{e(s)}</li>" for s in p["steps"]) + "</ol>")
     o.append('<h2>Sample answer</h2><div class=sample>' + "".join(f"<p class=ans>{e(s)}</p>" for s in p["sample"]) + "</div>")
+    if p["slug"] in WORKED:
+        o.append('<h2>Worked example</h2><div class=worked>' + "".join(f"<p>{e(x)}</p>" for x in WORKED[p["slug"]]) + "</div>")
     if p["followups"]:
         o.append('<h2>Likely follow-ups</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in p["followups"]))
     o.append('<h2>Common mistakes</h2><ul class=mist>' + "".join(f"<li>{e(m)}</li>" for m in p["mistakes"]) + "</ul>")
