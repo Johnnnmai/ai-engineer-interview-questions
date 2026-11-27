@@ -80,5 +80,6 @@
 <script>(function(){var b=document.querySelector(".sticky-cta"),h=document.querySelector("[data-hero]");if(b&&h){document.body.classList.add("has-sticky");var f=function(){var on=h.getBoundingClientRect().bottom<0;b.classList.toggle("show",on);b.setAttribute("aria-hidden",on?"false":"true");};addEventListener("scroll",f,{passive:true});f();}})();</script>
 <script>/* UTM passthrough: copy incoming utm_* onto Gumroad links; keep href defaults when a param is absent */(function(){function r(){var q=new URLSearchParams(location.search);var keys=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];var has=false;for(var i=0;i<keys.length;i++){if(q.get(keys[i]))has=true;}if(!has)return;var links=document.getElementsByTagName("a");for(var i=0;i<links.length;i++){var a=links[i];try{var u=new URL(a.href,location.href);var h=u.hostname.toLowerCase();if(h==="gumroad.com"||h.slice(-12)===".gumroad.com"||(h==="valenx.org"&&/^\/(kit|get\/)/.test(u.pathname))){for(var j=0;j<keys.length;j++){var v=q.get(keys[j]);if(v)u.searchParams.set(keys[j],v);}a.href=u.toString();}}catch(e){}}}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",r);}else{r();}})();</script>
 <script src="../../assets/aie-pv.js" defer></script>
+<script src="/assets/bf30-banner.js" defer></script>
 </body>
 </html>
