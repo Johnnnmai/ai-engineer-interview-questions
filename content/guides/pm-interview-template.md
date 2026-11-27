@@ -1,4 +1,4 @@
-# PM Interview Template (2026): A Fill-in Answer Spine for PM, TPM and PGM
+# PM Interview Template: Fill-in Spine for PM, TPM and PGM
 
 This page is for product, technical program, and program manager interviews, not AI engineer coding or RAG rounds. A template provides a reusable answer spine, not a script to memorize.
 
