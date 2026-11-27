@@ -360,7 +360,7 @@ def llms_txt(comp, guides, alts=None):
          f"- [LLM API cost calculator]({SITE}/llm-cost-calculator/): cost per request, day and month from official list prices",
          f"- [Mock interview round]({SITE}/mock-interview/): timed practice round", "",
          "## Comparisons", "",
-         f"- [AI engineer interview prep alternatives]({SITE}/alternatives/): ByteByteGo, Educative, Gumroad guides and free options by price and format",
+         f"- [AI engineer interview prep alternatives]({SITE}/alternatives/): ByteByteGo, Educative, paid download guides and free options by price and format",
          *[f"- [{t}]({SITE}/alternatives/{s}/): {d}" for s, t, d in (alts or [])], "",
          "## Preparation guides", ""]
     L += [f"- [{t}]({SITE}/guides/{s}/): {d}" for s, t, d in guides]

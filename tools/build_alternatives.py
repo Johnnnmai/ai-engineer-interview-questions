@@ -13,9 +13,9 @@ from build_question_pages import (PROMO_HTML, PROMO_SHORT, CTA_URL, PROMO_ON, PR
 URL = f"{SITE}/alternatives/"
 e = html.escape
 ARROW = '<span class=dot aria-hidden=true>&rarr;</span>'
-TITLE = "AI Engineer Interview Prep Alternatives (2026): ByteByteGo vs Educative vs Gumroad Guides vs Free"
+TITLE = "AI Engineer Interview Prep Alternatives (2026): ByteByteGo vs Educative vs paid download guides vs Free"
 DESC = ("Comparing ML and AI engineer interview prep: ByteByteGo ML System Design Interview, Educative Grokking the ML Interview, "
-        "Gumroad guides and free question banks, by price, format and what each covers. Prices checked Nov 1, 2026.")
+        "paid download guides and free question banks, by price, format and what each covers. Prices checked Nov 1, 2026.")
 
 
 def buy(content, base=None):
@@ -74,7 +74,7 @@ def build():
         f"<tr><td>{a}</td><td>{e(b)}</td><td>{c.replace(chr(39), '&rsquo;')}</td><td>{e(d)}</td></tr>" for a, b, c, d in ROWS) + "</table></div>"
     o = [h,
          '<header class=qhero data-hero><div class=wrap><div class="crumb label"><a href="../">AI Engineer Interview Questions</a> / Alternatives</div>'
-         '<span class=badge>Compared Nov 1, 2026</span><h1>AI engineer interview prep alternatives: ByteByteGo vs Educative vs Gumroad guides vs free</h1>'
+         '<span class=badge>Compared Nov 1, 2026</span><h1>AI engineer interview prep alternatives: ByteByteGo vs Educative vs paid download guides vs free</h1>'
          '<p class=lead>Six ways to prep for ML and AI engineer loops, side by side: price, format and what each is best at. Prices are from each seller&rsquo;s own page.</p>'
          f'<div class=acts><a class="btn btn-primary" href="{e(buy("hero"))}">{CTA_BUTTON} {ARROW}</a><a class="btn btn-ghost" href="../">Start with 100 free questions</a></div>'
          f'<p class=price-line><span><span class=num>{PRICE}</span> , instant download</span>{promo}</p></div></header>',
@@ -86,7 +86,7 @@ def build():
          '<li><b>Flashcards for LLM internals:</b> LLM Flashcards at $19.99.</li>'
          f'<li><b>RAG, agents and evals on a budget:</b> the free bank here, then the 0 to 1 AI Engineer Interview Playbook at {PRICE}.</li></ul>',
          '<h2>Side by side</h2>', table,
-         '<p class=muted>From amazon.com, educative.io and gumroad.com product pages on Nov 1, 2026. Valenx Press is not affiliated with these sellers.</p>',
+         '<p class=muted>From amazon.com and educative.io product pages on Nov 1, 2026. Valenx Press is not affiliated with these sellers.</p>',
          '<h2>More comparisons</h2><ul>'
          '<li><a href="exponent-alternatives/">Exponent (now Aced) alternatives for AI engineer interviews</a>: plans, AI Engineering track and cost over a prep window</li>'
          '<li><a href="hello-interview-alternatives/">Hello Interview alternatives for AI engineer interviews</a>: plans, Guided Practice and classic ML vs LLM system design</li>'

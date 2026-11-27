@@ -148,7 +148,7 @@ def build():
          f'<a class="btn btn-primary" href="{e(buy("aie", "cta_box"))}">{CTA_BUTTON} {ARROW}</a>{promo}'
          + tier9_p("aie", "mock_cta_box") +
          f'<p class=alt-buy>{PM_LEAD}<a href="{e(buy("aie", "cta_box_pm", "alt"))}">{PM_LINK_TEXT}</a>{e(PM_POST)}</p>'
-         f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide on Gumroad. '
+         f'<p class=alt-buy>Investment banking? <a href="{e(buy("ib", "cta_box_free"))}">Get the free IB Top 30</a>, a free 13-page guide. '
          f'Then <a href="{e(tier9("ib", "mock_cta_box_ib"))}">{e(A.tier9("ib")["name"])}</a>.</p></div>',
          '<h2>FAQ</h2>' + "".join(f'<div class=fu><b>{e(q)}</b> {e(a)}</div>' for q, a in faq),
          f'<p class=muted>Also free: <a href="../answer-check/">Interview Answer Self-Check</a> &middot; <a href="../">100 AI engineer interview questions</a> &middot; 100 investment banking interview questions</p>',
